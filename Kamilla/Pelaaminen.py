@@ -6,6 +6,7 @@ valmis = input("Paina enter-näppäintä, kun olet valmis aloittamaan!")
 
 #print vaihtoehdoista, minne lentää. Hups sori tuomas tein tän en tiiä onks tää hyvä mut sä saat kuiteki tehä sen toiminnallisuuden -Kamilla :)
 minne = None
+minne = minne.lower()
 
 if valmis == "":
     minne = input('''Minne haluaisit lentää? Epäillyt ovat: {epäillyn nimi} {epäillyn sijainti}, {epäillyn nimi} {epäillyn sijainti},
