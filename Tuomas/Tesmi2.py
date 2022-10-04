@@ -1,6 +1,6 @@
 #Insert name
 import mysql.connector
-
+import time
 yhteys = mysql.connector.connect(
          host='127.0.0.1',
          port= 3306,
@@ -35,17 +35,28 @@ valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
 #Jos pelaaja painaa jotain muuta kun enter, peli kysyy uudestaan
 while valmis != '':
     valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
+else:
+    print("Tervetuloa Puolan Varsovaan!")
+    time.sleep(3)
+    print("Olet rikostutkija {syötetty käyttäjänimi mahdollisesti?}")
+    time.sleep(3)
+    print("Eilen myöhään yöllä Ilkka löydettiin murhattuna Varsovasta.")
+    time.sleep(7)
+    print("Sinun tehtäväsi on selvittää kuka murhasi Ilkan.")
+    time.sleep(5)
+    print(
+        "Apulaisrikostutkija on kerännyt sinulle viisi epäiltyä, jotka ovat karanneet eri lentokentille ympäri Eurooppaa. ")
+    time.sleep(8)
+    print("Käy haastattelemassa heitä ja selvitä kuka on murhaaja")
+    time.sleep(5)
+    print(
+        "mutta muista sinulla on vain 7 lentolippua eli voit lentää vain seitsemään eri kohteeseen, joten käytä ne harkiten.")
+    time.sleep(9)
+    print("Onnea matkaan!")
+    time.sleep(2)
+# Kun pelaaja painaa enter, peli alkaa:
+    valmis = input("Paina enter-näppäintä, kun olet valmis aloittamaan!")
 
-#Kun pelaaja painaa enter, peli alkaa ja printtaa epäiltyjen henkilöiden sijainnit:
-    if valmis == '':
-        print()
-#Lentojen määrä tällähetkellä
-lennot = 7
-while lennot != 0:
-    lennot -=1
-print(lennot)
-#Anna sijainnin nimi:
-Sijainti = input('Kirjoita seuraava paikka mihin haluat lentää:')
 
 
 
