@@ -21,3 +21,11 @@
 #Riippuen tuloksesta, printataan joko voitit pelin tai hävisit ja kerrotaan murhaaja.
 #Voitosta lisätään streak ja lisätään voitot listaan jos häviää aloitetaan streak ja lisätään häviöt listaan
 #Lopussa voit painaa jotain aloittaaksesi uudestaan tai lopetaaksesi (print kiitos että pelasit)
+
+#print vaihtoehdoista, minne lentää. Hups sori tuomas tein tän printin en tiiä onks tää hyvä mut sä saat kuiteki tehä sen toiminnallisuuden -Kamilla :)
+minne = None
+minne = minne.lower()
+if valmis == "":
+    minne = input('''Minne haluaisit lentää? Epäillyt ovat: {epäillyn nimi} {epäillyn sijainti}, {epäillyn nimi} {epäillyn sijainti},
+        {epäillyn nimi} {epäillyn sijainti}, {epäillyn nimi} {epäillyn sijainti} ja  {epäillyn nimi} {epäillyn sijainti}.
+        Sinulla on lentoja jäljellä: {lentojajäljellä}. Kirjoita sijainnin nimi: ''')
