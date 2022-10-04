@@ -10,30 +10,41 @@ yhteys = mysql.connector.connect(
          )
 kursori=yhteys.cursor()
 
+nykMaa = 1
+lennot = 10
 
 playerName = input("Anna käyttäjä nimesi: ")
-
-kursori.execute("SELECT playerID FROM players WHERE playerName='"+playerName+"'")
-tulos=kursori.fetchone()
 
 try:
     kursori.execute("INSERT INTO players (playerID, playerName, wins, losses, amountPlayed, winStreak)SELECT COALESCE(MAX(playerID),0)+1,'"+playerName+"',0,0,0,0 FROM players;")
 except:
-    print(tulos[0])
+    print()
 
+def matkustaminen():
+    global nykMaa
+    global lennot
+    mones = 0
+    kursori.execute("select name from flights, gameCountries where gameCountries.countryID=flights.joinID and flights.countryID='" + str(nykMaa) + "';")
+    tulos = kursori.fetchall()
+    print(f'\nSinulla on {lennot} lentoa jäljellä.')
+    for x in tulos:
+        mones+=1
+        print(f'({mones}): {x[0]}')
+    lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
+    nykMaa = lentoValinta - 1
+    kursori.execute("select countryID from gameCountries where name='" + str(tulos[nykMaa][0]) + "';")
+    tulos = kursori.fetchone()
+    nykMaa = tulos[0]
+    lennot-=1
 
-winLoss = int(input('0 tai 1: '))
+while lennot>0:
+    matkustaminen()
 
-if winLoss == 0:
+arvaus = int(input('Kuka on murhaaja? '))
+
+if arvaus == 0:
     kursori.execute("UPDATE players SET losses=losses+1, amountPlayed=amountPlayed+1, winStreak=0 WHERE playerName='"+playerName+"';")
+    print('Väärin, hävisit pelin :(')
 else:
     kursori.execute("UPDATE players SET wins=wins+1, amountPlayed=amountPlayed+1, winStreak=winStreak+1 WHERE playerName='"+playerName+"';")
-
-
-
-nykMaa = input('Nykyisen maan numero: ')
-
-kursori.execute("select name from flights, gameCountries where gameCountries.countryID=flights.joinID and flights.countryID='"+nykMaa[0]+"';")
-tulos=kursori.fetchall()
-
-print(tulos[0][0],tulos[1][0])
+    print('Oikein, voitit pelin :)')
