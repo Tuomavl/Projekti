@@ -28,3 +28,12 @@ if winLoss == 0:
     kursori.execute("UPDATE players SET losses=losses+1, amountPlayed=amountPlayed+1, winStreak=0 WHERE playerName='"+playerName+"';")
 else:
     kursori.execute("UPDATE players SET wins=wins+1, amountPlayed=amountPlayed+1, winStreak=winStreak+1 WHERE playerName='"+playerName+"';")
+
+
+
+nykMaa = input('Nykyisen maan numero: ')
+
+kursori.execute("select name from flights, gameCountries where gameCountries.countryID=flights.joinID and flights.countryID='"+nykMaa[0]+"';")
+tulos=kursori.fetchall()
+
+print(tulos[0][0],tulos[1][0])
