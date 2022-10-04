@@ -36,6 +36,9 @@ def matkustaminen():
     tulos = kursori.fetchone()
     nykMaa = tulos[0]
     lennot-=1
+    kursori.execute("select airportName from gameCountries where countryID='" + str(nykMaa) + "';")
+    tulos = kursori.fetchone()
+    print(f'Tervetuloa, olet saapunut lentoasemalle: {tulos[0]}')
 
 while lennot>0:
     matkustaminen()
