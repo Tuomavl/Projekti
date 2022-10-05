@@ -1,6 +1,11 @@
 #SQL
 import mysql.connector
 import time
+import random
+maat = ['Unkari','Kroatia','Itävalta','Tsekki','Saksa','Tanska','Alankomaat','Italia','Ranska']
+henkilo = ['Mary','Luke','Sandra','Tom','Adam']
+random.shuffle(maat)
+print(f'Epäillyistä henkilöistä ensimmäinen on nimeltään: {henkilo[0]}. Hän on lähtenyt tapahtuman jälkeen maahan nimeltä: {maat[0]}')
 yhteys = mysql.connector.connect(
          host='127.0.0.1',
          port= 3306,
@@ -65,6 +70,10 @@ def matkustaminen():
     mones = 0
     kursori.execute("select name from flights, gameCountries where gameCountries.countryID=flights.joinID and flights.countryID='" + str(nykMaa) + "';")
     tulos = kursori.fetchall()
+
+
+
+
     print(f'\nSinulla on {lennot} lentoa jäljellä.')
     for x in tulos:
         mones+=1
