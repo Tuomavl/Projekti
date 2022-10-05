@@ -1,3 +1,21 @@
+CREATE USER 'lentopeli'@'localhost' IDENTIFIED BY 'peli';
+
+GRANT ALL PRIVILEGES ON flight_game.* TO 'lentopeli'@'localhost';
+
+USE flight_game;
+
+
+DROP TABLE IF EXISTS `players`;
+
+CREATE TABLE players(
+    playerID INTEGER NOT NULL PRIMARY KEY,
+    playerName VARCHAR(20) NOT NULL UNIQUE,
+    wins INTEGER,
+    losses INTEGER,
+    amountPlayed INTEGER,
+    winStreak INTEGER
+);
+
 DROP TABLE IF EXISTS `gameCountries`;
 
 CREATE TABLE gameCountries(
