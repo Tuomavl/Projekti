@@ -58,6 +58,8 @@ else:
     time.sleep(2)
 # Kun pelaaja painaa enter, peli alkaa:
     valmis = input("Paina enter-näppäintä, kun olet valmis aloittamaan!")
+
+#Matkustaminen
 def matkustaminen():
     global nykMaa
     global lennot
