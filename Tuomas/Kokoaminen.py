@@ -8,8 +8,8 @@ yhteys = mysql.connector.connect(
          host='127.0.0.1',
          port= 3306,
          database='flight_game',
-         user='root',
-         password='LeptuoMARIA2002',
+         user='lentopeli',
+         password='peli',
          autocommit=True
          )
 kursori=yhteys.cursor()
@@ -40,6 +40,7 @@ valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
 if lennot == 7:
     random.shuffle(maat)
     random.shuffle(henkilo)
+
 #Jos pelaaja painaa jotain muuta kun enter, peli kysyy uudestaan. Jos painaa enter, tarina alkaa.
 while valmis != '':
     valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
@@ -97,16 +98,20 @@ def matkustaminen():
 while lennot>0:
     matkustaminen()
 
+
+murhaaja = henkilo
 print(henkilo[0])
 moni = 0
-
-for x in henkilo:
+random.shuffle(murhaaja)
+murhaaja_index = murhaaja.index(murhaaja[0])
+print(murhaaja_index)
+for x in murhaaja:
     print(f'({moni + 1}): {x}')
     moni += 1
 
 arvaus = int(input('Mikä on murhaajan numero? '))
 
-if henkilo[0] == henkilo[arvaus-1]:
+if arvaus-1 == murhaaja_index:
     kursori.execute("UPDATE players SET wins=wins+1, amountPlayed=amountPlayed+1, winStreak=winStreak+1 WHERE playerName='"+playerName+"';")
     print('Oikein, voitit pelin :)')
 else:
