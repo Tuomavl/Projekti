@@ -1,11 +1,9 @@
 #SQL
 import mysql.connector
-import time
 import random
 maat = ['Unkari','Kroatia','Itävalta','Tsekki','Saksa','Tanska','Alankomaat','Italia','Ranska']
 henkilo = ['Mary','Luke','Sandra','Tom','Adam']
-random.shuffle(maat)
-print(f'Epäillyistä henkilöistä ensimmäinen on nimeltään: {henkilo[0]}. Hän on lähtenyt tapahtuman jälkeen maahan nimeltä: {maat[0]}')
+
 yhteys = mysql.connector.connect(
          host='127.0.0.1',
          port= 3306,
@@ -39,6 +37,9 @@ else:
 #Peli pyytää painamaan enteriä aloittaakseen pelin
 valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
 
+if lennot == 7:
+    random.shuffle(maat)
+
 #Jos pelaaja painaa jotain muuta kun enter, peli kysyy uudestaan. Jos painaa enter, tarina alkaa.
 while valmis != '':
     valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
@@ -71,7 +72,10 @@ def matkustaminen():
     kursori.execute("select name from flights, gameCountries where gameCountries.countryID=flights.joinID and flights.countryID='" + str(nykMaa) + "';")
     tulos = kursori.fetchall()
 
-
+    kursori.execute("select name from gameCountries where countryID='" + str(nykMaa) + "';")
+    maa = kursori.fetchone()
+    if maa[0] !='Puola' and maat.index(maa[0])<5:
+        print(f'Täällä on {henkilo[maat.index(maa[0])]}')
 
 
     print(f'\nSinulla on {lennot} lentoa jäljellä.')
