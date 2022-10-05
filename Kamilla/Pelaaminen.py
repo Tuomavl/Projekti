@@ -20,6 +20,7 @@ while lennot != 0:
 #Jos kentällä on henkilö juttele tälle jossei kysy minne uudestaan
 if #kentällä on henkilö funktio = True:
     print(henkilönpuhe kuka kentällä on)
+    print(minne)
 else:
     print(f"Kukaan epäillyistä ei ole täällä. {minne} ")
 
