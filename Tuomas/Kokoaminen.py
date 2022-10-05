@@ -39,7 +39,7 @@ valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
 
 if lennot == 7:
     random.shuffle(maat)
-
+    random.shuffle(henkilo)
 #Jos pelaaja painaa jotain muuta kun enter, peli kysyy uudestaan. Jos painaa enter, tarina alkaa.
 while valmis != '':
     valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
@@ -48,9 +48,9 @@ else:
     def dialogue(text):
         for i in text:
             print(i, end="")
-            time.sleep(0.05)
+            time.sleep(0.005)
         print()
-        time.sleep(len(text) / 20)
+        time.sleep(len(text) / 100)
 
     dialogue("Tervetuloa Puolan Varsovaan!")
     dialogue(f"Olet rikostutkija {playerName}")
@@ -97,11 +97,18 @@ def matkustaminen():
 while lennot>0:
     matkustaminen()
 
-arvaus = int(input('Kuka on murhaaja? '))
+print(henkilo[0])
+moni = 0
 
-if arvaus == 0:
-    kursori.execute("UPDATE players SET losses=losses+1, amountPlayed=amountPlayed+1, winStreak=0 WHERE playerName='"+playerName+"';")
-    print('Väärin, hävisit pelin :(')
-else:
+for x in henkilo:
+    print(f'({moni + 1}): {x}')
+    moni += 1
+
+arvaus = int(input('Mikä on murhaajan numero? '))
+
+if henkilo[0] == henkilo[arvaus-1]:
     kursori.execute("UPDATE players SET wins=wins+1, amountPlayed=amountPlayed+1, winStreak=winStreak+1 WHERE playerName='"+playerName+"';")
     print('Oikein, voitit pelin :)')
+else:
+    kursori.execute("UPDATE players SET losses=losses+1, amountPlayed=amountPlayed+1, winStreak=0 WHERE playerName='"+playerName+"';")
+    print('Väärin, hävisit pelin :(')
