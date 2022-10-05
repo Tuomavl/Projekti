@@ -1,24 +1,3 @@
-CREATE USER 'lentopeli'@'localhost' IDENTIFIED BY 'peli';
-
-GRANT ALL PRIVILEGES ON flight_game.* TO 'lentopeli'@'localhost';
-
-DROP TABLE IF EXISTS `players`;
-
-USE flight_game;
-
-CREATE TABLE players(
-    playerID INTEGER NOT NULL PRIMARY KEY,
-    playerName VARCHAR(20) NOT NULL UNIQUE,
-    wins INTEGER,
-    losses INTEGER,
-    amountPlayed INTEGER,
-    winStreak INTEGER
-);
-
-
-
-
-
 DROP TABLE IF EXISTS `gameCountries`;
 
 CREATE TABLE gameCountries(
@@ -81,7 +60,7 @@ INSERT INTO flights (countryID, joinID)
 VALUES (4,2),(4,3),(4,5),(4,6);
 
 INSERT INTO flights (countryID, joinID)
-VALUES (5,1),(5,4),(5,6),(4,7);
+VALUES (5,1),(5,4),(5,6),(5,7);
 
 INSERT INTO flights (countryID, joinID)
 VALUES (6,4),(6,5),(6,8),(6,9);
