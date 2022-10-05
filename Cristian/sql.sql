@@ -4,6 +4,7 @@ GRANT ALL PRIVILEGES ON flight_game.* TO 'lentopeli'@'localhost';
 
 USE flight_game;
 
+
 DROP TABLE IF EXISTS `players`;
 
 CREATE TABLE players(
