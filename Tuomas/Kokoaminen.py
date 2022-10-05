@@ -38,26 +38,25 @@ valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
 while valmis != '':
     valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
 else:
-    print("Tervetuloa Puolan Varsovaan!")
-    time.sleep(3)
-    print(f"Olet rikostutkija {playerName}")
-    time.sleep(3)
-    print("Eilen myöhään yöllä Ilkka löydettiin murhattuna Varsovasta.")
-    time.sleep(7)
-    print("Sinun tehtäväsi on selvittää kuka murhasi Ilkan.")
-    time.sleep(5)
-    print(
+    import time
+    def dialogue(text):
+        for i in text:
+            print(i, end="")
+            time.sleep(0.05)
+        print()
+        time.sleep(len(text) / 20)
+
+    dialogue("Tervetuloa Puolan Varsovaan!")
+    dialogue(f"Olet rikostutkija {playerName}")
+    dialogue("Eilen myöhään yöllä Ilkka löydettiin murhattuna Varsovasta.")
+    dialogue("Sinun tehtäväsi on selvittää kuka murhasi Ilkan.")
+    dialogue(
         "Apulaisrikostutkija on kerännyt sinulle viisi epäiltyä, jotka ovat karanneet eri lentokentille ympäri Eurooppaa. ")
-    time.sleep(8)
-    print("Käy haastattelemassa heitä ja selvitä kuka on murhaaja")
-    time.sleep(5)
-    print(
-        "mutta muista sinulla on vain 7 lentolippua eli voit lentää vain seitsemään eri kohteeseen, joten käytä ne harkiten.")
-    time.sleep(9)
-    print("Onnea matkaan!")
-    time.sleep(2)
-# Kun pelaaja painaa enter, peli alkaa:
-    valmis = input("Paina enter-näppäintä, kun olet valmis aloittamaan!")
+    dialogue("Käy haastattelemassa heitä ja selvitä kuka on murhaaja")
+    dialogue(
+        "mutta muista sinulla on vain 7 lentolippua eli pystyt lentämään vain seitsemään eri kohteeseen, joten käytä lentolippusi harkiten.")
+    dialogue("Onnea matkaan!")
+    valmis = input("Paina enter-näppäintä, kun olet valmis aloittamaan pelin.")
 
 #Matkustaminen
 def matkustaminen():
