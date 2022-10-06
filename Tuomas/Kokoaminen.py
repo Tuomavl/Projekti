@@ -99,12 +99,11 @@ while lennot>0:
     matkustaminen()
 
 
-murhaaja = henkilo
-print(henkilo[0])
+murhaaja = henkilo.copy()
 moni = 0
 random.shuffle(murhaaja)
-murhaaja_index = murhaaja.index(murhaaja[0])
-print(murhaaja_index)
+murhaaja_index = murhaaja.index(henkilo[0])
+print(f"{murhaaja[murhaaja_index]}")
 for x in murhaaja:
     print(f'({moni + 1}): {x}')
     moni += 1
