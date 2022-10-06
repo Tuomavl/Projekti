@@ -4,19 +4,18 @@ import random
 import time
 
 #Listat:
+
+#Käytettävien maiden lista:
 maat = ['Unkari','Kroatia','Itävalta','Tsekki','Saksa','Tanska','Alankomaat','Italia','Ranska']
 
+#Käytettävien henkilöiden lista:
 henkilo = ['Mary','Luke','Sandra','Tom','Adam']
 
-
-
+#
 suspect = [0, 1, 2, 3, 4]
 random.shuffle(suspect)
 
 henkilot = {}
-
-
-moi = henkilo[random.randint(1,4)]
 
 
 #Määritelmät
@@ -108,9 +107,9 @@ valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
 if lennot == 7:
     random.shuffle(maat)
     random.shuffle(henkilo)
-    murhaaja = henkilo.copy()
-    random.shuffle(murhaaja)
-    murhaaja_index = murhaaja.index(henkilo[0])
+murhaaja = henkilo.copy()
+random.shuffle(murhaaja)
+murhaaja_index = murhaaja.index(henkilo[0])
 
 #Jos pelaaja painaa jotain muuta kun enter, peli kysyy uudestaan. Jos pelaaja painaa enter, peli alkaa:
 while valmis != '':
