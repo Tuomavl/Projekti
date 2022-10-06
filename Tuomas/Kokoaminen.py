@@ -1,4 +1,4 @@
-#SQL
+
 import mysql.connector
 import random
 maat = ['Unkari','Kroatia','Itävalta','Tsekki','Saksa','Tanska','Alankomaat','Italia','Ranska']
@@ -28,18 +28,14 @@ except:
 nykMaa = 1
 lennot = 7
 
-winLoss = int(input('0 tai 1: '))
 
-if winLoss == 0:
-    kursori.execute("UPDATE players SET losses=losses+1, amountPlayed=amountPlayed+1, winStreak=0 WHERE playerName='"+playerName+"';")
-else:
-    kursori.execute("UPDATE players SET wins=wins+1, amountPlayed=amountPlayed+1, winStreak=winStreak+1 WHERE playerName='"+playerName+"';")
 #Peli pyytää painamaan enteriä aloittaakseen pelin
 valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
 
 if lennot == 7:
     random.shuffle(maat)
     random.shuffle(henkilo)
+muut = maat.copy()
 
 #Jos pelaaja painaa jotain muuta kun enter, peli kysyy uudestaan. Jos painaa enter, tarina alkaa.
 while valmis != '':
@@ -63,7 +59,16 @@ else:
     dialogue(
         "mutta muista sinulla on vain 7 lentolippua eli pystyt lentämään vain seitsemään eri kohteeseen, joten käytä lentolippusi harkiten.")
     dialogue("Onnea matkaan!")
-    valmis = input("Paina enter-näppäintä, kun olet valmis aloittamaan pelin.")
+
+suspect = [0,1,2,3,4]
+random.shuffle(suspect)
+print(f'Henkilön nimi:{henkilo[suspect[0]]} ja maa:{maat[suspect[0]]}')
+print(f'Henkilön nimi:{henkilo[suspect[1]]} ja maa:{maat[suspect[1]]}')
+print(f'Henkilön nimi:{henkilo[suspect[2]]} ja maa:{maat[suspect[2]]}')
+print(f'Henkilön nimi:{henkilo[suspect[3]]} ja maa:{maat[suspect[3]]}')
+print(f'Henkilön nimi:{henkilo[suspect[4]]} ja maa:{maat[suspect[4]]}')
+
+valmis = input("Paina enter-näppäintä, kun olet valmis aloittamaan pelin.")
 
 #Matkustaminen
 def matkustaminen():
