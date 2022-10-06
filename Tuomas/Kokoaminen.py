@@ -1,3 +1,4 @@
+#SQL
 import mysql.connector
 import random
 maat = ['Unkari','Kroatia','Itävalta','Tsekki','Saksa','Tanska','Alankomaat','Italia','Ranska']
@@ -27,6 +28,12 @@ except:
 nykMaa = 1
 lennot = 7
 
+winLoss = int(input('0 tai 1: '))
+
+if winLoss == 0:
+    kursori.execute("UPDATE players SET losses=losses+1, amountPlayed=amountPlayed+1, winStreak=0 WHERE playerName='"+playerName+"';")
+else:
+    kursori.execute("UPDATE players SET wins=wins+1, amountPlayed=amountPlayed+1, winStreak=winStreak+1 WHERE playerName='"+playerName+"';")
 #Peli pyytää painamaan enteriä aloittaakseen pelin
 valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
 
