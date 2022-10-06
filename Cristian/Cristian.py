@@ -8,15 +8,12 @@ maat = ['Unkari','Kroatia','Itävalta','Tsekki','Saksa','Tanska','Alankomaat','I
 henkilo = ['Mary','Luke','Sandra','Tom','Adam']
 
 
-
 suspect = [0, 1, 2, 3, 4]
 random.shuffle(suspect)
 
 henkilot = {}
 
-
-moi = henkilo[random.randint(1,4)]
-
+maanumero = [1,2,3]
 
 #Määritelmät
 nykMaa = 1
@@ -71,8 +68,15 @@ def matkustaminen():
             maaIndexHenkilo = ''
         mones += 1
         print(f'({mones}): {x[0]}' + maaIndexHenkilo)
-
-    lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
+    try:
+        lentoValinta = 100000
+        lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
+    except:
+        while lentoValinta not in maanumero:
+            try:
+                lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
+            except:
+                print('Yritä uudelleen')
     nykMaa = lentoValinta - 1
     kursori.execute("select countryID from gameCountries where name='" + str(tulos[nykMaa][0]) + "';")
     tulos = kursori.fetchone()
@@ -82,25 +86,25 @@ def matkustaminen():
     tulos = kursori.fetchone()
     kursori.execute("select name from gameCountries where countryID='" + str(nykMaa) + "';")
     maa = kursori.fetchone()
-    dialogue(f'Tervetuloa, olet saapunut lentoasemalle: {tulos[0]}')
+    dialogue(f'\nTervetuloa, olet saapunut lentoasemalle: {tulos[0]}')
 
-    if maa[0] != 'Puola' and maat.index(maa[0]) < 5:
-        if henkilo[maat.index(maa[0])] in henkilot:
-            print(
-                f'Hei! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
-            print(henkilot)
-        else:
-            moi = henkilo[random.randint(1, 4)]
-            dialogue(f'Hei! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {moi}')
-            henkilot[henkilo[maat.index(maa[0])]] = moi
-            print(henkilot)
+    # Henkilöiden tekstit ja epäilyt:
+    if maa[0] != 'Puola' and maat.index(maa[0]) < 5 and henkilo[maat.index(maa[0])] in henkilot:
+        print(
+            f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
+        print(henkilot)
+    elif maa[0] != 'Puola' and maat.index(maa[0]) < 5:
+        moi = henkilo[random.randint(1, 4)]
+        dialogue(f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {moi}')
+        henkilot[henkilo[maat.index(maa[0])]] = moi
+        print(henkilot)
     else:
-        dialogue('Täällä ei ole ketään\n')
+        print('\nTämä on välipysäkkisi')
 
 
 
 #Peli pyytää painamaan enteriä aloittaakseen pelin
-valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
+valmis = input('\nPaina enter-näppäintä, kun olet valmis aloittamaan!')
 
 
 #Jokaisen pelin alussa (Lennot on 7) randomisoidaan molemmat listat:
@@ -113,11 +117,11 @@ if lennot == 7:
 
 #Jos pelaaja painaa jotain muuta kun enter, peli kysyy uudestaan. Jos pelaaja painaa enter, peli alkaa:
 while valmis != '':
-    valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
+    valmis = input('\nPaina enter-näppäintä, kun olet valmis aloittamaan!')
 
 
 #Alkutarina:
-dialogue("Tervetuloa Puolan Varsovaan!")
+dialogue("\nTervetuloa Puolan Varsovaan!")
 dialogue(f"Olet rikostutkija {playerName}")
 dialogue("Eilen myöhään yöllä Ilkka löydettiin murhattuna Varsovasta.")
 dialogue("Sinun tehtäväsi on selvittää kuka murhasi Ilkan.")
@@ -136,8 +140,9 @@ dialogue(f'Henkilön nimi: {henkilo[suspect[4]]} ja maa: {maat[suspect[4]]}')
 
 
 #Peli kysyy uudelleen enter, edetäkseen:
+valmis = input("\nPaina enter-näppäintä, kun olet valmis aloittamaan pelin.")
 while valmis != '':
-    valmis = input("Paina enter-näppäintä, kun olet valmis aloittamaan pelin.")
+    valmis = input("\nPaina enter-näppäintä, kun olet valmis aloittamaan pelin.")
 
 
 #Jos lentoja on jäljellä, voit jatkaa matkustamista:
@@ -173,4 +178,4 @@ if arvaus-1 == murhaaja_index:
     print('Oikein, voitit pelin :)')
 else:
     kursori.execute("UPDATE players SET losses=losses+1, amountPlayed=amountPlayed+1, winStreak=0 WHERE playerName='"+playerName+"';")
-    print('Väärin, hävisit pelin :(')
+    print(f'Väärin, hävisit pelin :( Murhaaja oli: {murhaaja[murhaaja_index]}')
