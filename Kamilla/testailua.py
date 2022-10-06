@@ -21,16 +21,16 @@ maat = []
 henkilo = []
 suspect = []
 henkilot = {}
+murhaaja = []
+
 
 #Määritelmät
 nykMaa = 0
 lennot = 0
 moni = 0
-
-murhaaja = []
 murhaaja_index = 0
 
-playerName = ""
+playerName = ''
 
 def gameLoop():
     resetGame()
@@ -42,13 +42,13 @@ def gameLoop():
     if loppu == "1":
         gameLoop()
     else:
-        print("Kiitos, kun pelasit!")
+        print('Kiitos, kun pelasit!')
 
 def selectUser():
     global playerName
-    playerName = input("Anna käyttäjänimesi: ")
+    playerName = input('Anna käyttäjänimesi: ')
 
-    # Uusi käyttäjänimi lisätään tauluun, jos käyttäjänimi on sama tämä ohitetaan:
+    # Uusi käyttäjänimi lisätään tauluun, jos käyttäjänimi on sama, tämä ohitetaan:
     try:
         kursori.execute(
             "INSERT INTO players (playerID, playerName, wins, losses, amountPlayed, winStreak, Highest_Win_Streak)SELECT COALESCE(MAX(playerID),0)+1,'" + playerName + "',0,0,0,0,0 FROM players;")
@@ -57,29 +57,24 @@ def selectUser():
 
 
 def startGame():
-    # Anna käyttäjänimi:
     global moni
 
     # Peli pyytää painamaan enteriä aloittaakseen pelin
     valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
-
-    # Jokaisen pelin alussa (Lennot on 7) randomisoidaan molemmat listat:
 
     # Jos pelaaja painaa jotain muuta kun enter, peli kysyy uudestaan. Jos pelaaja painaa enter, peli alkaa:
     while valmis != '':
         valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
 
     # Alkutarina:
-    dialogue("Tervetuloa Puolan Varsovaan!")
-    dialogue(f"Olet rikostutkija {playerName}")
-    dialogue("Eilen myöhään yöllä Ilkka löydettiin murhattuna Varsovasta.")
-    dialogue("Sinun tehtäväsi on selvittää kuka murhasi Ilkan.")
-    dialogue(
-        "Apulaisrikostutkija on kerännyt sinulle viisi epäiltyä, jotka ovat karanneet eri lentokentille ympäri Eurooppaa. ")
-    dialogue("Käy haastattelemassa heitä ja selvitä kuka on murhaaja")
-    dialogue(
-        "mutta muista sinulla on vain 7 lentolippua eli pystyt lentämään vain seitsemään eri kohteeseen, joten käytä lentolippusi harkiten.")
-    dialogue("Onnea matkaan!")
+    dialogue('Tervetuloa Puolan Varsovaan!')
+    dialogue(f'Olet rikostutkija {playerName}')
+    dialogue('Eilen myöhään yöllä Ilkka löydettiin murhattuna Varsovasta.')
+    dialogue('Sinun tehtäväsi on selvittää kuka murhasi Ilkan.')
+    dialogue('Apulaisrikostutkija on kerännyt sinulle viisi epäiltyä, jotka ovat karanneet eri lentokentille ympäri Eurooppaa. ')
+    dialogue('Käy haastattelemassa heitä ja selvitä kuka on murhaaja')
+    dialogue('mutta muista sinulla on vain 7 lentolippua eli pystyt lentämään vain seitsemään eri kohteeseen, joten käytä lentolippusi harkiten.')
+    dialogue('Onnea matkaan!')
 
     # Tulostetaan lista epäiltyjen sijainneista
     dialogue(f'\nHenkilön nimi:{henkilo[suspect[0]]} ja maa:{maat[suspect[0]]}')
@@ -172,6 +167,7 @@ def matkustaminen():
     kursori.execute("select name from flights, gameCountries where gameCountries.countryID=flights.joinID and flights.countryID='" + str(nykMaa) + "';")
     tulos = kursori.fetchall()
 
+    #Lentocounter
     dialogue(f'\nSinulla on {lennot} lentoa jäljellä.')
     for x in tulos:
         try:
@@ -184,6 +180,8 @@ def matkustaminen():
             maaIndexHenkilo = ''
         mones += 1
         print(f'({mones}): {x[0]}' + maaIndexHenkilo)
+
+    #Lentosuunnan valinta:
     try:
         lentoValinta = 23452345
         lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
@@ -202,6 +200,7 @@ def matkustaminen():
     tulos = kursori.fetchone()
     kursori.execute("select name from gameCountries where countryID='" + str(nykMaa) + "';")
     maa = kursori.fetchone()
+
     dialogue(f'\nTervetuloa, olet saapunut lentoasemalle: {tulos[0]}')
 
     # Henkilöiden tekstit ja epäilyt:
@@ -216,5 +215,6 @@ def matkustaminen():
         print(henkilot)
     else:
         print('\nTämä on välipysäkkisi')
+
 selectUser()
 gameLoop()
