@@ -2,7 +2,6 @@ import time
 
 #valmis toistuu nyt molemmissa fileissani. Kun lopulta yhdistetään kaikki otetaan toinen pois.
 valmis = input("Paina enter-näppäintä, kun olet valmis aloittamaan!")
-##Miten estän muiden merkkien laiton?
 
 #print vaihtoehdoista, minne lentää. Hups sori tuomas tein tän en tiiä onks tää hyvä mut sä saat kuiteki tehä sen toiminnallisuuden -Kamilla :)
 minne = None
