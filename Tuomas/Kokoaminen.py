@@ -8,12 +8,15 @@ maat = ['Unkari','Kroatia','Itävalta','Tsekki','Saksa','Tanska','Alankomaat','I
 
 henkilo = ['Mary','Luke','Sandra','Tom','Adam']
 
-murhaaja = henkilo.copy()
-random.shuffle(murhaaja)
-murhaaja_index = murhaaja.index(henkilo[0])
+
 
 suspect = [0, 1, 2, 3, 4]
 random.shuffle(suspect)
+
+henkilot = {}
+
+
+moi = henkilo[random.randint(1,4)]
 
 
 #Määritelmät
@@ -35,7 +38,7 @@ kursori=yhteys.cursor()
 
 
 #Anna käyttäjänimi:
-playerName = input("Anna käyttäjä nimesi: ")
+playerName = input("Anna käyttäjänimesi: ")
 
 
 #Uusi käyttäjänimi lisätään tauluun, jos käyttäjänimi on sama tämä ohitetaan:
@@ -66,11 +69,20 @@ def matkustaminen():
 
     kursori.execute("select name from gameCountries where countryID='" + str(nykMaa) + "';")
     maa = kursori.fetchone()
-    if maa[0] !='Puola' and maat.index(maa[0])<5:
-        print(f'Täällä on {henkilo[maat.index(maa[0])]}')
 
 
-    print(f'\nSinulla on {lennot} lentoa jäljellä.')
+#Henkilöiden tekstit ja epäilyt:
+
+    if maa[0] !='Puola' and maat.index(maa[0])<5 and henkilo[maat.index(maa[0])] in henkilot:
+        print(f'Tervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
+        print(henkilot)
+    elif maa[0] !='Puola' and maat.index(maa[0])<5:
+        moi = henkilo[random.randint(1, 4)]
+        dialogue(f'Tervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {moi}')
+        henkilot[henkilo[maat.index(maa[0])]] = moi
+        print(henkilot)
+
+    dialogue(f'\nSinulla on {lennot} lentoa jäljellä.')
     for x in tulos:
         mones+=1
         print(f'({mones}): {x[0]}')
@@ -84,7 +96,7 @@ def matkustaminen():
     lennot-=1
     kursori.execute("select airportName from gameCountries where countryID='" + str(nykMaa) + "';")
     tulos = kursori.fetchone()
-    print(f'Tervetuloa, olet saapunut lentoasemalle: {tulos[0]}')
+    dialogue(f'Tervetuloa, olet saapunut lentoasemalle: {tulos[0]}')
 
 
 
@@ -96,7 +108,9 @@ valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
 if lennot == 7:
     random.shuffle(maat)
     random.shuffle(henkilo)
-
+    murhaaja = henkilo.copy()
+    random.shuffle(murhaaja)
+    murhaaja_index = murhaaja.index(henkilo[0])
 
 #Jos pelaaja painaa jotain muuta kun enter, peli kysyy uudestaan. Jos pelaaja painaa enter, peli alkaa:
 while valmis != '':
@@ -115,11 +129,11 @@ dialogue("Onnea matkaan!")
 
 
 #Tulostetaan lista epäiltyjen sijainneista
-print(f'Henkilön nimi:{henkilo[suspect[0]]} ja maa:{maat[suspect[0]]}')
-print(f'Henkilön nimi:{henkilo[suspect[1]]} ja maa:{maat[suspect[1]]}')
-print(f'Henkilön nimi:{henkilo[suspect[2]]} ja maa:{maat[suspect[2]]}')
-print(f'Henkilön nimi:{henkilo[suspect[3]]} ja maa:{maat[suspect[3]]}')
-print(f'Henkilön nimi:{henkilo[suspect[4]]} ja maa:{maat[suspect[4]]}')
+dialogue(f'\nHenkilön nimi:{henkilo[suspect[0]]} ja maa:{maat[suspect[0]]}')
+dialogue(f'Henkilön nimi:{henkilo[suspect[1]]} ja maa:{maat[suspect[1]]}')
+dialogue(f'Henkilön nimi:{henkilo[suspect[2]]} ja maa:{maat[suspect[2]]}')
+dialogue(f'Henkilön nimi:{henkilo[suspect[3]]} ja maa:{maat[suspect[3]]}')
+dialogue(f'Henkilön nimi:{henkilo[suspect[4]]} ja maa:{maat[suspect[4]]}')
 
 
 #Peli kysyy uudelleen enter, edetäkseen:
