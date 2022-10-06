@@ -35,8 +35,10 @@ playerName = ""
 def gameLoop():
     resetGame()
     startGame()
-    loppu = input('''(1): Pelaa uudelleen
-    (2): Lopeta peli''')
+    loppu = input('''
+    (1): Pelaa uudelleen
+    (2): Lopeta peli 
+    ''')
     if loppu == "1":
         gameLoop()
     else:
