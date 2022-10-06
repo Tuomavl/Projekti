@@ -15,6 +15,11 @@ murhaaja_index = murhaaja.index(henkilo[0])
 suspect = [0, 1, 2, 3, 4]
 random.shuffle(suspect)
 
+henkilot = {}
+
+
+moi = henkilo[random.randint(1,4)]
+
 
 #Määritelmät
 nykMaa = 1
@@ -35,7 +40,7 @@ kursori=yhteys.cursor()
 
 
 #Anna käyttäjänimi:
-playerName = input("Anna käyttäjä nimesi: ")
+playerName = input("Anna käyttäjänimesi: ")
 
 
 #Uusi käyttäjänimi lisätään tauluun, jos käyttäjänimi on sama tämä ohitetaan:
@@ -66,11 +71,18 @@ def matkustaminen():
 
     kursori.execute("select name from gameCountries where countryID='" + str(nykMaa) + "';")
     maa = kursori.fetchone()
+
     if maa[0] !='Puola' and maat.index(maa[0])<5:
-        print(f'Täällä on {henkilo[maat.index(maa[0])]}')
+        if henkilo[maat.index(maa[0])] in henkilot:
+            print(f'Tervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
+            print(henkilot)
+        else:
+            moi = henkilo[random.randint(1, 4)]
+            dialogue(f'Tervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {moi}')
+            henkilot[henkilo[maat.index(maa[0])]] = moi
+            print(henkilot)
 
-
-    print(f'\nSinulla on {lennot} lentoa jäljellä.')
+    dialogue(f'\nSinulla on {lennot} lentoa jäljellä.')
     for x in tulos:
         mones+=1
         print(f'({mones}): {x[0]}')
@@ -84,7 +96,7 @@ def matkustaminen():
     lennot-=1
     kursori.execute("select airportName from gameCountries where countryID='" + str(nykMaa) + "';")
     tulos = kursori.fetchone()
-    print(f'Tervetuloa, olet saapunut lentoasemalle: {tulos[0]}')
+    dialogue(f'Tervetuloa, olet saapunut lentoasemalle: {tulos[0]}')
 
 
 
@@ -115,11 +127,11 @@ dialogue("Onnea matkaan!")
 
 
 #Tulostetaan lista epäiltyjen sijainneista
-print(f'Henkilön nimi:{henkilo[suspect[0]]} ja maa:{maat[suspect[0]]}')
-print(f'Henkilön nimi:{henkilo[suspect[1]]} ja maa:{maat[suspect[1]]}')
-print(f'Henkilön nimi:{henkilo[suspect[2]]} ja maa:{maat[suspect[2]]}')
-print(f'Henkilön nimi:{henkilo[suspect[3]]} ja maa:{maat[suspect[3]]}')
-print(f'Henkilön nimi:{henkilo[suspect[4]]} ja maa:{maat[suspect[4]]}')
+dialogue(f'\nHenkilön nimi:{henkilo[suspect[0]]} ja maa:{maat[suspect[0]]}')
+dialogue(f'Henkilön nimi:{henkilo[suspect[1]]} ja maa:{maat[suspect[1]]}')
+dialogue(f'Henkilön nimi:{henkilo[suspect[2]]} ja maa:{maat[suspect[2]]}')
+dialogue(f'Henkilön nimi:{henkilo[suspect[3]]} ja maa:{maat[suspect[3]]}')
+dialogue(f'Henkilön nimi:{henkilo[suspect[4]]} ja maa:{maat[suspect[4]]}')
 
 
 #Peli kysyy uudelleen enter, edetäkseen:
