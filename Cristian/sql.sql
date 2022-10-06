@@ -13,7 +13,8 @@ CREATE TABLE players(
     wins INTEGER,
     losses INTEGER,
     amountPlayed INTEGER,
-    winStreak INTEGER
+    winStreak INTEGER,
+    Highest_Win_Streak integer
 );
 
 DROP TABLE IF EXISTS `gameCountries`;
