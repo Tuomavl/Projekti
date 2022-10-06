@@ -1,11 +1,25 @@
+#import:
 import mysql.connector
 import random
 import time
 
 #Listat:
 maat = ['Unkari','Kroatia','Itävalta','Tsekki','Saksa','Tanska','Alankomaat','Italia','Ranska']
+
 henkilo = ['Mary','Luke','Sandra','Tom','Adam']
 
+murhaaja = henkilo.copy()
+random.shuffle(murhaaja)
+murhaaja_index = murhaaja.index(henkilo[0])
+
+suspect = [0, 1, 2, 3, 4]
+random.shuffle(suspect)
+
+
+#Määritelmät
+nykMaa = 1
+lennot = 7
+moni = 0
 
 
 #MySQL yhteys:
@@ -73,17 +87,6 @@ def matkustaminen():
     print(f'Tervetuloa, olet saapunut lentoasemalle: {tulos[0]}')
 
 
-#Määritelmät
-nykMaa = 1
-lennot = 7
-moni = 0
-
-
-#Listan shufflaus:
-murhaaja = henkilo.copy()
-random.shuffle(murhaaja)
-murhaaja_index = murhaaja.index(henkilo[0])
-
 
 #Peli pyytää painamaan enteriä aloittaakseen pelin
 valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
@@ -93,11 +96,6 @@ valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
 if lennot == 7:
     random.shuffle(maat)
     random.shuffle(henkilo)
-
-
-#Luodaan epäiltyjen henkilöiden lista, ja randomisoidaan se:
-suspect = [0, 1, 2, 3, 4]
-random.shuffle(suspect)
 
 
 #Jos pelaaja painaa jotain muuta kun enter, peli kysyy uudestaan. Jos pelaaja painaa enter, peli alkaa:
