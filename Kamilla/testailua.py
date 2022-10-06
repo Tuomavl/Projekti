@@ -51,9 +51,10 @@ def selectUser():
     # Uusi käyttäjänimi lisätään tauluun, jos käyttäjänimi on sama tämä ohitetaan:
     try:
         kursori.execute(
-            "INSERT INTO players (playerID, playerName, wins, losses, amountPlayed, winStreak)SELECT COALESCE(MAX(playerID),0)+1,'" + playerName + "',0,0,0,0 FROM players;")
+            "INSERT INTO players (playerID, playerName, wins, losses, amountPlayed, winStreak, Highest_Win_Streak)SELECT COALESCE(MAX(playerID),0)+1,'" + playerName + "',0,0,0,0,0 FROM players;")
     except:
         print()
+
 
 def startGame():
     # Anna käyttäjänimi:
@@ -103,16 +104,22 @@ def startGame():
 
     # Peli kysyy murhaajaan viittaavaa numeroa:
     arvaus = int(input('Mikä on murhaajan numero? '))
-
     # Jos oikein = voitit, jos väärin = hävisit:
     if arvaus - 1 == murhaaja_index:
-        kursori.execute(
-            "UPDATE players SET wins=wins+1, amountPlayed=amountPlayed+1, winStreak=winStreak+1 WHERE playerName='" + playerName + "';")
+        kursori.execute("select winStreak, Highest_Win_Streak from players where playerName='" + str(playerName) + "';")
+        streakTiedot = kursori.fetchone()
+
+        if streakTiedot[0] == streakTiedot[1] or streakTiedot[0] == '0':
+            kursori.execute(
+                "UPDATE players SET wins=wins+1, amountPlayed=amountPlayed+1, winStreak=winStreak+1, Highest_Win_Streak=Highest_Win_Streak+1 WHERE playerName='" + playerName + "';")
+        else:
+            kursori.execute(
+                "UPDATE players SET wins=wins+1, amountPlayed=amountPlayed+1, winStreak=winStreak+1 WHERE playerName='" + playerName + "';")
         print('Oikein, voitit pelin :)')
     else:
         kursori.execute(
             "UPDATE players SET losses=losses+1, amountPlayed=amountPlayed+1, winStreak=0 WHERE playerName='" + playerName + "';")
-        print('Väärin, hävisit pelin :(')
+        print(f'Väärin, hävisit pelin :( Murhaaja oli: {murhaaja[murhaaja_index]}')
 
 def resetGame():
     global maat
@@ -132,8 +139,10 @@ def resetGame():
 
     global nykMaa
     nykMaa = 1
+
     global lennot
     lennot = 7
+
     global moni
     moni = 0
 
@@ -143,6 +152,9 @@ def resetGame():
 
     global murhaaja_index
     murhaaja_index = murhaaja.index(henkilo[0])
+
+    global maanumero
+    maanumero = [1,2,3]
 
 #Alkuteksti:
 def dialogue(text):
@@ -160,28 +172,27 @@ def matkustaminen():
     kursori.execute("select name from flights, gameCountries where gameCountries.countryID=flights.joinID and flights.countryID='" + str(nykMaa) + "';")
     tulos = kursori.fetchall()
 
-    kursori.execute("select name from gameCountries where countryID='" + str(nykMaa) + "';")
-    maa = kursori.fetchone()
-
-
-    #Henkilöiden tekstit ja epäilyt:
-
-    if maa[0] !='Puola' and maat.index(maa[0])<5 and henkilo[maat.index(maa[0])] in henkilot:
-        print(f'Tervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
-        print(henkilot)
-    elif maa[0] !='Puola' and maat.index(maa[0])<5:
-        moi = henkilo[random.randint(1, 4)]
-        dialogue(f'Tervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {moi}')
-        henkilot[henkilo[maat.index(maa[0])]] = moi
-        print(henkilot)
-
     dialogue(f'\nSinulla on {lennot} lentoa jäljellä.')
     for x in tulos:
-        mones+=1
-        print(f'({mones}): {x[0]}')
-
-
-    lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
+        try:
+            maaIndexHenkilo = maat.index(x[0])
+        except:
+            maaIndexHenkilo = 100
+        if maaIndexHenkilo < 5:
+            maaIndexHenkilo = ', jossa on ' + henkilo[maaIndexHenkilo]
+        else:
+            maaIndexHenkilo = ''
+        mones += 1
+        print(f'({mones}): {x[0]}' + maaIndexHenkilo)
+    try:
+        lentoValinta = 23452345
+        lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
+    except:
+        while lentoValinta not in maanumero:
+            try:
+                lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
+            except:
+                print('Yritä uudelleen')
     nykMaa = lentoValinta - 1
     kursori.execute("select countryID from gameCountries where name='" + str(tulos[nykMaa][0]) + "';")
     tulos = kursori.fetchone()
@@ -189,7 +200,21 @@ def matkustaminen():
     lennot-=1
     kursori.execute("select airportName from gameCountries where countryID='" + str(nykMaa) + "';")
     tulos = kursori.fetchone()
-    dialogue(f'Tervetuloa, olet saapunut lentoasemalle: {tulos[0]}')
+    kursori.execute("select name from gameCountries where countryID='" + str(nykMaa) + "';")
+    maa = kursori.fetchone()
+    dialogue(f'\nTervetuloa, olet saapunut lentoasemalle: {tulos[0]}')
 
+    # Henkilöiden tekstit ja epäilyt:
+    if maa[0] != 'Puola' and maat.index(maa[0]) < 5 and henkilo[maat.index(maa[0])] in henkilot:
+        print(
+            f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
+        print(henkilot)
+    elif maa[0] != 'Puola' and maat.index(maa[0]) < 5:
+        moi = henkilo[random.randint(1, 4)]
+        dialogue(f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {moi}')
+        henkilot[henkilo[maat.index(maa[0])]] = moi
+        print(henkilot)
+    else:
+        print('\nTämä on välipysäkkisi')
 selectUser()
 gameLoop()
