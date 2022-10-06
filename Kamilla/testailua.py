@@ -35,11 +35,12 @@ playerName = ""
 def gameLoop():
     resetGame()
     startGame()
-    loppu = input("Haluatko aloittaa uudestaan? (kyllä/ei)")
-    if loppu == "kyllä":
+    loppu = input('''(1): Pelaa uudelleen
+    (2): Lopeta peli''')
+    if loppu == "1":
         gameLoop()
     else:
-        print("Kiitos!")
+        print("Kiitos, kun pelasit!")
 
 def selectUser():
     global playerName
