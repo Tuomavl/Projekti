@@ -16,7 +16,6 @@ kursori=yhteys.cursor()
 
 #Käytettävien maiden lista:
 maat = []
-
 #Käytettävien henkilöiden lista:
 henkilo = []
 suspect = []
@@ -149,7 +148,7 @@ def resetGame():
     murhaaja_index = murhaaja.index(henkilo[0])
 
     global maanumero
-    maanumero = [1,2,3]
+    maanumero = []
 
 #Alkuteksti:
 def dialogue(text):
@@ -166,7 +165,7 @@ def matkustaminen():
     mones = 0
     kursori.execute("select name from flights, gameCountries where gameCountries.countryID=flights.joinID and flights.countryID='" + str(nykMaa) + "';")
     tulos = kursori.fetchall()
-
+    maanumero = []
     #Lentocounter
     dialogue(f'\nSinulla on {lennot} lentoa jäljellä.')
     for x in tulos:
@@ -179,12 +178,14 @@ def matkustaminen():
         else:
             maaIndexHenkilo = ''
         mones += 1
+        maanumero.append(mones)
         print(f'({mones}): {x[0]}' + maaIndexHenkilo)
 
     #Lentosuunnan valinta:
     try:
         lentoValinta = 23452345
-        lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
+        while lentoValinta not in maanumero:
+            lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
     except:
         while lentoValinta not in maanumero:
             try:
