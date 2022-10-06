@@ -70,15 +70,17 @@ def matkustaminen():
     kursori.execute("select name from gameCountries where countryID='" + str(nykMaa) + "';")
     maa = kursori.fetchone()
 
-    if maa[0] !='Puola' and maat.index(maa[0])<5:
-        if henkilo[maat.index(maa[0])] in henkilot:
-            print(f'Tervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
-            print(henkilot)
-        else:
-            moi = henkilo[random.randint(1, 4)]
-            dialogue(f'Tervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {moi}')
-            henkilot[henkilo[maat.index(maa[0])]] = moi
-            print(henkilot)
+
+#Henkilöiden tekstit ja epäilyt:
+
+    if maa[0] !='Puola' and maat.index(maa[0])<5 and henkilo[maat.index(maa[0])] in henkilot:
+        print(f'Tervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
+        print(henkilot)
+    elif maa[0] !='Puola' and maat.index(maa[0])<5:
+        moi = henkilo[random.randint(1, 4)]
+        dialogue(f'Tervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {moi}')
+        henkilot[henkilo[maat.index(maa[0])]] = moi
+        print(henkilot)
 
     dialogue(f'\nSinulla on {lennot} lentoa jäljellä.')
     for x in tulos:
