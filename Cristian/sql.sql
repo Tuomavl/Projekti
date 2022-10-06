@@ -95,3 +95,4 @@ VALUES (9,4),(9,6),(9,10);
 
 INSERT INTO flights (countryID, joinID)
 VALUES (10,8),(10,9);
+
