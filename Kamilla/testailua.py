@@ -58,6 +58,7 @@ def selectUser():
 def startGame():
     global moni
     #Tähän pelin nimi ja säännöt
+    dialogue('Family Friendly Murhamysteeri!')
 
     # Peli pyytää painamaan enteriä aloittaakseen pelin
     valmis = input('\nPaina enter-näppäintä, kun olet valmis aloittamaan!')
@@ -77,11 +78,11 @@ def startGame():
     dialogue('Onnea matkaan!')
 
     # Tulostetaan lista epäiltyjen sijainneista
-    dialogue(f'\nHenkilön nimi:{henkilo[suspect[0]]} ja maa:{maat[suspect[0]]}')
-    dialogue(f'\nHenkilön nimi:{henkilo[suspect[1]]} ja maa:{maat[suspect[1]]}')
-    dialogue(f'\nHenkilön nimi:{henkilo[suspect[2]]} ja maa:{maat[suspect[2]]}')
-    dialogue(f'\nHenkilön nimi:{henkilo[suspect[3]]} ja maa:{maat[suspect[3]]}')
-    dialogue(f'\nHenkilön nimi:{henkilo[suspect[4]]} ja maa:{maat[suspect[4]]}')
+    dialogue(f'\nHenkilö {henkilo[suspect[0]]} on maassa {maat[suspect[0]]}')
+    dialogue(f'Henkilö {henkilo[suspect[1]]} on maassa {maat[suspect[1]]}')
+    dialogue(f'Henkilö {henkilo[suspect[2]]} on maassa {maat[suspect[2]]}')
+    dialogue(f'Henkilö {henkilo[suspect[3]]} on maassa {maat[suspect[3]]}')
+    dialogue(f'Henkilö {henkilo[suspect[4]]} on maassa {maat[suspect[4]]}')
 
     # Peli kysyy uudelleen enter, edetäkseen:
     valmis = input('\nPaina enter-näppäintä, kun olet valmis aloittamaan!')
@@ -209,8 +210,7 @@ def matkustaminen():
 
     # Henkilöiden tekstit ja epäilyt:
     if maa[0] != 'Puola' and maat.index(maa[0]) < 5 and henkilo[maat.index(maa[0])] in henkilot:
-        print(
-            f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
+        dialogue(f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
         print(henkilot)
     elif maa[0] != 'Puola' and maat.index(maa[0]) < 5:
         moi = henkilo[random.randint(1, 4)]
@@ -218,7 +218,17 @@ def matkustaminen():
         henkilot[henkilo[maat.index(maa[0])]] = moi
         print(henkilot)
     else:
-        print('\nTämä on välipysäkkisi')
+        dialogue('\nTämä on välipysäkkisi')
 
 selectUser()
 gameLoop()
+
+#To do list:
+#Kuva
+#Leaderboard
+#Inputit toimivaks
+#Henkilöiden tarinat
+
+#Extra: autofillais käyttäjänimen
+
+#Hidastetaan dialogue ennen palautusta!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
