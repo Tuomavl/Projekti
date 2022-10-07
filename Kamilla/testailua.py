@@ -20,6 +20,7 @@ maat = []
 henkilo = []
 suspect = []
 henkilot = {}
+henkiloTarinat={}
 murhaaja = []
 
 
@@ -131,6 +132,9 @@ def resetGame():
     suspect = [0, 1, 2, 3, 4]
     random.shuffle(suspect)
 
+    global henkiloTarinat
+    henkiloTarinat = {'Mary':'Olen Mary', 'Luke':'Olen Luke', 'Sandra':':)', 'Tom':'asdasdsadassad', 'Adam':'Tervetuloa Latviaan'}
+
     global henkilot
     henkilot = {}
 
@@ -211,10 +215,11 @@ def matkustaminen():
     # Henkilöiden tekstit ja epäilyt:
     if maa[0] != 'Puola' and maat.index(maa[0]) < 5 and henkilo[maat.index(maa[0])] in henkilot:
         dialogue(f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
-        print(henkilot)
+        dialogue({henkiloTarinat[henkilo[maat.index(maa[0])]]},{henkilot[henkilo[maat.index(maa[0])]]})
     elif maa[0] != 'Puola' and maat.index(maa[0]) < 5:
         moi = henkilo[random.randint(1, 4)]
         dialogue(f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {moi}')
+        dialogue(f'{henkiloTarinat[henkilo[maat.index(maa[0])]]} {moi}')
         henkilot[henkilo[maat.index(maa[0])]] = moi
         print(henkilot)
     else:
@@ -228,6 +233,7 @@ gameLoop()
 #Leaderboard
 #Inputit toimivaks
 #Henkilöiden tarinat
+#Säännöt
 
 #Extra: autofillais käyttäjänimen
 
