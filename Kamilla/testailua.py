@@ -133,7 +133,7 @@ def resetGame():
     random.shuffle(suspect)
 
     global henkiloTarinat
-    henkiloTarinat = {'Mary':'Olen Mary', 'Luke':'Olen Luke', 'Sandra':':)', 'Tom':'asdasdsadassad', 'Adam':'Tervetuloa Latviaan'}
+    henkiloTarinat = {f'Mary':f'H-H-Hei rikostut-tutkija {playerName}. A-a-ai tulit haastattelemaan minua? Ai miksi pakenin? M-m-m-m-m-m-inä vähän pelästyin. Lupaan, että se en ole minä, uskoisitko minua. Mutta näin kun ', 'Luke':'Olen Luke', 'Sandra':':)', 'Tom':'asdasdsadassad', 'Adam':'Tervetuloa Latviaan'}
 
     global henkilot
     henkilot = {}
@@ -214,12 +214,12 @@ def matkustaminen():
 
     # Henkilöiden tekstit ja epäilyt:
     if maa[0] != 'Puola' and maat.index(maa[0]) < 5 and henkilo[maat.index(maa[0])] in henkilot:
-        dialogue(f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
-        dialogue({henkiloTarinat[henkilo[maat.index(maa[0])]]},{henkilot[henkilo[maat.index(maa[0])]]})
+        #dialogue(f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
+        dialogue(f'{henkiloTarinat[henkilo[maat.index(maa[0])]]} Eli mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
     elif maa[0] != 'Puola' and maat.index(maa[0]) < 5:
         moi = henkilo[random.randint(1, 4)]
-        dialogue(f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {moi}')
-        dialogue(f'{henkiloTarinat[henkilo[maat.index(maa[0])]]} {moi}')
+        #dialogue(f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {moi}')
+        dialogue(f'{henkiloTarinat[henkilo[maat.index(maa[0])]]} Eli mielestäni murhaaja ei ole {moi}')
         henkilot[henkilo[maat.index(maa[0])]] = moi
         print(henkilot)
     else:
