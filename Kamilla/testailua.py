@@ -21,6 +21,7 @@ henkilo = []
 suspect = []
 henkilot = {}
 henkiloTarinat={}
+henkilotKyselty={}
 murhaaja = []
 
 
@@ -94,6 +95,14 @@ def startGame():
     while lennot > 0:
         matkustaminen()
 
+    print('\n')
+
+    # Tulostaa listan kyselyistä:
+    for x in henkilotKyselty:
+        dialogue(f'{x}: Mielestäni murhaaja ei ole {henkilotKyselty[x]}')
+
+    print('\n')
+
     # Tulostaa listan murhaajaehdokkaista:
     print(f"{murhaaja[murhaaja_index]}")
     for x in murhaaja:
@@ -132,11 +141,33 @@ def resetGame():
     suspect = [0, 1, 2, 3, 4]
     random.shuffle(suspect)
 
-    global henkiloTarinat
-    henkiloTarinat = {f'Mary':f'H-H-Hei rikostut-tutkija {playerName}. A-a-ai tulit haastattelemaan minua? Ai miksi pakenin? M-m-m-m-m-m-inä vähän pelästyin. Lupaan, että se en ole minä, uskoisitko minua. Mutta näin kun ', 'Luke':'Olen Luke', 'Sandra':':)', 'Tom':'asdasdsadassad', 'Adam':'Tervetuloa Latviaan'}
-
     global henkilot
     henkilot = {}
+
+    moi = henkilo[random.choice([1, 2, 3, 4])]
+    henkilot[henkilo[0]] = moi
+
+    moi = henkilo[random.choice([2, 3, 4])]
+    henkilot[henkilo[1]] = moi
+
+    moi = henkilo[random.choice([1, 3, 4])]
+    henkilot[henkilo[2]] = moi
+
+    moi = henkilo[random.choice([1, 2, 4])]
+    henkilot[henkilo[3]] = moi
+
+    moi = henkilo[random.choice([1, 2, 3])]
+    henkilot[henkilo[4]] = moi
+
+    global henkiloTarinat
+    henkiloTarinat = {f'Mary':f'H-H-Hei rikostut-tutkija {playerName}. A-a-ai tulit haastattelemaan minua? Ai miksi pakenin? M-m-m-m-m-m-inä vähän pelästyin. Lupaan, että se en ole minä, uskoisitko minua.\n Mutta näin kun {henkilot["Mary"]} oli latviassa. Eli mielestäni murhaaja ei ole {henkilot["Mary"]}',
+                      'Luke':f'Olen Luke! Eli mielestäni murhaaja ei ole {henkilot["Luke"]}',
+                      'Sandra':f':) Eli mielestäni murhaaja ei ole {henkilot["Sandra"]}',
+                      'Tom':f':D Eli mielestäni murhaaja ei ole {henkilot["Tom"]}',
+                      'Adam':f'Tervetuloa Latviaan. Eli mielestäni murhaaja ei ole {henkilot["Adam"]}'}
+
+    global henkilotKyselty
+    henkilotKyselty={}
 
     global nykMaa
     nykMaa = 1
@@ -213,14 +244,11 @@ def matkustaminen():
     dialogue(f'\nTervetuloa, olet saapunut lentoasemalle: {tulos[0]}')
 
     # Henkilöiden tekstit ja epäilyt:
-    if maa[0] != 'Puola' and maat.index(maa[0]) < 5 and henkilo[maat.index(maa[0])] in henkilot:
-        #dialogue(f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
-        dialogue(f'{henkiloTarinat[henkilo[maat.index(maa[0])]]} Eli mielestäni murhaaja ei ole {henkilot[henkilo[maat.index(maa[0])]]}')
-    elif maa[0] != 'Puola' and maat.index(maa[0]) < 5:
-        moi = henkilo[random.randint(1, 4)]
+    if maa[0] != 'Puola' and maat.index(maa[0]) < 5:
+        #moi = henkilo[random.randint(1, 4)]
         #dialogue(f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {moi}')
-        dialogue(f'{henkiloTarinat[henkilo[maat.index(maa[0])]]} Eli mielestäni murhaaja ei ole {moi}')
-        henkilot[henkilo[maat.index(maa[0])]] = moi
+        dialogue(f'{henkiloTarinat[henkilo[maat.index(maa[0])]]}')
+        henkilotKyselty[henkilo[maat.index(maa[0])]] = henkilot[henkilo[maat.index(maa[0])]]
         print(henkilot)
     else:
         dialogue('\nTämä on välipysäkkisi')
