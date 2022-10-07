@@ -57,16 +57,17 @@ def selectUser():
 
 def startGame():
     global moni
+    #Tähän pelin nimi ja säännöt
 
     # Peli pyytää painamaan enteriä aloittaakseen pelin
-    valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
+    valmis = input('\nPaina enter-näppäintä, kun olet valmis aloittamaan!')
 
     # Jos pelaaja painaa jotain muuta kun enter, peli kysyy uudestaan. Jos pelaaja painaa enter, peli alkaa:
     while valmis != '':
-        valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
+        valmis = input('\nPaina enter-näppäintä, kun olet valmis aloittamaan!')
 
     # Alkutarina:
-    dialogue('Tervetuloa Puolan Varsovaan!')
+    dialogue('\nTervetuloa Puolan Varsovaan!')
     dialogue(f'Olet rikostutkija {playerName}')
     dialogue('Eilen myöhään yöllä Ilkka löydettiin murhattuna Varsovasta.')
     dialogue('Sinun tehtäväsi on selvittää kuka murhasi Ilkan.')
@@ -77,12 +78,13 @@ def startGame():
 
     # Tulostetaan lista epäiltyjen sijainneista
     dialogue(f'\nHenkilön nimi:{henkilo[suspect[0]]} ja maa:{maat[suspect[0]]}')
-    dialogue(f'Henkilön nimi:{henkilo[suspect[1]]} ja maa:{maat[suspect[1]]}')
-    dialogue(f'Henkilön nimi:{henkilo[suspect[2]]} ja maa:{maat[suspect[2]]}')
-    dialogue(f'Henkilön nimi:{henkilo[suspect[3]]} ja maa:{maat[suspect[3]]}')
-    dialogue(f'Henkilön nimi:{henkilo[suspect[4]]} ja maa:{maat[suspect[4]]}')
+    dialogue(f'\nHenkilön nimi:{henkilo[suspect[1]]} ja maa:{maat[suspect[1]]}')
+    dialogue(f'\nHenkilön nimi:{henkilo[suspect[2]]} ja maa:{maat[suspect[2]]}')
+    dialogue(f'\nHenkilön nimi:{henkilo[suspect[3]]} ja maa:{maat[suspect[3]]}')
+    dialogue(f'\nHenkilön nimi:{henkilo[suspect[4]]} ja maa:{maat[suspect[4]]}')
 
     # Peli kysyy uudelleen enter, edetäkseen:
+    valmis = input('\nPaina enter-näppäintä, kun olet valmis aloittamaan!')
     while valmis != '':
         valmis = input("Paina enter-näppäintä, kun olet valmis aloittamaan pelin.")
 
@@ -187,6 +189,7 @@ def matkustaminen():
         while lentoValinta not in maanumero:
             lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
     except:
+        print('Yritä uudelleen')
         while lentoValinta not in maanumero:
             try:
                 lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
