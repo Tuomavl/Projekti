@@ -2,7 +2,7 @@
 import mysql.connector
 import random
 import time
-
+from PIL import Image
 
 #Käytettävien maiden lista:
 maat = ['Unkari','Kroatia','Itävalta','Tsekki','Saksa','Tanska','Alankomaat','Italia','Ranska']
@@ -137,6 +137,8 @@ dialogue(f'Henkilön nimi:{henkilo[suspect[2]]} ja maa:{maat[suspect[2]]}')
 dialogue(f'Henkilön nimi:{henkilo[suspect[3]]} ja maa:{maat[suspect[3]]}')
 dialogue(f'Henkilön nimi:{henkilo[suspect[4]]} ja maa:{maat[suspect[4]]}')
 
+testi = Image.open("Näyttökuva 2022-10-6 kello 22.29.23.png")
+testi.show()
 
 #Peli kysyy uudelleen enter, edetäkseen:
 while valmis != '':
