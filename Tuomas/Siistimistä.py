@@ -202,9 +202,9 @@ def resetGame():
 def dialogue(text):
     for i in text:
         print(i, end="")
-        time.sleep(0.005)
+        time.sleep(0.035)
     print()
-    time.sleep(len(text) / 100)
+    time.sleep(len(text) / 1000)
 
 #Matkustaminen:
 def matkustaminen():
