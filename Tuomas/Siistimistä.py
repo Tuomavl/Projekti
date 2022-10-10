@@ -103,7 +103,7 @@ def startGame():
     print('\n')
 
     # Tulostaa listan murhaajaehdokkaista:
-    print(f"{murderer[murderer_index]}")
+
     for x in murderer:
         print(f'({murderer_order + 1}): {x}')
         murderer_order += 1
@@ -207,7 +207,7 @@ def picture():
 def dialogue(text):
     for i in text:
         print(i, end="")
-        time.sleep(0.001)
+        time.sleep(0.035)
     print()
     time.sleep(len(text) / 1000)
 
