@@ -72,6 +72,7 @@ def matkustaminen():
         lentoValinta = 100000
         lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
     except:
+        print('Yritä uudelleen')
         while lentoValinta not in maanumero:
             try:
                 lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))

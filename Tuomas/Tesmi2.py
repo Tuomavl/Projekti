@@ -1,4 +1,4 @@
-#Insert name
+#SQL
 import mysql.connector
 import time
 yhteys = mysql.connector.connect(
@@ -11,7 +11,7 @@ yhteys = mysql.connector.connect(
          )
 kursori=yhteys.cursor()
 
-
+#Anna käyttäjänimi:
 playerName = input("Anna käyttäjä nimesi: ")
 
 kursori.execute("SELECT playerID FROM players WHERE playerName='"+playerName+"'")
@@ -22,6 +22,8 @@ try:
 except:
     print(tulos[0])
 
+nykMaa = 1
+lennot = 7
 
 winLoss = int(input('0 tai 1: '))
 
@@ -32,13 +34,13 @@ else:
 #Peli pyytää painamaan enteriä aloittaakseen pelin
 valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
 
-#Jos pelaaja painaa jotain muuta kun enter, peli kysyy uudestaan
+#Jos pelaaja painaa jotain muuta kun enter, peli kysyy uudestaan. Jos painaa enter, tarina alkaa.
 while valmis != '':
     valmis = input('Paina enter-näppäintä, kun olet valmis aloittamaan!')
 else:
     print("Tervetuloa Puolan Varsovaan!")
     time.sleep(3)
-    print("Olet rikostutkija {syötetty käyttäjänimi mahdollisesti?}")
+    print(f"Olet rikostutkija {playerName}")
     time.sleep(3)
     print("Eilen myöhään yöllä Ilkka löydettiin murhattuna Varsovasta.")
     time.sleep(7)
@@ -56,6 +58,30 @@ else:
     time.sleep(2)
 # Kun pelaaja painaa enter, peli alkaa:
     valmis = input("Paina enter-näppäintä, kun olet valmis aloittamaan!")
+def matkustaminen():
+    global nykMaa
+    global lennot
+    mones = 0
+    kursori.execute("select name from flights, gameCountries where gameCountries.countryID=flights.joinID and flights.countryID='" + str(nykMaa) + "';")
+    tulos = kursori.fetchall()
+    print(f'\nSinulla on {lennot} lentoa jäljellä.')
+    for x in tulos:
+        mones+=1
+        print(f'({mones}): {x[0]}')
+    lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
+    nykMaa = lentoValinta - 1
+    kursori.execute("select countryID from gameCountries where name='" + str(tulos[nykMaa][0]) + "';")
+    tulos = kursori.fetchone()
+    nykMaa = tulos[0]
+    lennot-=1
+    kursori.execute("select airportName from gameCountries where countryID='" + str(nykMaa) + "';")
+    tulos = kursori.fetchone()
+    print(f'Tervetuloa, olet saapunut lentoasemalle: {tulos[0]}')
+    #Tähän väliin henkilön keskustelu??
+
+#Lentocounter
+while lennot>0:
+    matkustaminen()
 
 
 
