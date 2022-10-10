@@ -37,6 +37,7 @@ firstTime = True
 def gameLoop():
     resetGame()
     startGame()
+    leaderboard()
     ending = input('''
     (1): Pelaa uudelleen
     (2): Lopeta peli 
@@ -209,6 +210,17 @@ def dialogue(text):
         time.sleep(0.001)
     print()
     time.sleep(len(text) / 1000)
+
+#Leaderboard:
+def leaderboard():
+    print('\nLeaderboard:')
+    kursori.execute("select PlayerName, Highest_Win_Streak from players where Highest_win_Streak !=0 order by Highest_Win_Streak desc limit 0, 10;")
+    leaderboard = kursori.fetchall()
+    instance=0
+    for x in leaderboard:
+        nameLenght=len(leaderboard[instance][0])
+        print(f'| Nimi: {leaderboard[instance][0]}' + ' '*(20-nameLenght) + f'| Korkein streak: {leaderboard[instance][1]} |')
+        instance += 1
 
 #Matkustaminen:
 def travelling():
