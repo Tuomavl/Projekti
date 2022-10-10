@@ -102,6 +102,7 @@ def startGame():
 
     print('\n')
 
+    dialogue('Olet nyt käyttänyt kaikki lentolippusi ja nyt on aika kerätä saamasi tiedot yhteen ja selvittää kuka on murhaaja!\n')
     # Tulostaa listan kyselyistä:
     for x in henkilotKyselty:
         dialogue(f'{x}: Mielestäni murhaaja ei ole {henkilotKyselty[x]}')
@@ -115,19 +116,13 @@ def startGame():
         moni += 1
 
     # Peli kysyy murhaajaan viittaavaa numeroa:
-    try:
-        arvaus = int(input('Mikä on murhaajan numero? '))
-        while not 5 >= arvaus > 0:
-            arvaus = int(input('Mikä on murhaajan numero? '))
-    except:
-        while not 5 >= arvaus > 0:
-            try:
-                arvaus = int(input('Mikä on murhaajan numero? '))
-            except:
-                print()
+    arvaus = input('\nMikä on murhaajan numero? ')
+    while arvaus not in ['1', '2', '3', '4', '5']:
+        print('Ei hyväksytty.')
+        arvaus = input('\nMikä on murhaajan numero? ')
 
     # Jos oikein = voitit, jos väärin = hävisit:
-    if arvaus - 1 == murhaaja_index:
+    if arvaus == str(murhaaja_index+1):
         kursori.execute("select winStreak, Highest_Win_Streak from players where playerName='" + str(playerName) + "';")
         streakTiedot = kursori.fetchone()
 
@@ -175,11 +170,11 @@ def resetGame():
     henkilot[henkilo[4]] = moi
 
     global henkiloTarinat
-    henkiloTarinat = {f'Mary':f'H-H-Hei rikostut-tutkija {playerName}. A-a-ai tulit haastattelemaan minua? Ai miksi pakenin? M-m-m-m-m-m-inä vähän pelästyin. Lupaan, että se en ole minä, uskoisitko minua.\n Mutta näin kun {henkilot["Mary"]} oli latviassa. Eli mielestäni murhaaja ei ole {henkilot["Mary"]}',
-                      'Luke':f'Olen Luke! Eli mielestäni murhaaja ei ole {henkilot["Luke"]}',
-                      'Sandra':f':) Eli mielestäni murhaaja ei ole {henkilot["Sandra"]}',
-                      'Tom':f':D Eli mielestäni murhaaja ei ole {henkilot["Tom"]}',
-                      'Adam':f'Tervetuloa Latviaan. Eli mielestäni murhaaja ei ole {henkilot["Adam"]}'}
+    henkiloTarinat = {'Mary': f'He-he-hei ri-rikos-rikostutkija {playerName}. A-ai tu-tulit haas-haastattelemaan mi-mi-minua. \nA-ai mi-mi-mi-miksi pa-pakenin? No tuo-tuota mi-minä va-vain pe-peläs-tyin. Mu-mutta se en o-le oikeasti minä! Mi-minä lupaan! \nUskoi-sit mi-minua! Mu-mutta näi-in, että {henkilot["Mary"]} me-meni vessaan, joten en usko, että hän on murhaaja. Kiva, jos pystyin olla avuksi!',
+                      'Luke':f'Minulla olisi tässä nyt kiire en millään ehtisi... jaahas epäillään murhasta vai? No en se minä ollut. \nEnkä tiedä kuka se oli. Voisinko nyt mennä? Ei minulla ole mitään kerrottavaa! \nPaitsi että... no tuota näin, kun {henkilot["Luke"]} lähti aikaisemmalla lennolla, joten se on tuskin hän. Nyt minun on kuitenkin pakko mennä näkemiin.',
+                      'Sandra':f'Ai hei rikostutkija... {playerName}. Teilläpä on ihana nimi. Ai tulitte haastattelemaan minua. Sepä kovin mukavaa. \nJatkettaisiinko haastattelua jossain mukavammassa paikassa. Ai sinulla on kiire? \nNo kyllä me kerkeäisimme nope- selvä selvä pysytään asiassa, vaikka se onkin vaikeaa, kun katselee noita silmiäsi. \nNäinkö jotain epäilyttävää? En. En sitten mitään. Toki, jos haluaisit jatkaa juttelemista minun hotellillani- \nAi jaaha selvä no {henkilot["Sandra"]} se ei ole, koska minä olin hänen kanssaan. Eikö rikostutkijalla olisi edes pieni hetki aikaa- aha no heippa sitten. Nähdään taas pian!',
+                      'Tom':f' No terve. Tietenkään minä en ole murhaaja eikä ole myöskään {henkilot["Tom"]}. \nAi mistä tiedän? Koska tiedän vain. Häivyhän siitä sitten jo.',
+                      'Adam':f'Terveppä terve! Murhatutkimuksen tiimoilta tullut minua tapaamaan? Hahah. Naurettava ajatus, että minua edes epäillään. \nMutta kuulepas tätä. Näin, että {henkilot["Adam"]} hiippaili hotellihuoneeseen jonkun tuntemattoman kanssa! \nMehukas juoru, mutta samalla taitaa todistaa, ettei hän voi olla murhaaja.'}
 
     global henkilotKyselty
     henkilotKyselty={}
