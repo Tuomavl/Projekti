@@ -2,6 +2,7 @@
 import mysql.connector
 import random
 import time
+from PIL import Image
 
 #MySQL yhteys:
 yhteys = mysql.connector.connect(
@@ -30,7 +31,6 @@ nykMaa = 0
 lennot = 0
 moni = 0
 murhaaja_index = 0
-
 playerName = ''
 
 def gameLoop():
@@ -86,6 +86,11 @@ def startGame():
     dialogue(f'Henkilö {henkilo[suspect[3]]} on maassa {maat[suspect[3]]}')
     dialogue(f'Henkilö {henkilo[suspect[4]]} on maassa {maat[suspect[4]]}')
 
+    # Kuva Kartasta:
+    kuva = Image.open("Näyttökuva 2022-10-6 kello 22.29.23.png")
+    kuva.show()
+
+
     # Peli kysyy uudelleen enter, edetäkseen:
     valmis = input('\nPaina enter-näppäintä, kun olet valmis aloittamaan!')
     while valmis != '':
@@ -110,7 +115,17 @@ def startGame():
         moni += 1
 
     # Peli kysyy murhaajaan viittaavaa numeroa:
-    arvaus = int(input('Mikä on murhaajan numero? '))
+    try:
+        arvaus = int(input('Mikä on murhaajan numero? '))
+        while not 5 >= arvaus > 0:
+            arvaus = int(input('Mikä on murhaajan numero? '))
+    except:
+        while not 5 >= arvaus > 0:
+            try:
+                arvaus = int(input('Mikä on murhaajan numero? '))
+            except:
+                print()
+
     # Jos oikein = voitit, jos väärin = hävisit:
     if arvaus - 1 == murhaaja_index:
         kursori.execute("select winStreak, Highest_Win_Streak from players where playerName='" + str(playerName) + "';")
@@ -223,14 +238,13 @@ def matkustaminen():
     try:
         lentoValinta = 23452345
         while lentoValinta not in maanumero:
-            lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
+            lentoValinta = int(input('Valitse numeron perusteella mihin maahan haluat lentää: '))
     except:
-        print('Yritä uudelleen')
         while lentoValinta not in maanumero:
             try:
-                lentoValinta = int(input('\nValitse numeron perusteella mihin maahan haluat lentää: '))
+                lentoValinta = int(input('Valitse numeron perusteella mihin maahan haluat lentää: '))
             except:
-                print('Yritä uudelleen')
+                print()
     nykMaa = lentoValinta - 1
     kursori.execute("select countryID from gameCountries where name='" + str(tulos[nykMaa][0]) + "';")
     tulos = kursori.fetchone()
