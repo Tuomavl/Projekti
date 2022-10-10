@@ -206,7 +206,7 @@ def picture():
 def dialogue(text):
     for i in text:
         print(i, end="")
-        time.sleep(0.035)
+        time.sleep(0.001)
     print()
     time.sleep(len(text) / 1000)
 
@@ -256,11 +256,9 @@ def travelling():
 
     dialogue(f'\nTervetuloa, olet saapunut lentoasemalle: {result[0]}')
 
-    # Henkilöiden tekstit ja epäilyt:
     if country[0] != 'Puola' and countries.index(country[0]) < 5:
         dialogue(f'{stories[person[countries.index(country[0])]]}')
         visited[person[countries.index(country[0])]] = person_dictionary[person[countries.index(country[0])]]
-
 
     else:
         dialogue('\nTämä on välipysäkkisi')
