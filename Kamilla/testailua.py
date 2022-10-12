@@ -2,6 +2,7 @@
 import mysql.connector
 import random
 import time
+from PIL import Image
 
 #MySQL yhteys:
 yhteys = mysql.connector.connect(
@@ -83,6 +84,8 @@ def startGame():
     dialogue(f'Henkilö {henkilo[suspect[3]]} on maassa {maat[suspect[3]]}')
     dialogue(f'Henkilö {henkilo[suspect[4]]} on maassa {maat[suspect[4]]}')
 
+    testi = Image.open("Näyttökuva 2022-10-6 kello 22.29.23.png")
+    testi.show()
     # Peli kysyy uudelleen enter, edetäkseen:
     valmis = input('\nPaina enter-näppäintä, kun olet valmis aloittamaan!')
     while valmis != '':
@@ -256,7 +259,7 @@ def matkustaminen():
         #dialogue(f'\nTervetuloa! Nimeni on {henkilo[maat.index(maa[0])]}, mielestäni murhaaja ei ole {moi}')
         dialogue(f'{henkiloTarinat[henkilo[maat.index(maa[0])]]}')
         henkilotKyselty[henkilo[maat.index(maa[0])]] = henkilot[henkilo[maat.index(maa[0])]]
-        print(henkilot)
+        print(henkilotKyselty)
     else:
         dialogue('\nTämä on välipysäkkisi')
 
@@ -264,11 +267,11 @@ selectUser()
 gameLoop()
 
 #To do list:
-#Kuva
+#Kuva done
 #Leaderboard
-#Inputit toimivaks
+#Inputit toimivaks done
 #Henkilöiden tarinat
-#Säännöt
+#Säännöt done
 
 #Extra: autofillais käyttäjänimen
 
