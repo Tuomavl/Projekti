@@ -1,4 +1,4 @@
-CREATE USER 'lentopeli'@'localhost' IDENTIFIED BY 'peli';
+#CREATE USER 'lentopeli'@'localhost' IDENTIFIED BY 'peli';
 
 GRANT ALL PRIVILEGES ON flight_game.* TO 'lentopeli'@'localhost';
 

@@ -268,6 +268,7 @@ def travelling():
 
     dialogue(f'\nTervetuloa, olet saapunut lentoasemalle: {result[0]}')
 
+
     if country[0] != 'Puola' and countries.index(country[0]) < 5:
         dialogue(f'{stories[person[countries.index(country[0])]]}')
         visited[person[countries.index(country[0])]] = person_dictionary[person[countries.index(country[0])]]
