@@ -207,7 +207,7 @@ def picture():
 def dialogue(text):
     for i in text:
         print(i, end="")
-        time.sleep(0.035)
+        time.sleep(0.001)
     print()
     time.sleep(len(text) / 1000)
 
