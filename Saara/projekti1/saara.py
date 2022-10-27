@@ -14,11 +14,11 @@ class hahmo:
     def asetaMurhaaja(self, murhaaja):
         self.murhaaja = murhaaja
 
-Jari = hahmo('Mary')
-Tero = hahmo('Tero')
-Masa = hahmo('Masa')
-Pena = hahmo('Pena')
-Kake = hahmo('Kake')
+Mary = hahmo('Mary')
+Luke = hahmo('Luke')
+Sandra = hahmo('Sandra')
+Tom = hahmo('Tom')
+Adam = hahmo('Adam')
 
 hahmot = [Jari, Tero, Masa, Pena, Kake]
 
