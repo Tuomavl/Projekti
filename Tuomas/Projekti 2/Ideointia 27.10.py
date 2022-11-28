@@ -3,17 +3,19 @@
 # Peliä pelataan kartalla visuaalinen
 # Saapuessaan maahan vastassa on joku joka kertoo tietoja uudessa maassa (Missä oot, mikä on sää) visuaalista ja pelin toimivuutta
 
-#Visuaalinen suunnittelija (HTML ja CSS) (Kerätään ideoita ja jaetaan)
-#Sql (MySql) (kaikki paitsi cristian opettelee)
-#Pelin toimivuus (Python) (tullaan jakamaan)
-#Pythonin ja verkkosivun kommunikointi (JavaScript)
+# Visuaalinen suunnittelija (HTML ja CSS) (Kerätään ideoita ja jaetaan)
+# Sql (MySql) (kaikki paitsi cristian opettelee)
+# Pelin toimivuus (Python) (tullaan jakamaan)
+# Pythonin ja verkkosivun kommunikointi (JavaScript)
 
 class Alkuvalikko:
     # Eri painikkeet
     pass
 
+
 class Country:
     # 15 maata joista yksi aloituspaikka
+    # Puola, Ranska, Italia, Saksa, Alankomaat, Tanska, Itävalta, Kroatia, Unkari, Tsekki, Ruotsi, UK, Romania, Albania, Kreikka
     # Propertyt:
     # Aloitussijainti
     # Missä on pelaaja
@@ -24,6 +26,7 @@ class Country:
     # Metodit:
     pass
 
+
 class Suspect:
     # 8 Henkilöä
     # Propertyt:
@@ -33,6 +36,7 @@ class Suspect:
     # Kerro tarina
     pass
 
+
 class Murder_weapon:
     # 5 Asetta
     # Propertyt:
@@ -40,6 +44,7 @@ class Murder_weapon:
     # Mikä se on
     # Metodit:
     pass
+
 
 class Player:
     # Propertyt:
