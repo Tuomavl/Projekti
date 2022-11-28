@@ -1,4 +1,4 @@
-# import:
+# import
 import mysql.connector
 import random
 import time

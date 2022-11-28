@@ -32,6 +32,13 @@ CREATE TABLE flights(
     joinID INTEGER NOT NULL
 );
 
+DROP TABLE IF EXISTS `suspects`;
+
+CREATE TABLE suspects(
+    name VARCHAR(50) NOT NULL UNIQUE,
+    status INTEGER,
+    story VARCHAR(500) NOT NULL UNIQUE
+);
 
 
 INSERT INTO gameCountries (countryID, name, airportName)
@@ -74,7 +81,7 @@ INSERT INTO gameCountries (countryID, name, airportName)
 VALUES (13,'Albania','Tirana International Airport Mother Tere');
 
 INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (14,'Romania','Henri Coandă International Airport');
+VALUES (14,'Romania','Henri Coanda International Airport');
 
 INSERT INTO gameCountries (countryID, name, airportName)
 VALUES (15,'Iso-Britannia','London City Airport');
@@ -126,4 +133,5 @@ VALUES (14,2),(14,12),(14,13);
 INSERT INTO flights (countryID, joinID)
 VALUES (15,8),(15,10);
 
-
+INSERT INTO suspects (name,status,story)
+VALUES ('Mary',0,'Mary: He-he-hei ri-rikos-rikostutkija {playerName}. A-ai tu-tulit haas-haastattelemaan mi-mi-minua. \nA-ai mi-mi-mi-miksi pa-pakenin? No tuo-tuota mi-minä va-vain pe-peläs-tyin. Mu-mutta se en o-le oikeasti minä! Mi-minä lupaan! \nUskoi-sit mi-minua! Mu-mutta näi-in, että Mary me-meni vessaan, joten en usko, että hän on murhaaja. Kiva, jos pystyin olla avuksi!')

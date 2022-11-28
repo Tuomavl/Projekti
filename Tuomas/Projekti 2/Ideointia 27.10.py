@@ -19,7 +19,6 @@ class Country:
     # Propertyt:
     # Aloitussijainti
     # Missä on pelaaja
-    # Missä on murha-ase
     # Missä on epäillyt
     # sää
     # Maan nimi
@@ -37,13 +36,7 @@ class Suspect:
     pass
 
 
-class Murder_weapon:
-    # 5 Asetta
-    # Propertyt:
-    # Sijainti
-    # Mikä se on
-    # Metodit:
-    pass
+
 
 
 class Player:
