@@ -1,32 +1,31 @@
-#import:
+# import:
 import mysql.connector
 import random
 import time
 from PIL import Image
 
-#MySQL yhteys:
+# MySQL yhteys:
 yhteys = mysql.connector.connect(
-         host='127.0.0.1',
-         port= 3306,
-         database='flight_game',
-         user='lentopeli',
-         password='peli',
-         autocommit=True
-         )
-kursori=yhteys.cursor()
+    host='127.0.0.1',
+    port=3306,
+    database='flight_game',
+    user='lentopeli',
+    password='peli',
+    autocommit=True
+)
+kursori = yhteys.cursor()
 
-#Käytettävien maiden lista:
+# Käytettävien maiden lista:
 countries = []
-#Käytettävien henkilöiden lista:
+# Käytettävien henkilöiden lista:
 person = []
 suspect = []
 person_dictionary = {}
-stories={}
-visited={}
+stories = {}
+visited = {}
 murderer = []
 
-
-#Määritelmät
+# Määritelmät
 location = 0
 flights = 0
 murderer_order = 0
@@ -34,6 +33,8 @@ murderer_index = 0
 playerName = ''
 
 firstTime = True
+
+
 def gameLoop():
     resetGame()
     startGame()
@@ -46,6 +47,7 @@ def gameLoop():
         gameLoop()
     else:
         print('Kiitos, kun pelasit!')
+
 
 def selectUser():
     global playerName
@@ -61,7 +63,7 @@ def selectUser():
 
 def startGame():
     global murderer_order
-    #Tähän pelin nimi ja säännöt
+    # Tähän pelin nimi ja säännöt
     dialogue('Family Friendly Murhamysteeri!')
 
     # Peli pyytää painamaan enteriä aloittaakseen pelin
@@ -95,7 +97,8 @@ def startGame():
 
     print('\n')
 
-    dialogue('Olet nyt käyttänyt kaikki lentolippusi ja nyt on aika kerätä saamasi tiedot yhteen ja selvittää kuka on murhaaja!\n')
+    dialogue(
+        'Olet nyt käyttänyt kaikki lentolippusi ja nyt on aika kerätä saamasi tiedot yhteen ja selvittää kuka on murhaaja!\n')
     # Tulostaa listan kyselyistä:
     for x in visited:
         dialogue(f'{x}: Mielestäni murhaaja ei ole {visited[x]}')
@@ -115,7 +118,7 @@ def startGame():
         guess = input('\nMikä on murhaajan numero? ')
 
     # Jos oikein = voitit, jos väärin = hävisit:
-    if guess == str(murderer_index+1):
+    if guess == str(murderer_index + 1):
         kursori.execute("select winStreak, Highest_Win_Streak from players where playerName='" + str(playerName) + "';")
         streakTiedot = kursori.fetchone()
 
@@ -130,6 +133,7 @@ def startGame():
         kursori.execute(
             "UPDATE players SET losses=losses+1, amountPlayed=amountPlayed+1, winStreak=0 WHERE playerName='" + playerName + "';")
         print(f'Väärin, hävisit pelin :( Murhaaja oli: {murderer[murderer_index]}')
+
 
 def resetGame():
     global countries
@@ -163,14 +167,15 @@ def resetGame():
     person_dictionary[person[4]] = randomized_person
 
     global stories
-    stories = {'Mary': f'Mary: He-he-hei ri-rikos-rikostutkija {playerName}. A-ai tu-tulit haas-haastattelemaan mi-mi-minua. \nA-ai mi-mi-mi-miksi pa-pakenin? No tuo-tuota mi-minä va-vain pe-peläs-tyin. Mu-mutta se en o-le oikeasti minä! Mi-minä lupaan! \nUskoi-sit mi-minua! Mu-mutta näi-in, että {person_dictionary["Mary"]} me-meni vessaan, joten en usko, että hän on murhaaja. Kiva, jos pystyin olla avuksi!',
-                      'Luke':f'Luke: Minulla olisi tässä nyt kiire en millään ehtisi... jaahas epäillään murhasta vai? No en se minä ollut. \nEnkä tiedä kuka se oli. Voisinko nyt mennä? Ei minulla ole mitään kerrottavaa! \nPaitsi että... no tuota näin, kun {person_dictionary["Luke"]} lähti aikaisemmalla lennolla, joten se on tuskin hän. Nyt minun on kuitenkin pakko mennä näkemiin.',
-                      'Sandra':f'Sandra: Ai hei rikostutkija... {playerName}. Teilläpä on ihana nimi. Ai tulitte haastattelemaan minua. Sepä kovin mukavaa. \nJatkettaisiinko haastattelua jossain mukavammassa paikassa. Ai sinulla on kiire? \nNo kyllä me kerkeäisimme nope- selvä selvä pysytään asiassa, vaikka se onkin vaikeaa, kun katselee noita silmiäsi. \nNäinkö jotain epäilyttävää? En. En sitten mitään. Toki, jos haluaisit jatkaa juttelemista minun hotellillani- \nAi jaaha selvä no {person_dictionary["Sandra"]} se ei ole, koska minä olin hänen kanssaan. Eikö rikostutkijalla olisi edes pieni hetki aikaa- aha no heippa sitten. Nähdään taas pian!',
-                      'Tom':f'Tom: No terve. Tietenkään minä en ole murhaaja eikä ole myöskään {person_dictionary["Tom"]}. \nAi mistä tiedän? Koska tiedän vain. Häivyhän siitä sitten jo.',
-                      'Adam':f'Adam: Terveppä terve! Murhatutkimuksen tiimoilta tullut minua tapaamaan? Hahah. Naurettava ajatus, että minua edes epäillään. \nMutta kuulepas tätä. Näin, että {person_dictionary["Adam"]} hiippaili hotellihuoneeseen jonkun tuntemattoman kanssa! \nMehukas juoru, mutta samalla taitaa todistaa, ettei hän voi olla murhaaja.'}
+    stories = {
+        'Mary': f'Mary: He-he-hei ri-rikos-rikostutkija {playerName}. A-ai tu-tulit haas-haastattelemaan mi-mi-minua. \nA-ai mi-mi-mi-miksi pa-pakenin? No tuo-tuota mi-minä va-vain pe-peläs-tyin. Mu-mutta se en o-le oikeasti minä! Mi-minä lupaan! \nUskoi-sit mi-minua! Mu-mutta näi-in, että {person_dictionary["Mary"]} me-meni vessaan, joten en usko, että hän on murhaaja. Kiva, jos pystyin olla avuksi!',
+        'Luke': f'Luke: Minulla olisi tässä nyt kiire en millään ehtisi... jaahas epäillään murhasta vai? No en se minä ollut. \nEnkä tiedä kuka se oli. Voisinko nyt mennä? Ei minulla ole mitään kerrottavaa! \nPaitsi että... no tuota näin, kun {person_dictionary["Luke"]} lähti aikaisemmalla lennolla, joten se on tuskin hän. Nyt minun on kuitenkin pakko mennä näkemiin.',
+        'Sandra': f'Sandra: Ai hei rikostutkija... {playerName}. Teilläpä on ihana nimi. Ai tulitte haastattelemaan minua. Sepä kovin mukavaa. \nJatkettaisiinko haastattelua jossain mukavammassa paikassa. Ai sinulla on kiire? \nNo kyllä me kerkeäisimme nope- selvä selvä pysytään asiassa, vaikka se onkin vaikeaa, kun katselee noita silmiäsi. \nNäinkö jotain epäilyttävää? En. En sitten mitään. Toki, jos haluaisit jatkaa juttelemista minun hotellillani- \nAi jaaha selvä no {person_dictionary["Sandra"]} se ei ole, koska minä olin hänen kanssaan. Eikö rikostutkijalla olisi edes pieni hetki aikaa- aha no heippa sitten. Nähdään taas pian!',
+        'Tom': f'Tom: No terve. Tietenkään minä en ole murhaaja eikä ole myöskään {person_dictionary["Tom"]}. \nAi mistä tiedän? Koska tiedän vain. Häivyhän siitä sitten jo.',
+        'Adam': f'Adam: Terveppä terve! Murhatutkimuksen tiimoilta tullut minua tapaamaan? Hahah. Naurettava ajatus, että minua edes epäillään. \nMutta kuulepas tätä. Näin, että {person_dictionary["Adam"]} hiippaili hotellihuoneeseen jonkun tuntemattoman kanssa! \nMehukas juoru, mutta samalla taitaa todistaa, ettei hän voi olla murhaaja.'}
 
     global visited
-    visited={}
+    visited = {}
 
     global location
     location = 1
@@ -190,47 +195,60 @@ def resetGame():
 
     global country_number
     country_number = []
+
+
 def intro():
     dialogue('\nTervetuloa Puolan Varsovaan!')
     dialogue(f'Olet rikostutkija {playerName}')
     dialogue('Eilen myöhään yöllä Ilkka löydettiin murhattuna Varsovasta.')
     dialogue('Sinun tehtäväsi on selvittää kuka murhasi Ilkan.')
-    dialogue('Apulaisrikostutkija on kerännyt sinulle viisi epäiltyä, jotka ovat karanneet eri maihin ympäri Eurooppaa. ')
+    dialogue(
+        'Apulaisrikostutkija on kerännyt sinulle viisi epäiltyä, jotka ovat karanneet eri maihin ympäri Eurooppaa. ')
     dialogue('Käy haastattelemassa heitä ja selvitä kuka on murhaaja')
-    dialogue('mutta muista sinulla on vain 7 lentolippua eli pystyt lentämään vain seitsemään eri kohteeseen, joten käytä lentolippusi harkiten.')
+    dialogue(
+        'mutta muista sinulla on vain 7 lentolippua eli pystyt lentämään vain seitsemään eri kohteeseen, joten käytä lentolippusi harkiten.')
     dialogue('Onnea matkaan!')
+
 
 # Kuva Kartasta:
 def picture():
     picture = Image.open("Näyttökuva 2022-10-6 kello 22.29.23.png")
     picture.show()
+
+
 def dialogue(text):
     for i in text:
         print(i, end="")
-        time.sleep(0.035)
+        time.sleep(0.001)
     print()
     time.sleep(len(text) / 1000)
 
-#Leaderboard:
+
+# Leaderboard:
 def leaderboard():
     print('\nLeaderboard:')
-    kursori.execute("select PlayerName, Highest_Win_Streak from players where Highest_win_Streak !=0 order by Highest_Win_Streak desc limit 0, 10;")
+    kursori.execute(
+        "select PlayerName, Highest_Win_Streak from players where Highest_win_Streak !=0 order by Highest_Win_Streak desc limit 0, 10;")
     leaderboard = kursori.fetchall()
-    instance=0
+    instance = 0
     for x in leaderboard:
-        nameLenght=len(leaderboard[instance][0])
-        print(f'| Nimi: {leaderboard[instance][0]}' + ' '*(20-nameLenght) + f'| Korkein streak: {leaderboard[instance][1]} |')
+        nameLenght = len(leaderboard[instance][0])
+        print(f'| Nimi: {leaderboard[instance][0]}' + ' ' * (
+                    20 - nameLenght) + f'| Korkein streak: {leaderboard[instance][1]} |')
         instance += 1
 
-#Matkustaminen:
+
+# Matkustaminen:
 def travelling():
     global location
     global flights
     flight_number = 0
-    kursori.execute("select name from flights, gameCountries where gameCountries.countryID=flights.joinID and flights.countryID='" + str(location) + "';")
+    kursori.execute(
+        "select name from flights, gameCountries where gameCountries.countryID=flights.joinID and flights.countryID='" + str(
+            location) + "';")
     result = kursori.fetchall()
     country_number = []
-    #Lentocounter
+    # Lentocounter
     dialogue(f'\nSinulla on {flights} lentoa jäljellä.')
     for x in result:
         try:
@@ -245,7 +263,7 @@ def travelling():
         country_number.append(flight_number)
         print(f'({flight_number}): {x[0]}' + person_country)
 
-    #Lentosuunnan valinta:
+    # Lentosuunnan valinta:
     try:
         flight_option = 2343478675
         while flight_option not in country_number:
@@ -260,7 +278,7 @@ def travelling():
     kursori.execute("select countryID from gameCountries where name='" + str(result[location][0]) + "';")
     result = kursori.fetchone()
     location = result[0]
-    flights-=1
+    flights -= 1
     kursori.execute("select airportName from gameCountries where countryID='" + str(location) + "';")
     result = kursori.fetchone()
     kursori.execute("select name from gameCountries where countryID='" + str(location) + "';")
@@ -274,6 +292,7 @@ def travelling():
 
     else:
         dialogue('\nTämä on välipysäkkisi')
+
 
 selectUser()
 gameLoop()
