@@ -134,7 +134,7 @@ INSERT INTO flights (countryID, joinID)
 VALUES (15,8),(15,10);
 
 INSERT INTO suspects (name,status,story)
-VALUES ('Mary',0,'Mary: He-he-hei ri-rikos-rikostutkija {playerName}. A-ai tu-tulit haas-haastattelemaan mi-mi-minua. \nA-ai mi-mi-mi-miksi pa-pakenin? No tuo-tuota mi-minä va-vain pe-peläs-tyin. Mu-mutta se en o-le oikeasti minä! Mi-minä lupaan! \nUskoi-sit mi-minua! Mu-mutta näi-in, että Mary me-meni vessaan, joten en usko, että hän on murhaaja. Kiva, jos pystyin olla avuksi!');
+VALUES ('Mary',0,'Mary: He-he-hei ri-rikos-rikostutkija {playerName}. A-ai tu-tulit haas-haastattelemaan mi-mi-minua. \nA-ai mi-mi-mi-miksi pa-pakenin? No tuo-tuota mi-minä va-vain pe-peläs-tyin. Mu-mutta se en o-le oikeasti minä! Mi-minä lupaan! \nUskoi-sit mi-minua! Mu-mutta näi-in, että {person_dictionary["Mary"]} me-meni vessaan, joten en usko, että hän on murhaaja. Kiva, jos pystyin olla avuksi!');
 
 INSERT INTO suspects (name,status,story)
 VALUES('Luke',0,'Luke: Minulla olisi tässä nyt kiire en millään ehtisi... jaahas epäillään murhasta vai? No en se minä ollut. \nEnkä tiedä kuka se oli. Voisinko nyt mennä? Ei minulla ole mitään kerrottavaa! \nPaitsi että... no tuota näin, kun {person_dictionary["Luke"]} lähti aikaisemmalla lennolla, joten se on tuskin hän. Nyt minun on kuitenkin pakko mennä näkemiin.');
