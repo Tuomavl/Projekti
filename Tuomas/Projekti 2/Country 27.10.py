@@ -18,8 +18,9 @@ class Country:
     # Propertyt:
     # Aloitussijainti
     # Missä on pelaaja
-    # Missä on murha-ase
+
     # Missä on epäillyt
+
     # sää
     # Maan nimi
     # Metodit:

@@ -9,8 +9,8 @@ yhteys = mysql.connector.connect(
 )
 kursori = yhteys.cursor()
 
-playername = input('Give me a name:')
-kursori.execute("SELECT story from suspects where name='Luke'")
-result = kursori.fetchone()
-txt = result[0]
-print(txt.format(playerName = playername))
+suspects = []
+kursori.execute("SELECT name from suspects;")
+name = kursori.fetchall()
+
+print(name)
