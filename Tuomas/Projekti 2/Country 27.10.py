@@ -8,8 +8,9 @@ data = json.loads(response.text)
 print(data)
 temp = data['main']['temp']
 print(f'{cityname} nimisessä kaupungissa lämpötila on {temp} celsius astetta.')
+
 class Country:
-    def __init__(self, name, weather, welcometext,  ):
+    def __init__(self, name, weather, welcometext, ):
 
     # 15 maata joista yksi aloituspaikka
     # Propertyt:
