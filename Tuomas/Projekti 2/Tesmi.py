@@ -10,7 +10,7 @@ yhteys = mysql.connector.connect(
 kursori = yhteys.cursor()
 
 playername = input('Give me a name:')
-kursori.execute("SELECT story from suspects where name='Luke'")
+kursori.execute("SELECT story from suspects where name='Mary'")
 result = kursori.fetchone()
 
 print(result[0].format(playerName = playername))
