@@ -52,6 +52,7 @@ Jake = Suspect('Jake')
 
 Suspects = [Mary, Luke, Sandra, Tom, Adam, Kristen, Stefan, Jake]
 
+# Murderer is set
 random.choice(Suspects).set_murderer(True)
 
 # Suspect location randomized and set
@@ -61,7 +62,7 @@ for i in Suspects:
     countries.remove(x)
     print(f'{i.name} on paikassa {i.location}')
 
-#Player location randomized
+# Player location randomized
 playerLocation = random.choice(countries)
 
 print(f'\nMurhaaja on {murdererName}')
