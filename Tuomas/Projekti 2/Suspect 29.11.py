@@ -26,6 +26,7 @@ class Suspect:
     def set_location(self, location):
         self.location = location
 
+# Defining who of the suspects is a murderer
     def set_murderer(self, murderer):
         self.murderer = murderer
         kursori.execute("UPDATE suspects SET status=1 WHERE name= '" + self.name + "';")
@@ -33,9 +34,8 @@ class Suspect:
         global murdererName
         murdererName=self.name
 
-
+# Suspects tell their story
     def tellStory(self,name):
-
         kursori.execute("SELECT story from suspects where name= '" + name + "';")
         story = kursori.fetchone()
         print(story)
@@ -54,6 +54,7 @@ Suspects = [Mary, Luke, Sandra, Tom, Adam, Kristen, Stefan, Jake]
 
 random.choice(Suspects).set_murderer(True)
 
+# Suspect location randomized and set
 for i in Suspects:
     x = random.choice(countries)
     i.set_location(x)
