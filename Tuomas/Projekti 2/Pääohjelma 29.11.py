@@ -10,9 +10,11 @@ yhteys = mysql.connector.connect(
 )
 kursori = yhteys.cursor()
 
-suspects = []
+# Import suspects names from database and save them in suspects variable
 kursori.execute("SELECT name from suspects;")
-name = kursori.fetchall()
+suspects = kursori.fetchall()
+suspectslist = []
+suspectslist.append(suspects)
 
 #print(suspects)
 #print(suspects[6][0])
