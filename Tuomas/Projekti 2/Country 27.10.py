@@ -10,8 +10,10 @@ temp = data['main']['temp']
 print(f'{cityname} nimisessä kaupungissa lämpötila on {temp} celsius astetta.')
 
 class Country:
-    def __init__(self, name, weather, welcometext, ):
-
+    def __init__(self, name, weather):
+        self.name = name
+        self.weather = weather
+    def welcome(self):
     # 15 maata joista yksi aloituspaikka
     # Propertyt:
     # Aloitussijainti
@@ -22,3 +24,4 @@ class Country:
     # Maan nimi
     # Metodit:
     pass
+

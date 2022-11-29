@@ -22,7 +22,9 @@ DROP TABLE IF EXISTS `gameCountries`;
 CREATE TABLE gameCountries(
     countryID INTEGER NOT NULL PRIMARY KEY,
     name VARCHAR(50) NOT NULL UNIQUE,
-    airportName VARCHAR(50)
+    airportName VARCHAR(50),
+    welcomeText VARCHAR(500),
+    suspectName VARCHAR(50)
 );
 
 DROP TABLE IF EXISTS `flights`;
