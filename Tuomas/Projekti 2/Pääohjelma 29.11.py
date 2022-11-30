@@ -94,9 +94,11 @@ while len(person_dictionary)<8:
 print(f'Henkilö {Suspects[1].name} syyttää {person_dictionary[Suspects[1]]}')
 
 
-#playerName is added to suspects story
-playername = input('Give me a name:')
-kursori.execute("SELECT story from suspects where name='Mary'")
-result = kursori.fetchone()
 
-# print(result[0].format(playerName = playername, person_dictionary["Tom"] = "mary"))
+#playername = input('Give me a name:')
+#playername = 'Ilkka'
+#kursori.execute("SELECT story from suspects where name='" + Suspects[1].name +"';")
+#result = kursori.fetchone()
+
+# playerName and suspect name is added to suspects story
+#print(result[0].format(playerName = playername, addSuspect = person_dictionary[Suspects[1]]))
