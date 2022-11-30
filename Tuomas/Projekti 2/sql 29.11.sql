@@ -23,6 +23,7 @@ CREATE TABLE gameCountries(
     countryID INTEGER NOT NULL PRIMARY KEY,
     name VARCHAR(50) NOT NULL UNIQUE,
     airportName VARCHAR(50),
+    cityName VARCHAR(50),
     welcomeText VARCHAR(500),
     suspectName VARCHAR(50)
 );
@@ -43,50 +44,50 @@ CREATE TABLE suspects(
 );
 
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (1,'Puola','Warsaw Chopin Airport');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (1,'Puola','Warsaw Chopin Airport','Varsova');
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (2,'Unkari','Budapest Liszt Ferenc International Airport');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (2,'Unkari','Budapest Liszt Ferenc International Airport','Budapest');
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (3,'Kroatia','Zagreb Airport');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (3,'Kroatia','Zagreb Airport','Zagreb');
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (4,'Itävalta','Vienna International Airport');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (4,'Itävalta','Vienna International Airport','Wien');
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (5,'Tsekki','Václav Havel Airport Prague');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (5,'Tsekki','Václav Havel Airport Prague','Praha');
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (6,'Saksa','Berlin Brandenburg Airport');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (6,'Saksa','Berlin Brandenburg Airport','Berliini');
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (7,'Tanska','Copenhagen Kastrup Airport');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (7,'Tanska','Copenhagen Kastrup Airport','Kööpenhamina');
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (8,'Alankomaat','Amsterdam Airport Schiphol');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (8,'Alankomaat','Amsterdam Airport Schiphol','Amsterdam');
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (9,'Italia','Leonardo da Vinci–Fiumicino Airport');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (9,'Italia','Leonardo da Vinci–Fiumicino Airport','Rooma');
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (10,'Ranska','Paris-Orly Airport');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (10,'Ranska','Paris-Orly Airport','Pariisi');
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (11,'Ruotsi','Stockholm-Arlanda Airport');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (11,'Ruotsi','Stockholm-Arlanda Airport','Tukholma');
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (12,'Kreikka','Athens Eleftherios Venizelos Internation');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (12,'Kreikka','Athens Eleftherios Venizelos Internation','Ateena');
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (13,'Albania','Tirana International Airport Mother Tere');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (13,'Albania','Tirana International Airport Mother Tere','Tirana');
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (14,'Romania','Henri Coanda International Airport');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (14,'Romania','Henri Coanda International Airport','Bukarest');
 
-INSERT INTO gameCountries (countryID, name, airportName)
-VALUES (15,'Iso-Britannia','London City Airport');
+INSERT INTO gameCountries (countryID, name, airportName,cityName)
+VALUES (15,'Iso-Britannia','London City Airport','Lontoo');
 
 
 

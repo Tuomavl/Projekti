@@ -14,6 +14,8 @@ class Country:
         self.name = name
         self.weather = weather
     def welcome(self):
+
+
     # 15 maata joista yksi aloituspaikka
     # Propertyt:
     # Aloitussijainti
