@@ -1,30 +1,38 @@
+import mysql.connector
 import requests
 import json
-apikey = '57d9761bd41e88656771c5c3745a9924'
-cityname = input('Anna kaupungin nimi:')
-url = f'https://api.openweathermap.org/data/2.5/weather?q={cityname}&appid={apikey}&units=metric'
-response = requests.get(url)
-data = json.loads(response.text)
-print(data)
-temp = data['main']['temp']
-print(f'{cityname} nimisessä kaupungissa lämpötila on {temp} celsius astetta.')
+
+yhteys = mysql.connector.connect(
+    host='127.0.0.1',
+    port=3306,
+    database='flight_game',
+    user='lentopeli',
+    password='peli',
+    autocommit=True
+)
+kursori = yhteys.cursor()
+
 
 class Country:
-    def __init__(self, name, weather):
-        self.name = name
-        self.weather = weather
-    def welcome(self):
+    def __init__(self,city_name,):
 
-
-    # 15 maata joista yksi aloituspaikka
-    # Propertyt:
-    # Aloitussijainti
-    # Missä on pelaaja
-
-    # Missä on epäillyt
-
-    # sää
-    # Maan nimi
-    # Metodit:
     pass
 
+# Fetching cityName and airportName from the database
+kursori.execute("SELECT cityName from gameCountries where name='Unkari'")
+cityname = kursori.fetchone()
+city_name = cityname[0]
+
+kursori.execute("SELECT airportName from gameCountries where name ='Unkari'")
+airportname = kursori.fetchone()
+airport_name = airportname[0]
+
+# weather data taken from openweathermap api with cityname
+apikey = '57d9761bd41e88656771c5c3745a9924'
+url = f'https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={apikey}&units=metric'
+response = requests.get(url)
+data = json.loads(response.text)
+temp = data['main']['temp']
+
+# Welcome text:
+print(f'Tervetuloa {airport_name} nimiselle lentokentälle!\nOlet nyt kaupungissa {city_name}. Lämpötila on {temp} celsius astetta.')
