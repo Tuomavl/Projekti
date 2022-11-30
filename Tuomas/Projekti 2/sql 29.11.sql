@@ -137,13 +137,13 @@ INSERT INTO flights (countryID, joinID)
 VALUES (15,8),(15,10);
 
 INSERT INTO suspects (name,status,story)
-VALUES ('Mary',0,'Mary: He-he-hei ri-rikos-rikostutkija {playerName}. A-ai tu-tulit haas-haastattelemaan mi-mi-minua. \nA-ai mi-mi-mi-miksi pa-pakenin? No tuo-tuota mi-minä va-vain pe-peläs-tyin. Mu-mutta se en o-le oikeasti minä! Mi-minä lupaan! \nUskoi-sit mi-minua! Mu-mutta näi-in, että {addSuspect} me-meni vessaan, joten en usko, että hän on murhaaja. Kiva, jos pystyin olla avuksi!');
+VALUES ('Mary',0,'Mary: He-he-hei ri-rikos-rikostutkija {playerName}. A-ai tu-tulit haas-haastattelemaan mi-mi-minua. \nA-ai mi-mi-mi-miksi pa-pakenin? No tuo-tuota mi-minä va-vain pe-peläs-tyin. Mu-mutta se en o-le oikeasti minä! Mi-minä lupaan! \nUskoi-sit mi-minua! Mu-mutta näi-in, että {addSuspect} me-meni lounaalle, joten en usko, että hän on murhaaja. Kiva, jos pystyin olla avuksi!');
 
 INSERT INTO suspects (name,status,story)
 VALUES('Luke',0,'Luke: Minulla olisi tässä nyt kiire en millään ehtisi... jaahas epäillään murhasta vai? No en se minä ollut. \nEnkä tiedä kuka se oli. Voisinko nyt mennä? Ei minulla ole mitään kerrottavaa! \nPaitsi että... no tuota näin, kun {addSuspect} lähti aikaisemmalla lennolla, joten se on tuskin hän. Nyt minun on kuitenkin pakko mennä näkemiin.');
 
 INSERT INTO suspects (name,status,story)
-VALUES('Sandra',0,'Sandra: Ai hei rikostutkija... {playerName}. Teilläpä on ihana nimi. Ai tulitte haastattelemaan minua. Sepä kovin mukavaa. \nJatkettaisiinko haastattelua jossain mukavammassa paikassa. Ai sinulla on kiire? \nNo kyllä me kerkeäisimme nope- selvä selvä pysytään asiassa, vaikka se onkin vaikeaa, kun katselee noita silmiäsi. \nNäinkö jotain epäilyttävää? En. En sitten mitään. Toki, jos haluaisit jatkaa juttelemista minun hotellillani- \nAi jaaha selvä no {addSuspect} se ei ole, koska minä olin hänen kanssaan. Eikö rikostutkijalla olisi edes pieni hetki aikaa- aha no heippa sitten. Nähdään taas pian!');
+VALUES('Sandra',0,'Sandra: Ai hei rikostutkija... {playerName}. Teilläpä on ihana nimi. Ai tulitte haastattelemaan minua. Sepä kovin mukavaa. \nJatkettaisiinko haastattelua jossain mukavammassa paikassa. Ai sinulla on kiire? \nNo kyllä me kerkeäisimme nope- selvä selvä pysytään asiassa, vaikka se onkin vaikeaa, kun katselee noita silmiäsi. \nNäinkö jotain epäilyttävää? En. En sitten mitään. Toki, jos haluaisit jatkaa juttelemista minun hotellillani- \nAi jaaha selvä no {addSuspect} se ei ole, koska hän oli toisessa palaverissa tapahtumien aikaan. Eikö rikostutkijalla olisi edes pieni hetki aikaa- aha no heippa sitten. Nähdään taas pian!');
 
 INSERT INTO suspects (name,status,story)
 VALUES('Tom',0,'Tom: No terve. Tietenkään minä en ole murhaaja eikä ole myöskään {addSuspect}. \nAi mistä tiedän? Koska tiedän vain. Häivyhän siitä sitten jo.');
@@ -152,10 +152,10 @@ INSERT INTO suspects (name,status,story)
 VALUES('Adam',0,'Adam: Terveppä terve! Murhatutkimuksen tiimoilta tullut minua tapaamaan? Hahah. Naurettava ajatus, että minua edes epäillään. \nMutta kuulepas tätä. Näin, että {addSuspect} hiippaili hotellihuoneeseen jonkun tuntemattoman kanssa! \nMehukas juoru, mutta samalla taitaa todistaa, ettei hän voi olla murhaaja.');
 
 INSERT INTO suspects (name,status,story)
-VALUES('Stefan',0,'Moi');
+VALUES('Stefan',0,'Stefan: Terve {playername}! Mennään suoraan asiaan. Juuri ennen tapahtunutta {addSuspect} \nlähti hakemaan kaikille kahvia ja palasi vasta myöhemmin. Hänellä on siis vahva alibi, kahvilan työntekijät voivat varmasti taata sen. \nJatkahan sitten tutkimuksiasi ja minä pääsen jatkamaan töitäni, hyvästi!');
 
 INSERT INTO suspects (name,status,story)
-VALUES('Kristen',0,'Terve');
+VALUES('Kristen',0,'Kristen: Moi. Aivan, kuulinkin huhuja tästä. En kyllä yhtään yllättynyt, tunnelma (konferenssissa tai missä ny olivatkaa) oli hyvin jännittynyt. \n{addSuspect} oli kylläkin kokoajan näköetäisyydelläni, joten hän se ei ole. Kerrothan kun kuulet lisää, heippa!');
 
 INSERT INTO suspects (name,status,story)
-VALUES('Jake',0,'Heipähei');
+VALUES('Jake',0,'Jake: Hauska tavata! Murha?? Ei kai… Kuinka kamalaa! Olen aivan järkyttynyt… Mitäkö tiedän siitä?\n En.. en mitään, en voi edes ajatella, olen niin kauhuissani. Ajatella, että olen saattanut keskustella murhaajan kanssa!\n Ei, en pysty käsittelemään tätä, en kykene nyt vastaamaan kysymyksiin. {addSuspect} oli tauolla käymässä ulkona, joten hänellä ei ollut tuohon hirmutekoon mahdollisuutta.\n Huh.. Minun pitää nyt päästä pitkälleni, hei hei!');
