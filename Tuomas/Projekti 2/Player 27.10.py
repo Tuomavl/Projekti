@@ -3,7 +3,7 @@ class Player:
 
     # pelaajan data(voittodata)
     # Metodit:
-    def flyto(self, ):
+    def flyTo(self, ):
     # Lentää
     # Puhu
     # Ottaa kiinni
