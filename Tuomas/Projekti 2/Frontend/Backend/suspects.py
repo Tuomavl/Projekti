@@ -29,8 +29,6 @@ class Suspect:
         self.murderer = murderer
         kursori.execute("UPDATE suspects SET status=1 WHERE name= '" + self.name + "';")
 
-        murdererName == self.name
-
 # Suspects tell their story
     def tellStory(self,name):
         kursori.execute("SELECT story from suspects where name= '" + name + "';")
@@ -38,10 +36,7 @@ class Suspect:
         print(story)
 
     def accuse(self):
-        selfIndex = Suspects.index(self)
-        kursori.execute("SELECT story from suspects where name='" + Suspects[selfIndex].name + "';")
+        kursori.execute("SELECT story from suspects where name='" + self.name + "';")
         result = kursori.fetchone()
-        #print(result[0],Suspects[0])
-
-        # playerName and suspect name is added to suspects story
-        #print(result[0].format(playerName=player.username, addSuspect=person_dictionary[Suspects[selfIndex]]))
+        #print(result[0])
+        return result[0]
