@@ -1,9 +1,13 @@
-from flask import Flask
-from flask_cors import CORS
-import json
+from flask import Flask,render_template,request
+
 app = Flask(__name__)
 
-cors = CORS(app)
+@app.route('/username', methods = ['GET'])
+def username():
+    output = request.form.to_dict()
+    name = output["name"]
+
+
 
 
 
