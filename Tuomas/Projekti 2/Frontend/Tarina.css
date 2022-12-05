@@ -1,5 +1,6 @@
 body {
     font-family: Verdana sans-serif;
+    background: linear-gradient(#141e30, #243b55);
 }
 
 p {
@@ -10,6 +11,7 @@ p {
 .container {
   position: relative;
   text-align: center;
+
 }
 
 .texts {

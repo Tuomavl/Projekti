@@ -13,10 +13,7 @@ yhteys = mysql.connector.connect(
 kursori = yhteys.cursor()
 
 
-class Country:
-    def __init__(self,city_name,):
 
-    pass
 
 # Fetching cityName and airportName from the database
 kursori.execute("SELECT cityName from gameCountries where name='Unkari'")
