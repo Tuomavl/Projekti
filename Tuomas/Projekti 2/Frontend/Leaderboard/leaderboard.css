@@ -1,0 +1,14 @@
+h1 {
+    text-align: center;
+    padding: 1em;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0.5em 2em;
+}
+
+div {
+    text-align: center;
+}
