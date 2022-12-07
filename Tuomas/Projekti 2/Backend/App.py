@@ -1,4 +1,4 @@
-
+from flask import Flask
 import random
 import mysql.connector
 yhteys = mysql.connector.connect(
