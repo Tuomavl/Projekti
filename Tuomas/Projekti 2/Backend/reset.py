@@ -1,7 +1,19 @@
-from newApp import *
+
 from suspects import Suspect
 from player1 import Player
 import random
+import mysql.connector
+
+yhteys = mysql.connector.connect(
+    host='127.0.0.1',
+    port=3306,
+    database='flight_game',
+    user='lentopeli',
+    password='peli',
+    autocommit=True
+)
+kursori = yhteys.cursor()
+
 Suspects = []
 player = ()
 person_dictionary = {}
@@ -61,7 +73,3 @@ def resetGame():
         randomized_person = random.choice(Suspects).name
         if randomized_person != murderer.name and randomized_person != Suspects[len(person_dictionary)].name:
             person_dictionary[Suspects[len(person_dictionary)]] = randomized_person
-
-    print(f'Henkilö {Suspects[1].name} syyttää {person_dictionary[Suspects[1]]}\n')
-
-resetGame()
