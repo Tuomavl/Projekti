@@ -13,9 +13,8 @@ yhteys = mysql.connector.connect(
 kursori = yhteys.cursor()
 
 class Player:
-    def __init__(self, username, playerdata):
+    def __init__(self, username):
         self.username = username
-        self.playerdata = playerdata
         self.suspectIndex = ['Mary', 'Luke', 'Sandra', 'Tom', 'Adam', 'Kristen', 'Stefan', 'Jake']
         self.location = None
 

@@ -1,3 +1,3 @@
-from reset import *
+from reset import resetGame
 
 resetGame()

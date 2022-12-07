@@ -1,5 +1,4 @@
-from newApp import *
-
+from reset import *
 class Suspect:
     def __init__(self, name):
         self.name = name
@@ -8,8 +7,6 @@ class Suspect:
         self.murdererName = None
 
         kursori.execute("UPDATE suspects SET status=0 WHERE name= '" + self.name + "';")
-
-
     def set_location(self, location):
         self.location = location
         kursori.execute("UPDATE gameCountries SET suspectName='" + self.name + "' WHERE name= '" + self.location + "';")

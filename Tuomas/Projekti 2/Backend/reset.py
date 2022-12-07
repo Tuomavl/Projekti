@@ -1,4 +1,3 @@
-
 from suspects import Suspect
 from player1 import Player
 import random
@@ -32,7 +31,7 @@ def resetGame():
     murderer = None
 
     global player
-    player = Player('Ilkka', 0)
+    player = Player('Ilkka')
 
     global person_dictionary
     person_dictionary = {}
@@ -73,3 +72,4 @@ def resetGame():
         randomized_person = random.choice(Suspects).name
         if randomized_person != murderer.name and randomized_person != Suspects[len(person_dictionary)].name:
             person_dictionary[Suspects[len(person_dictionary)]] = randomized_person
+resetGame()
