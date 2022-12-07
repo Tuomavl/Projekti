@@ -1,15 +1,5 @@
 import json
 import requests
-import mysql.connector
-yhteys = mysql.connector.connect(
-    host='127.0.0.1',
-    port=3306,
-    database='flight_game',
-    user='lentopeli',
-    password='peli',
-    autocommit=True
-)
-kursori = yhteys.cursor()
 from reset import *
 
 class Player:

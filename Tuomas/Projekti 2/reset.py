@@ -1,11 +1,4 @@
-from suspects import Suspect
-from player1 import *
-import random
 import mysql.connector
-
-Suspects = []
-player = ()
-person_dictionary = {}
 yhteys = mysql.connector.connect(
     host='127.0.0.1',
     port=3306,
@@ -14,8 +7,15 @@ yhteys = mysql.connector.connect(
     password='peli',
     autocommit=True
 )
-kursori = yhteys.cursor()
 
+kursori = yhteys.cursor()
+from suspects import Suspect
+from player1 import *
+import random
+
+Suspects = []
+player = ()
+person_dictionary = {}
 def resetGame():
     kursori.execute(
         "UPDATE gameCountries SET suspectName = NULL WHERE suspectName is not null;")
@@ -65,10 +65,11 @@ def resetGame():
         player.setLocation(playerLocation)
 
     print(f'\nMurhaaja on {murderer.name}')
-    print(f'\n{Player} on maassa {playerLocation}')
+    print(f'\nPelaaja on maassa {playerLocation}')
 
     # Suspect accusation randomiser
     while len(person_dictionary) < 8:
         randomized_person = random.choice(Suspects).name
         if randomized_person != murderer.name and randomized_person != Suspects[len(person_dictionary)].name:
             person_dictionary[Suspects[len(person_dictionary)]] = randomized_person
+    print()
