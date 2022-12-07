@@ -1,0 +1,28 @@
+body {
+    font-family: Verdana sans-serif;
+    background: linear-gradient(#141e30, #243b55);
+}
+
+p {
+    font-size: 2em;
+    padding: 0.2em 2em;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+
+}
+
+
+.texts {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+img {
+    width: 85em;
+    height: auto;
+}
