@@ -1,5 +1,4 @@
-from flask import Flask
-import random
+
 import mysql.connector
 yhteys = mysql.connector.connect(
     host='127.0.0.1',
@@ -10,11 +9,10 @@ yhteys = mysql.connector.connect(
     autocommit=True
 )
 kursori = yhteys.cursor()
-
-from suspects import Suspect
+from reset import *
 from player1 import Player
-
 # Murderer is set
+
 #random.choice(Suspects).set_murderer(True)
 
 # Suspect location randomized and set

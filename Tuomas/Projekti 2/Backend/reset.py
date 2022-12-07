@@ -1,7 +1,8 @@
 from newApp import *
 from suspects import Suspect
+from player1 import Player
 import random
-
+Suspects = []
 def resetGame():
     kursori.execute(
         "UPDATE gameCountries SET suspectName = NULL WHERE suspectName is not null;")
