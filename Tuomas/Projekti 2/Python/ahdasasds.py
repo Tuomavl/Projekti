@@ -1,4 +1,5 @@
-print('\n'+player.location)
+
+#print('\n'+player.location)
 
 value = player.flyTo()
 if value == -1:

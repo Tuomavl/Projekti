@@ -1,7 +1,6 @@
 import json
 import requests
 import mysql.connector
-
 yhteys = mysql.connector.connect(
     host='127.0.0.1',
     port=3306,
@@ -11,6 +10,7 @@ yhteys = mysql.connector.connect(
     autocommit=True
 )
 kursori = yhteys.cursor()
+from reset import *
 
 class Player:
     def __init__(self, username):
@@ -79,3 +79,4 @@ class Player:
         # Welcome text:
         print(
             f'Tervetuloa {airport_name} nimiselle lentokentälle!\nOlet nyt kaupungissa {city_name}. Lämpötila on {temp} celsius astetta.')
+
