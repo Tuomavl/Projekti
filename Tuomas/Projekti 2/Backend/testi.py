@@ -1,3 +1,0 @@
-from reset import *
-resetGame()
-
