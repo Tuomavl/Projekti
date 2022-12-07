@@ -46,6 +46,10 @@ class Player:
             flight_number += 1
             print(f'({flight_number}): {x[0]}' + person_country)
 
+        flight = int(input("Syötä numero: "))
+        self.location = flightOptions[flight-1][0]
+        print(self.location)
+
         kursori.execute(
             "select suspectName from gameCountries where name='" + str(self.location) + "';")
         locationSuspect = kursori.fetchone()
