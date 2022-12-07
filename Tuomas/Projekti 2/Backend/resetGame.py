@@ -1,46 +1,26 @@
-from flask import Flask
-import random
-import mysql.connector
-yhteys = mysql.connector.connect(
-    host='127.0.0.1',
-    port=3306,
-    database='flight_game',
-    user='lentopeli',
-    password='peli',
-    autocommit=True
-)
-kursori = yhteys.cursor()
-
+from newApp import *
 from suspects import Suspect
-from player1 import Player
-
-
-kursori.execute("SELECT name from suspects;")
-suspects = kursori.fetchall()
-suspectslist = []
-suspectslist.append(suspects)
-
-countries = ['Unkari', 'Kroatia', 'Itävalta', 'Tsekki', 'Saksa', 'Tanska', 'Alankomaat', 'Italia', 'Ranska', 'Puola',
-             'Ruotsi', 'Kreikka', 'Albania', 'Romania', 'Iso-Britannia']
-murderer = None
-
-player = Player('Ilkka', 0)
-
-person_dictionary = {}
-
-kursori.execute(
-        "UPDATE gameCountries SET suspectName = NULL WHERE suspectName is not null;")
-
-
-# Murderer is set
-#random.choice(Suspects).set_murderer(True)
-
-# Suspect location randomized and set
-playerLocation = random.choice(countries)
+import random
 
 def resetGame():
     kursori.execute(
         "UPDATE gameCountries SET suspectName = NULL WHERE suspectName is not null;")
+
+    kursori.execute("SELECT name from suspects;")
+    suspects = kursori.fetchall()
+    suspectslist = []
+    suspectslist.append(suspects)
+
+    countries = ['Unkari', 'Kroatia', 'Itävalta', 'Tsekki', 'Saksa', 'Tanska', 'Alankomaat', 'Italia', 'Ranska',
+                 'Puola',
+                 'Ruotsi', 'Kreikka', 'Albania', 'Romania', 'Iso-Britannia']
+    murderer = None
+
+    global player
+    player = Player('Ilkka', 0)
+
+    global person_dictionary
+    person_dictionary = {}
 
     Mary = Suspect('Mary')
     Luke = Suspect('Luke')
@@ -54,8 +34,6 @@ def resetGame():
     global Suspects
     Suspects = [Mary, Luke, Sandra, Tom, Adam, Kristen, Stefan, Jake]
 
-    player.setLocation(playerLocation)
-
     # Murderer is set
     murderer = random.choice(Suspects)
     murderer.set_murderer(True)
@@ -67,6 +45,10 @@ def resetGame():
         countries.remove(x)
         kursori.execute("UPDATE gameCountries SET suspectName='" + i.name + "' WHERE name= '" + i.location + "';")
         print(f'{i.name} on paikassa {i.location}')
+
+        global playerLocation
+        playerLocation = random.choice(countries)
+        player.setLocation(playerLocation)
 
     print(f'\nMurhaaja on {murderer.name}')
     print(f'\nPelaaja on maassa {playerLocation}')
@@ -80,17 +62,3 @@ def resetGame():
     print(f'Henkilö {Suspects[1].name} syyttää {person_dictionary[Suspects[1]]}\n')
 
 resetGame()
-
-Suspects[7].accuse()
-
-print('\n'+playerLocation)
-
-
-
-value = player.flyTo()
-if value == -1:
-    print(f'Maassa {playerLocation} ei ole ketään.')
-else:
-    print(f'Maassa {playerLocation} on: {Suspects[value].name}')
-    text = Suspects[value].accuse().format(playerName=player.username, addSuspect=person_dictionary[Suspects[value]])
-    print(text)
