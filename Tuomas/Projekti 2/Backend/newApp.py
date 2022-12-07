@@ -10,7 +10,7 @@ yhteys = mysql.connector.connect(
 )
 kursori = yhteys.cursor()
 from reset import *
-from player1 import Player
+
 # Murderer is set
 
 #random.choice(Suspects).set_murderer(True)

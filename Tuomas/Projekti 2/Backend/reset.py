@@ -3,6 +3,8 @@ from suspects import Suspect
 from player1 import Player
 import random
 Suspects = []
+player = ()
+person_dictionary = {}
 def resetGame():
     kursori.execute(
         "UPDATE gameCountries SET suspectName = NULL WHERE suspectName is not null;")
