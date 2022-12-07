@@ -72,4 +72,3 @@ def resetGame():
         randomized_person = random.choice(Suspects).name
         if randomized_person != murderer.name and randomized_person != Suspects[len(person_dictionary)].name:
             person_dictionary[Suspects[len(person_dictionary)]] = randomized_person
-resetGame()
