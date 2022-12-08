@@ -8,14 +8,13 @@ L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
 }).addTo(map);
 map.setView([60, 24], 7);
 
-//popup overlay
-const Icon = document.getElementById('Icon')
-Icon.onclick = function(){
-  popup()
-}
+// icons
+const blueIcon = L.divIcon({ className: 'blue-icon' });
+const greenIcon = L.divIcon({ className: 'green-icon' });
 
 //form for player name
-
+const apiUrl = 'http://127.0.0.1:5000/';
+const airportMarkers = L.featureGroup().addTo(map);
 // function to fetch data from API
 async function getData(url) {
   const response = await fetch(url);
@@ -28,8 +27,15 @@ async function getData(url) {
 //Main function that creates game and calls other functions
 async function gamesetup() {
   try{
+    airportMarkers.clearLayers();
     const gameData = await getData()
     console.log(gameData)
+    for (let airport of gameData.location){
+      const marker = L.marker([airport.latitude, airport.longitude]).addTo(map);
+      airportMarkers.addLayer(marker);
+      marker.setIcon(blueIcon);
+    }
+
   } catch(error){
     console.log(error)
   }
