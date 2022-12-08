@@ -1,0 +1,55 @@
+html{
+    height:100%;
+    font-family: Verdana sans-serif;
+}
+body{
+    margin:0;
+    background: linear-gradient(#141e30, #243b55);
+}
+h1{
+    color:#fff;
+    text-align:center;
+    padding:0.5rem;
+}
+nav{
+    margin:auto;
+    background: rgba(0,0,0,.5);;
+    text-align:center;
+    justify-content: space-around;
+    padding:0.5rem;
+}
+ion-icon {
+  vertical-align: middle;
+    color:#fff;
+    font-size:300%;
+
+}
+#Alku{
+    padding:7rem;
+
+}
+#Leaderboard{
+    padding:7rem;
+}
+button{
+    width:10rem;
+    padding:0.5rem;
+    background: linear-gradient(#141e30, #243b55);
+    color:#fff;
+}
+
+#map {
+    width: 40rem;
+    height:30rem;
+    overflow: hidden;
+    margin:25px;
+
+
+
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 10px;
+}
+footer{
+background:black;
+    margin:0;
+}
