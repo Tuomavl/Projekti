@@ -13,7 +13,7 @@ yhteys = mysql.connector.connect(
 kursori = yhteys.cursor()
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/',methods=['GET','POST'])
 def game():
     return render_template('Mapview.html')
 
