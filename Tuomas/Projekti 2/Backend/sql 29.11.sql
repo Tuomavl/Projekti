@@ -23,7 +23,7 @@ CREATE TABLE gameCountries(
     countryID INTEGER NOT NULL PRIMARY KEY,
     name VARCHAR(50) NOT NULL UNIQUE,
     lat INTEGER NOT NULL,
-    long INTEGER NOT NULL,
+    lon INTEGER NOT NULL,
     airportName VARCHAR(50),
     cityName VARCHAR(50),
     welcomeText VARCHAR(500),
@@ -46,49 +46,49 @@ CREATE TABLE suspects(
 );
 
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (1, 'Puola', 'Warsaw Chopin Airport', 'Varsova', 52.1656990051, 20.967100143399996);
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (2, 'Unkari', 'Budapest Liszt Ferenc International Airport', 'Budapest', 47.42976, 19.261093);
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (3, 'Kroatia', 'Zagreb Airport', 'Zagreb', 45.7429008484, 16.0687999725);
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (4, 'Itävalta', 'Vienna International Airport', 'Wien', 48.110298, 48.110298);
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (5, 'Tsekki', 'Václav Havel Airport Prague', 'Praha', 50.1008, 14.26);
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (6, 'Saksa', 'Berlin Brandenburg Airport', 'Berliini', 52.351389, 13.493889);
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (7,'Tanska','Copenhagen Kastrup Airport','Kööpenhamina', 55.617900848389, 55.617900848389);
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (8, 'Alankomaat', 'Amsterdam Airport Schiphol', 'Amsterdam', 52.308601, 4.76389);
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (9, 'Italia', 'Leonardo da Vinci–Fiumicino Airport', 'Rooma', 41.804532, 12.251998);
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (10, 'Ranska', 'Paris-Orly Airport', 'Pariisi', 48.7233333, 2.3794444);
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (11, 'Ruotsi', 'Stockholm-Arlanda Airport', 'Tukholma', 59.651901245117, 17.918600082397);
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (12, 'Kreikka', 'Athens Eleftherios Venizelos Internation', 'Ateena', 37.936401, 23.9445);
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (13, 'Albania', 'Tirana International Airport Mother Tere', 'Tirana', 41.4146995544, 19.7206001282);
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (14, 'Romania','Henri Coanda International Airport', 'Bukarest', 44.5711111, 26.085);
 
-INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, long)
+INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (15, 'Iso-Britannia', 'London City Airport', 'Lontoo', 51.505299, 0.055278);
 
 
@@ -154,7 +154,7 @@ INSERT INTO suspects (name,status,story)
 VALUES('Adam',0,'Adam: Terveppä terve! Murhatutkimuksen tiimoilta tullut minua tapaamaan? Hahah. Naurettava ajatus, että minua edes epäillään. \nMutta kuulepas tätä. Näin, että {addSuspect} hiippaili hotellihuoneeseen jonkun tuntemattoman kanssa! \nMehukas juoru, mutta samalla taitaa todistaa, ettei hän voi olla murhaaja.');
 
 INSERT INTO suspects (name,status,story)
-VALUES('Stefan',0,'Stefan: Terve {playername}! Mennään suoraan asiaan. Juuri ennen tapahtunutta {addSuspect} \nlähti hakemaan kaikille kahvia ja palasi vasta myöhemmin. Hänellä on siis vahva alibi, kahvilan työntekijät voivat varmasti taata sen. \nJatkahan sitten tutkimuksiasi ja minä pääsen jatkamaan töitäni, hyvästi!');
+VALUES('Stefan',0,'Stefan: Terve {playerName}! Mennään suoraan asiaan. Juuri ennen tapahtunutta {addSuspect} \nlähti hakemaan kaikille kahvia ja palasi vasta myöhemmin. Hänellä on siis vahva alibi, kahvilan työntekijät voivat varmasti taata sen. \nJatkahan sitten tutkimuksiasi ja minä pääsen jatkamaan töitäni, hyvästi!');
 
 INSERT INTO suspects (name,status,story)
 VALUES('Kristen',0,'Kristen: Moi. Aivan, kuulinkin huhuja tästä. En kyllä yhtään yllättynyt, tunnelma (konferenssissa tai missä ny olivatkaa) oli hyvin jännittynyt. \n{addSuspect} oli kylläkin kokoajan näköetäisyydelläni, joten hän se ei ole. Kerrothan kun kuulet lisää, heippa!');

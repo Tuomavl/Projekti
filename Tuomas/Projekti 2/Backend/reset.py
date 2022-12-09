@@ -10,7 +10,7 @@ yhteys = mysql.connector.connect(
 
 kursori = yhteys.cursor()
 from suspects import Suspect
-from player1 import *
+from player import *
 import random
 
 Suspects = []

@@ -12,7 +12,7 @@ yhteys = mysql.connector.connect(
 kursori = yhteys.cursor()
 
 from suspects import Suspect
-from player1 import Player
+from player import Player
 
 
 kursori.execute("SELECT name from suspects;")
