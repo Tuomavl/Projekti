@@ -5,6 +5,7 @@ game = Game()
 print("\n")
 
 value = game.player.flyTo()
+welcome = game.player.welcomeText()
 if value == -1:
     print(f'Maassa {game.player.location} ei ole ketään.')
 else:
