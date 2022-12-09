@@ -12,7 +12,6 @@ kursori = yhteys.cursor()
 
 from flask import Flask, request
 from flask_cors import CORS
-from reset import resetGame
 
 
 app = Flask(__name__)
