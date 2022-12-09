@@ -41,39 +41,14 @@ button{
     gap: 1rem;
 }
 
-#less\ flight{
-    width: calc(80% / 3 - 7rem);
-    color:#fff;
-    background: rgba(0,0,0,.5);;
-    text-align:center;
-    box-sizing: border-box;
-    border: 1px #ccc solid;
-    padding: 1rem;
-    border-radius: 6px;
-    box-shadow: 3px 6px 6px #ccc;
-}
-#most\ games{
-    width: calc(80% / 3 - 7rem);
-    color:#fff;
-    background: rgba(0,0,0,.5);;
-    text-align:center;
-    box-sizing: border-box;
-    border: 1px #ccc solid;
-    padding: 1rem;
-    border-radius: 6px;
-    box-shadow: 3px 6px 6px #ccc;
-}
-#winstreak{
-    width: calc(80% / 3 - 7rem);
-    color:#fff;
-    background: rgba(0,0,0,.5);;
-    text-align:center;
-    box-sizing: border-box;
-    border: 1px #ccc solid;
-    padding: 1rem;
-    border-radius: 6px;
-    box-shadow: 3px 6px 6px #ccc;
-}
 div {
+    width: calc(80% / 3 - 7rem);
+    color: #fff;
+    background: rgba(0, 0, 0, .5);;
     text-align: center;
+    box-sizing: border-box;
+    border: 1px #ccc solid;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 3px 6px 6px #ccc;
 }

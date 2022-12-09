@@ -1,6 +1,7 @@
 import json
 import mysql.connector
 from flask import Flask,render_template
+from flask_cors import CORS
 
 yhteys = mysql.connector.connect(
     host='127.0.0.1',
@@ -12,8 +13,21 @@ yhteys = mysql.connector.connect(
 )
 kursori = yhteys.cursor()
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route('/',methods=['GET','POST'])
+@app.route('/username')
+def home():
+    vastaus = {
+        "playerName":
+    }
+    return vastaus
+
+@app.route('/leaderboard.html', methods=['GET','POST'])
+def leaderboard():
+
+    return render_template('leaderboard.html')
+@app.route('/Mapview.html',methods=['GET','POST'])
 def game():
     return render_template('Mapview.html')
 
