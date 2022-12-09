@@ -18,15 +18,13 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/')
 def index():
     return render_template('Kirjaudu.html')
-@app.route('/test', methods=['POST'])
+@app.route('/test', methods=['GET','POST'])
 def test():
     output = request.get_json()
-    print(output)
-    print(type(output))
     result = json.loads(output)
     print(result)
-    print(type(result))
-    return result
+    json_data = result
+    return json_data
 
 
 if __name__ == '__main__':
