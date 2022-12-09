@@ -20,11 +20,6 @@ def index():
     return render_template('Kirjaudu.html')
 @app.route('/test', methods=['GET','POST'])
 def test():
-    output = request.get_json()
-    result = json.loads(output)
-    print(result)
-    json_data = result
-    return json_data
 
 
 if __name__ == '__main__':

@@ -10,30 +10,32 @@
 <body>
     <div class="login-box">
       <h1>Kirjaudu</h1>
-      <form name="search" action="">
+      <form id="form" name="search" action="">
         <div class="user-box">
             <input id="username" type="text" name="search-box">
             <label>Username</label>
         </div>
-          <a><button type='submit' onclick="myFuntion()">Pelaa</button></a>
+          <a><button type='submit'>Pelaa</button></a>
       </form>
     </div>
 <script>
-  function myFuntion(){
-  let username = document.getElementById('username').value
+    const form = document.getElementById('form')
 
-  const values= (username)
-  const s = JSON.stringify(values)
-  console.log(s)
-    window.alert(s)
+    form.addEventListener('submit', function(evt){
+      evt.preventDefault();
 
+      const prepayload = new FormData(form);
+      const payload = new URLSearchParams(prepayload);
+      console.log([...payload])
 
-  $ajax({
-    url:'/test',
-    method:'POST',
-    contentType:'application/json',
-    data:JSON.stringify(s)})
-}
+      fetch('http://httpbin.org/post',{
+        method:'POST',
+        body:payload,
+      })
+          .then(res => res.json())
+          .then(data => console.log(data))
+          .catch(err => console.log(err));
+    })
 </script>
 </body>
 </html>
