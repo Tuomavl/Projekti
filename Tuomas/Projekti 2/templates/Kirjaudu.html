@@ -4,24 +4,34 @@
     <meta charset="UTF-8">
     <title>Kirjautumissivu</title>
     <link href="../static/Kirjaudu.css" rel="stylesheet">
-    <script src="../JavaScript/Kirjaudu.js" defer></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 </head>
 <body>
     <div class="login-box">
       <h1>Kirjaudu</h1>
       <form name="search" action="">
         <div class="user-box">
-            <input id="username" type="text" name="search-box" required="">
+            <input id="username" type="text" name="search-box">
             <label>Username</label>
         </div>
-        <a href="Tarina.html">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          Pelaa
-        </a>
+          <a href="Tarina.html"><button type='submit' onclick="myFuntion()">Pelaa</button></a>
       </form>
     </div>
+<script>
+  function myFuntion(){
+  let username = document.getElementById('username').value
+
+  const values={username}
+  const s = JSON.stringify(values)
+  console.log(s)
+    window.alert(s)
+
+  $ajax({
+    url:'/test',
+    method:'POST',
+    contentType:'application/json',
+    data:JSON.stringify(s)})
+}
+</script>
 </body>
 </html>

@@ -31,7 +31,7 @@ def resetGame():
     murderer = None
 
     global Player
-    player = Player('ilkka')
+    player = Player(playerName)
 
     global person_dictionary
     person_dictionary = {}
