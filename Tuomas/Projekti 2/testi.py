@@ -19,7 +19,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def index():
     return render_template('Kirjaudu.html')
 @app.route('/test', methods=['GET','POST'])
-def test():
+
 
 
 if __name__ == '__main__':

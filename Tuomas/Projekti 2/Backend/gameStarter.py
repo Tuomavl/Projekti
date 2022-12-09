@@ -12,3 +12,5 @@ else:
     print(f'Maassa {game.player.location} on: {game.Suspects[value].name}')
     text = game.Suspects[value].accuse().format(playerName=game.player.username, addSuspect=game.person_dictionary[game.Suspects[value]])
     print(text)
+
+value = game.player.flyTo()
