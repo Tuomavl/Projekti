@@ -24,5 +24,12 @@ def resetGame():
 
     return
 
+@app.route('/leaderboard')
+def leaderboard():
+    leaderboards = ['Kameli', 'Poro', 'Hirvi', 'Kauris']
+    json_data = json.dumps(leaderboards)
+    return json_data
+
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=5000)
+
