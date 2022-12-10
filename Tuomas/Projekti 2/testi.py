@@ -12,8 +12,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def newgame():
     args = request.args
     player = args.get("player")
-    json_data = game.player.location
-    return json_data
+
 
 if __name__ == '__main__':
     app.run(use_reloader=True)

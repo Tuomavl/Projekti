@@ -5,7 +5,8 @@ L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
   maxZoom: 20,
   subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 }).addTo(map);
-map.setView([60, 24], 7);
+map.setView([52 , 15], 4);
+
 //Global variables
 const apiUrl = 'http://127.0.0.1:5000/';
 // form for player name
@@ -28,8 +29,9 @@ async function getData(url,message) {
 async function gameSetup(){
   try {
     const gameData = await getData(`http://127.0.0.1:5000/`);
-
     console.log(gameData);
+
+    for (let airport of gameData)
 
   }catch(error){
     console.log(error);

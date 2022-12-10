@@ -72,11 +72,7 @@ class Game:
         print(f'Pelaaja on maassa {self.playerLocation}')
 
     def find_airports(self):
-        lista = []
-        kursori.execute("SELECT * from gameCountries")
+        kursori.execute("SELECT lat,lon from gameCountries")
         gameData = kursori.fetchall()
-
-        for a in gameData:
-            lista.append(gameData)
-            print(lista)
-            return lista
+        print(gameData)
+        return gameData
