@@ -13,23 +13,37 @@ const apiUrl = 'http://127.0.0.1:5000/';
 document.querySelector('#player-form').addEventListener('submit', function (evt) {
   evt.preventDefault();
   const playerName = document.querySelector('#player-input').value;
-  gameSetup(`${apiUrl}newgame?player=${playerName}`);
+  gameSetup(`${apiUrl}newgame/${playerName}/${0}`);
 });
 
-//Function to fetch data from api
-async function getData(url,message) {
-  const response = await fetch(url);
-  if (!response.ok) throw new Error(message)
-  const data = await response.json();
-  return data
-}
+// function to fetch data from API
+
+  const response = await fetch('http://127.0.0.1:5000/newgame/' + playerName + '/' + loc);
+  const jsonData = await response.json()
+  const id = jsonData['username']
+
+
 
 //function to set up game
-async function gameSetup(){
+async function gameSetup(url){
   try {
-    const gameData = await getData(`http://127.0.0.1:5000/newgame`);
+    const gameData = await getData(url);
     console.log(gameData);
+    for (let airport of gameData.data){
+      const marker = L.marker([airport.latitude,airport.longitude]).addTo(map)
+      marker.bindPopup(airport.name)
+      marker.openPopUp();
+      const popupContent = document.createElement('div');
+      const h4 = document.createElement('h4')
+      h4.innerHTML = airport.name;
+      popupContent.append(h4);
+      const gobutton = document.createElement('button')
+      gobutton.classList.add('button');
+      gobutton.innerHTML = 'Fly here!';
+      popupContent.append(gobutton);
+      marker.bindPopup(popupContent);
 
+    }
   }catch(error){
     console.log(error);
   }
