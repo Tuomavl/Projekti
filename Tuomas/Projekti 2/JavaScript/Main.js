@@ -13,14 +13,23 @@ const apiUrl = 'http://127.0.0.1:5000/';
 document.querySelector('#player-form').addEventListener('submit', function (evt) {
   evt.preventDefault();
   const playerName = document.querySelector('#player-input').value;
-  gameSetup(`${apiUrl}newgame/${playerName}/${0}`);
+  gameSetup(`${apiUrl}newgame?player=${playerName}&loc=${startLoc}`);
 });
 
-// function to fetch data from API
 
+// function to fetch data from API
   const response = await fetch('http://127.0.0.1:5000/newgame/' + playerName + '/' + loc);
   const jsonData = await response.json()
   const id = jsonData['username']
+
+
+
+
+
+
+
+
+
 
 
 
