@@ -7,15 +7,25 @@ L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
 }).addTo(map);
 map.setView([60, 24], 7);
 
+
+//Function to fetch data from api
+async function getData(url,message) {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(message)
+    const data = await response.json();
+    return data
+}
+
+
+//function to set up game
 async function gameSetup(){
   try {
-    const response = await fetch(`http://127.0.0.1:5000/`);
-    const data = await response.json();
-    console.log(data);
+    const gameData = await getData(`http://127.0.0.1:5000/`);
+
+    console.log(gameData);
 
   }catch(error){
     console.log(error);
   }
 
 }
-gameSetup();
