@@ -7,28 +7,31 @@ L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
 }).addTo(map);
 map.setView([60, 24], 7);
 
-//Global variable
-const apiUrl = 'http://127.0.0.1:5000/loop';
+//Global variables
+const apiUrl = 'http://127.0.0.1:5000/';
 const airportMarkers = L.featureGroup().addTo(map);
-
-// function to fetch data from API
-async function getData(apiUrl) {
-  const response = await fetch(apiUrl);
-  if (!response.ok) throw new Error('Invalid server input!');
-  const data = await response.json();
-  const data2 = data["data"]
-  console.log(data2)
-
-}
-
-
 
 // icons
 const blueIcon = L.divIcon({ className: 'blue-icon' });
 const greenIcon = L.divIcon({ className: 'green-icon' });
-// something
-const gameData = await getData(url);
-console.log(gameData)
-for(let airport of gameData.location)
-const marker = L.marker([airport.latitude, airport.longitude]).addTo(map);
-airportMarkers.addLayer(marker);
+
+// form for player name
+document.querySelector('#player-form').addEventListener('submit', function (evt) {
+  evt.preventDefault();
+  const playerName = document.querySelector('#player-input').value;
+  gameSetup(`${apiUrl}newgame?player=${playerName}`);
+});
+
+//function to fetch data from api
+async function getData(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error('Invalid server input!');
+  const data = await response.json();
+  return data;
+}
+
+airportMarkers.clearLayers();
+
+for (let airport of getData.)
+  const marker= L.marker([airport.latitude, airport.longitude]).addTo(map);
+  airportMarkers.addLayer(marker);

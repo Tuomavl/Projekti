@@ -3,39 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Kirjautumissivu</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
     <link href="../static/Kirjaudu.css" rel="stylesheet">
-    <link href="Tarina.html">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" defer></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.esm.js" defer></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.js" defer></script>
+    <script src="../JavaScript/Main.js" defer></script>
+
 </head>
 <body>
     <div class="login-box">
       <h1>Kirjaudu</h1>
-      <form id="form" name="search" action="">
-        <div class="user-box">
-            <input id="username" type="text" name="search-box">
-            <label>Username</label>
-        </div>
-          <a><button type='submit'>Pelaa</button></a>
+      <form id="player-form">
+          <input id="player-input" type="text" placeholder="Player name" required>
+          <input type="submit" value="Pelaa">
       </form>
     </div>
-<script>
-    const form = document.getElementById('form')
-
-    form.addEventListener('submit', function(evt){
-      evt.preventDefault();
-
-      const prepayload = new FormData(form);
-      const payload = new URLSearchParams(prepayload);
-      console.log([...payload])
-
-      fetch('http://httpbin.org/post',{
-        method:'POST',
-        body:payload,
-      })
-          .then(res => res.json())
-          .then(data => console.log(data))
-          .catch(err => console.log(err));
-    })
-</script>
 </body>
 </html>
