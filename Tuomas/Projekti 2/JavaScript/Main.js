@@ -23,22 +23,12 @@ document.querySelector('#player-form').addEventListener('submit', function (evt)
   const id = jsonData['username']
 
 
-
-
-
-
-
-
-
-
-
-
 //function to set up game
 async function gameSetup(url){
   try {
     const gameData = await getData(url);
     console.log(gameData);
-    for (let airport of gameData.data){
+    for (let airport of gameData.){
       const marker = L.marker([airport.latitude,airport.longitude]).addTo(map)
       marker.bindPopup(airport.name)
       marker.openPopUp();
