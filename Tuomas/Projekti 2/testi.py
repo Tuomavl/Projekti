@@ -1,21 +1,25 @@
 import json
-import mysql.connector
-from flask import Flask,render_template
+from flask import Flask,request
+from flask_cors import CORS
+from game import Game
 
-yhteys = mysql.connector.connect(
-    host='127.0.0.1',
-    port=3306,
-    database='flight_game',
-    user='lentopeli',
-    password='peli',
-    autocommit=True
-)
-kursori = yhteys.cursor()
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+game = Game()
+ok = game.find_airports()
 
-@app.route('/',methods=['GET','POST'])
-def game():
-    return render_template('Mapview.html')
+# http://127.0.0.1:5000/newgame?player=playerName)
+@app.route('/newgame/<playerName>/<loc>')
+def newgame(playerName,loc):
+   Player = playerName
+   location =loc
+
+   vastaus = {
+       "username":Player,
+       "location":location
+   }
+   return vastaus
 
 if __name__ == '__main__':
-    app.run(use_reloader=True, host='127.0.0.1', port=5000)
+    app.run(use_reloader=True)

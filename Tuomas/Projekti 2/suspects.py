@@ -1,4 +1,14 @@
-from reset import *
+import mysql.connector
+
+yhteys = mysql.connector.connect(
+    host='127.0.0.1',
+    port=3306,
+    database='flight_game',
+    user='lentopeli',
+    password='peli',
+    autocommit=True
+)
+kursori = yhteys.cursor()
 class Suspect:
     def __init__(self, name):
         self.name = name
@@ -25,5 +35,5 @@ class Suspect:
     def accuse(self):
         kursori.execute("SELECT story from suspects where name='" + self.name + "';")
         result = kursori.fetchone()
-        print(result[0])
+        #print(result[0])
         return result[0]

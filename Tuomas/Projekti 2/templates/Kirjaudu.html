@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Kirjautumissivu</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
     <link href="../static/Kirjaudu.css" rel="stylesheet">
-    <script src="../JavaScript/Kirjaudu.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" defer></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.esm.js" defer></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.js" defer></script>
+    <script src="../JavaScript/Main.js" defer></script>
+
 </head>
 <body>
     <div class="login-box">
       <h1>Kirjaudu</h1>
-      <form name="search" action="" method="POST">
-        <div class="user-box">
-            <input type="text" name="search-box" required="">
-            <label>Username</label>
-        </div>
-        <a href="Tarina.html">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          Pelaa
-        </a>
+      <form id="player-form">
+          <input id="player-input" type="text" placeholder="Player name" required>
+          <input type="submit" value="Pelaa">
       </form>
     </div>
 </body>
