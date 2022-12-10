@@ -70,3 +70,13 @@ class Game:
 
         print(f'\nMurhaaja on {self.murderer.name}')
         print(f'Pelaaja on maassa {self.playerLocation}')
+
+    def find_airports(self):
+        lista = []
+        kursori.execute("SELECT * from gameCountries")
+        gameData = kursori.fetchall()
+
+        for a in gameData:
+            lista.append(gameData)
+            print(lista)
+            return lista

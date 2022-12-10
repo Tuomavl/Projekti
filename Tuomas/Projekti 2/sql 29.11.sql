@@ -26,7 +26,6 @@ CREATE TABLE gameCountries(
     lon INTEGER NOT NULL,
     airportName VARCHAR(50),
     cityName VARCHAR(50),
-    welcomeText VARCHAR(500),
     suspectName VARCHAR(50)
 );
 
