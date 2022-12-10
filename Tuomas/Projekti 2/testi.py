@@ -20,5 +20,6 @@ def newgame(playerName,loc):
        "location":location
    }
    return vastaus
+
 if __name__ == '__main__':
     app.run(use_reloader=True)
