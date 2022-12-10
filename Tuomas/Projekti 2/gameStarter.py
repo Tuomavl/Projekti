@@ -4,7 +4,6 @@ game = Game()
 
 print("\n")
 ok = game.find_airports()
-for k in ok:
 
 value = game.player.flyTo()
 welcome = game.player.welcomeText()
