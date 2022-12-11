@@ -29,9 +29,3 @@ async function getData(url) {
   const data = await response.json();
   return data;
 }
-
-airportMarkers.clearLayers();
-
-for (let airport of getData.)
-  const marker= L.marker([airport.latitude, airport.longitude]).addTo(map);
-  airportMarkers.addLayer(marker);
