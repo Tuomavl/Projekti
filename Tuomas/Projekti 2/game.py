@@ -74,8 +74,3 @@ class Game:
         kursori.execute("SELECT lat,lon from gameCountries")
         self.res = kursori.fetchall()
         print(self.res)
-
-    def is_murderer(self, name):
-        if name == self.murderer:
-            return True
-        return False
