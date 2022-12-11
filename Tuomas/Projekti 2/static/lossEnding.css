@@ -12,13 +12,14 @@ body {
     margin:0;
     font-family: Verdana sans-serif;
     text-align: center;
-    background-image: url('Pictures/bars.png');
+    background-image: url('../Pictures/bars.png');
 }
-p {
+h1 {
     margin:0;
-    color:#fff;
+    color:#141e30;
     text-align: center;
     padding:3rem;
+    size: 15rem;
 
 }
 #again{
