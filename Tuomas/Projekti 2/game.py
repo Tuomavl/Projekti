@@ -23,8 +23,8 @@ class Game:
                      'Puola',
                      'Ruotsi', 'Kreikka', 'Albania', 'Romania', 'Iso-Britannia']
         self.murderer = None
-        from testi2 import Username
-        self.player = Player(str(Username))
+
+        self.player = Player()
 
         kursori.execute(
             "UPDATE gameCountries SET suspectName = NULL WHERE suspectName is not null;")

@@ -10,6 +10,7 @@ map.setView([52 , 15], 4);
 //Global variables
 const apiUrl = 'http://127.0.0.1:5000/';
 
+//Fetch
 
 
 //form for playerName
@@ -18,5 +19,6 @@ document.querySelector('#player-form').addEventListener('submit', function(evt){
   const username = document.querySelector('#player-input').value;
 
 
-
 })
+//Fetch
+const haku = await fetch('http://127.0.0.1:5000/Tarina.html?username='+username)
