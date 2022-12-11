@@ -12,7 +12,7 @@ kursori = yhteys.cursor()
 
 from flask import Flask, request
 from flask_cors import CORS
-from player import Player
+from game import Game
 
 
 app = Flask(__name__)
@@ -23,22 +23,30 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route("/kirjaudu/<player>")
 def kirjaudu(player):
     global player1
-    player1 = Player(player)
-    print(player1)
-    print(player1.username)
+    player1 = player
 
     vastaus = {
-        "username": player1.username
+        "username": player1
     }
     return vastaus
 
 @app.route("/tarina")
 def tarina():
-    print("Tarina "+player1.username)
+    print("Tarina " + player1)
 
     vastaus = {
-        "username": player1.username
+        "username": player1
     }
+    return vastaus
+
+@app.route("/startGame")
+def startGame():
+    game_olio = Game(player1)
+
+    vastaus = {
+        "player": game_olio
+    }
+    print(vastaus)
     return vastaus
 
 if __name__ == '__main__':

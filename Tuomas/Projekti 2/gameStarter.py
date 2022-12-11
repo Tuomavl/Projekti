@@ -1,6 +1,6 @@
 from game import Game
 
-game = Game()
+game = Game("Ilkka")
 
 print("\n")
 ok = game.find_airports()
