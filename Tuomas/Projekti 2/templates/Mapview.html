@@ -6,23 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
-    <link href="../static/Mapview.css" rel="stylesheet">
+    <link href="../static/Css/Mapview.css" rel="stylesheet">
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" defer></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.esm.js" defer></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.js" defer></script>
-    <script src="../JavaScript/Main.js" defer></script>
+    <script src="../static/Javascript/Main.js" defer></script>
+    <script src="../static/Javascript/Mapview.js" defer></script>
+    <script src="../static/Javascript/modal.js" defer></script>
+
 </head>
 <body>
     <nav>
         <h1>Family friendly murhamysteeri featuring Ilkka</h1>
-        <a id="Alku" href="Alku.html"><button>Alku</button></a>
-        <a id="Leaderboard" href="leaderboard.html"><button>Leaderboard</button></a>
+
     </nav>
     <main>
-    <div id="map">
+    <div id="map"></div>
 
-    </div>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+  </div>
+</div>
     </main>
+
     <footer>
         <a></a>
     </footer>

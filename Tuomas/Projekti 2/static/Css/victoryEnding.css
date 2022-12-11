@@ -1,0 +1,80 @@
+html{
+    height:100%;
+
+}
+header{
+    margin:auto;
+    background: rgba(0,0,0,.5);;
+    text-align:center;
+    padding:0.5rem;
+}
+body {
+    margin:0;
+    font-family: Verdana sans-serif;
+    text-align: center;
+    background-image: url('../Pictures/party.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+h1 {
+    margin:0;
+    color:#141e30;
+    text-align: center;
+    padding:3rem;
+    size: 15rem;
+
+}
+#again{
+
+    padding:6rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1rem;
+
+}
+#whattodo{
+    width:30%;
+    display: flex;
+    flex-wrap: wrap;
+    position:absolute;
+    top:25%;
+    left:35%;
+    right:35%;
+    padding:3rem;
+    color:#fff;
+    background: rgba(0,0,0,.5);;
+    text-align:center;
+    box-sizing: border-box;
+    border: 1px #ccc solid;
+    border-radius: 40px;
+    box-shadow: 3px 6px 6px #ccc;
+    justify-content: space-around;
+}
+#leader{
+    width:30%;
+    display: flex;
+    flex-wrap: wrap;
+    position:absolute;
+    top:60%;
+    left:35%;
+    right:35%;
+    padding:3rem;
+    color:#fff;
+    background: rgba(0,0,0,.5);;
+    text-align:center;
+    box-sizing: border-box;
+    border: 1px #ccc solid;
+    border-radius: 40px;
+    box-shadow: 3px 6px 6px #ccc;
+    justify-content: space-around;
+}
+.play{
+    width:20rem;
+    height:5rem;
+    padding:0.5rem;
+    background: linear-gradient(#141e30, #243b55);
+    color:#fff;
+}
+

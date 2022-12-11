@@ -55,7 +55,7 @@ INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (3, 'Kroatia', 'Zagreb Airport', 'Zagreb', 45.7429008484, 16.0687999725);
 
 INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
-VALUES (4, 'Itävalta', 'Vienna International Airport', 'Wien', 48.110298, 48.110298);
+VALUES (4, 'Itävalta', 'Vienna International Airport', 'Wien', 48.110298, 16.568497726);
 
 INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (5, 'Tsekki', 'Václav Havel Airport Prague', 'Praha', 50.1008, 14.26);
@@ -64,7 +64,7 @@ INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (6, 'Saksa', 'Berlin Brandenburg Airport', 'Berliini', 52.351389, 13.493889);
 
 INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
-VALUES (7,'Tanska','Copenhagen Kastrup Airport','Kööpenhamina', 55.617900848389, 55.617900848389);
+VALUES (7,'Tanska','Copenhagen Kastrup Airport','Kööpenhamina', 55.617900848389, 12.650462);
 
 INSERT INTO gameCountries (countryID, name, airportName,cityName, lat, lon)
 VALUES (8, 'Alankomaat', 'Amsterdam Airport Schiphol', 'Amsterdam', 52.308601, 4.76389);
