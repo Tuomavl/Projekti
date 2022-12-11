@@ -5,7 +5,7 @@ gameSetup(`${apiUrlPeli}`);
 async function gameSetup(url){
     const gameData = await getData(url);
     console.log(gameData[res]);
-};
+}
 
 async function getData(url) {
   const response = await fetch(url);
