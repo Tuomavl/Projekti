@@ -7,18 +7,29 @@ L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
 }).addTo(map);
 map.setView([52 , 15], 4);
 
-//Global variables
-const apiUrl = 'http://127.0.0.1:5000/';
 
-//Fetch
+// Get the modal
+const modal = document.getElementById("myModal");
 
+// Get the button that opens the modal
+const btn = document.getElementById("myBtn");
 
-//form for playerName
-document.querySelector('#player-form').addEventListener('submit', function(evt){
-  evt.preventDefault();
-  const username = document.querySelector('#player-input').value;
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName("close")[0];
 
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
 
-})
-//Fetch
-const haku = await fetch('http://127.0.0.1:5000/Tarina.html?username='+username)
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+}
