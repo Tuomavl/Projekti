@@ -2,6 +2,8 @@ import json
 import requests
 import mysql.connector
 
+#import gameStarter
+
 yhteys = mysql.connector.connect(
     host='127.0.0.1',
     port=3306,
@@ -79,4 +81,8 @@ class Player:
         # Welcome text:
         print(
             f'Tervetuloa {airport_name} nimiselle lentokentälle!\nOlet nyt kaupungissa {city_name}. Lämpötila on {temp} celsius astetta.')
+
+    #def arrest(self, name):
+        #if gameStarter.game.is_murderer(name):
+
 
