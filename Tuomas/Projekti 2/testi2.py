@@ -1,11 +1,11 @@
 from flask import Flask,request,render_template
-from game import Game
+
 app = Flask(__name__)
 Username = []
-game = Game
 
 
-@app.route('/', methods=["GET","POST"])
+
+@app.route('/Alku.html', methods=["GET","POST"])
 def start():
     return render_template("Alku.html")
 
@@ -22,5 +22,10 @@ def tarina():
 @app.route('/Mapview.html', methods=["GET","POST"])
 def mapview():
     return render_template("Mapview.html")
+
+@app.route('/leaderboard.html', methods=["GET","POST"])
+def leaderboard():
+    return render_template("leaderboard.html")
+
 if __name__ == '__main__':
     app.run(use_reloader=True)

@@ -12,7 +12,7 @@ body {
     margin:0;
     font-family: Verdana sans-serif;
     text-align: center;
-    background-image: url('Pictures/bars.png');
+    background-image: url('../Pictures/bars.png');
 }
 p {
     margin:0;
