@@ -72,4 +72,10 @@ class Game:
 
     def find_airports(self):
         kursori.execute("SELECT lat,lon from gameCountries")
-        res = kursori.fetchall()
+        self.res = kursori.fetchall()
+        print(self.res)
+
+    def is_murderer(self, name):
+        if name == self.murderer:
+            return True
+        return False

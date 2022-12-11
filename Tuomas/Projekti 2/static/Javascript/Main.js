@@ -5,7 +5,8 @@ L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
   maxZoom: 20,
   subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 }).addTo(map);
-map.setView([52 , 15], 4);
+map.setView([52 , 22], 3);
+
 
 
 // Get the modal
