@@ -23,8 +23,8 @@ class Game:
                      'Puola',
                      'Ruotsi', 'Kreikka', 'Albania', 'Romania', 'Iso-Britannia']
         self.murderer = None
-
-        self.player = Player('ilkka')
+        from testi2 import Username
+        self.player = Player(str(Username))
 
         kursori.execute(
             "UPDATE gameCountries SET suspectName = NULL WHERE suspectName is not null;")
@@ -73,7 +73,3 @@ class Game:
     def find_airports(self):
         kursori.execute("SELECT lat,lon from gameCountries")
         res = kursori.fetchall()
-        for r in res:
-            self.latitude = float(res[0][0])
-            self.longitude = float(res[0][1])
-            print()
