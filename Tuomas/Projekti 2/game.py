@@ -13,7 +13,7 @@ yhteys = mysql.connector.connect(
 kursori = yhteys.cursor()
 
 class Game:
-    def __init__(self):
+    def __init__(self, playerName):
         self.Suspects = []
         self.player = ()
         self.person_dictionary = {}
@@ -24,7 +24,7 @@ class Game:
                      'Ruotsi', 'Kreikka', 'Albania', 'Romania', 'Iso-Britannia']
         self.murderer = None
 
-        self.player = Player()
+        self.player = Player(playerName)
 
         kursori.execute(
             "UPDATE gameCountries SET suspectName = NULL WHERE suspectName is not null;")

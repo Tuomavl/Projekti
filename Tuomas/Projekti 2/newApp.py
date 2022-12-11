@@ -14,6 +14,8 @@ from flask import Flask, request
 from flask_cors import CORS
 from game import Game
 
+global startGameTracker
+startGameTracker = 0
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -41,10 +43,17 @@ def tarina():
 
 @app.route("/startGame")
 def startGame():
-    game_olio = Game(player1)
+    if startGameTracker > 0:
+        global game_olio
+        game_olio = Game(player1)
+        game_olio.find_airports()
+
+
+    startGameTracker += 1
 
     vastaus = {
-        "player": game_olio
+        "player": game_olio,
+        "res": game_olio.res
     }
     print(vastaus)
     return vastaus
