@@ -13,9 +13,9 @@ kursori = yhteys.cursor()
 from flask import Flask, request
 from flask_cors import CORS
 from game import Game
-
+from suspects import Suspect
 global startGameTracker
-startGameTracker = 0
+
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -41,15 +41,17 @@ def tarina():
     }
     return vastaus
 
+@app.route("/mapview")
+def modal():
+    global sus
+    sus = Suspect()
+
 @app.route("/startGame")
 def startGame():
-    if startGameTracker > 0:
-        global game_olio
-        game_olio = Game(player1)
-        game_olio.find_airports()
+    global game_olio
+    game_olio = Game(player1)
+    game_olio.find_airports()
 
-
-    startGameTracker += 1
 
     vastaus = {
         "player": game_olio,
