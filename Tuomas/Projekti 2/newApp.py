@@ -19,33 +19,6 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route('/',methods =['GET','POST'])
-def resetGame():
-    args = request.args
-
-    return
-
-@app.route('/leaderboard')
-def leaderboard():
-    leaderboards = ['Kameli', 'Poro', 'Hirvi', 'Kauris']
-    json_data = json.dumps(leaderboards)
-    return json_data
-
-def toinen_funktio(loc):
-    tulos = loc + "Meow"
-    print(tulos)
-    return tulos
-
-@app.route("/newgame/<player>/<loc>")
-def newgame(player, loc):
-    player = f"{player}666"
-    location = toinen_funktio(loc)
-
-    vastaus = {
-        "username": player,
-        "location": location
-    }
-    return vastaus
 
 @app.route("/kirjaudu/<player>")
 def kirjaudu(player):
