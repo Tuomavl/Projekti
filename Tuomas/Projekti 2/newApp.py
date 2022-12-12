@@ -120,13 +120,16 @@ def getLeaderBoard():
 @app.route("/flyTooo/<maa>")
 def flyTooo(maa):
     value = game_olio.player.flyTo(maa)
-    if value==10:
+    welcome = game_olio.player.welcomeText()
+    if value==1:
         print("Lensit maahan: " + maa)
-        return {"value": 1}
-    else:
+        return {"value": 1, "welcomeText": welcome}
+    elif value==0:
         print("Et voinut lentää maahan: " + maa)
         return {"value": 0}
-
+    else:
+        print("Lensit maahan: " + maa + ", jossa on: " + game_olio.Suspects[value].name)
+        return {"value": 2, "welcomeText": welcome, "suspect": game_olio.Suspects[value].name}
 
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=5000)

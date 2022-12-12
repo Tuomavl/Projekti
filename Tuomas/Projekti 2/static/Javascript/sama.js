@@ -125,6 +125,9 @@ for (let airport of list){
         goButton.innerHTML = goButton.value;
         popupContent.append(goButton);
         marker.bindPopup(popupContent);
+  const modalcontent = document.createElement('p')
+  const moda = document.getElementById('modal-content')
+  moda.appendChild(modalcontent)
 
   goButton.onclick = function() {
     //alert(goButton.value);
