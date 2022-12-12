@@ -7,6 +7,14 @@ L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
 }).addTo(map);
 map.setView([50 , 10], 4);
 
+const apiUrlMurderer = 'http://127.0.0.1:5000/murdererGuess/';
+const apiUrlGetMurderer = 'http://127.0.0.1:5000/getmurderer';
+const apiUrlTarina = 'http://127.0.0.1:5000/mapview';
+const apiUrlWelcomeText = 'http://127.0.0.1:5000/getWelcomeText';
+const murdererText=document.getElementById('murderer-text');
+const murdererSubmit=document.getElementById('murderer-submit');
+const modalElement = document.getElementById("modal-content");
+
 const airportMarkers = L.featureGroup().addTo(map);
 const list = [
   {name:"Puola",latitude: 52,longitude:21},
@@ -25,6 +33,54 @@ const list = [
   {name:"Romania",latitude: 45,longitude:26},
   {name:"Iso-Britannia",latitude:52,longitude:0}
 ]
+
+const apiUrlLocations = 'http://127.0.0.1:5000/getsuspectlist';
+gameSetup(`${apiUrlLocations}`);
+
+//Tää loggaa selaimen konsoliin murhaajan, joten lopullisessa pois!!
+setTimeout(function() { getMurderer(); }, 500);
+
+murdererSubmit.onclick=(event)=>{
+    console.log(murdererText.value);
+    guessMurderer(murdererText.value)
+}
+
+async function getStories(url){
+    const gameData = await getData(url);
+    const texts = gameData["stories"];
+    for (let i = 0; i < texts.length; i++) {
+        //console.log(texts[i])
+    }
+
+}
+async function guessMurderer(murderer){
+    const murdererRequest = await getData(apiUrlMurderer + murderer)
+    if (murdererRequest["data"] === "win") {
+        location.href = "victoryEnding.html"
+    }else if (murdererRequest["data"] === "loss") {
+        location.href = "lossEnding.html"
+    }
+}
+
+
+async function getMurderer(){
+    const murdererRequest = await getData(apiUrlGetMurderer)
+    console.log(murdererRequest["murderer"])
+}
+
+async function gameSetup(url){
+    const gameData = await getData(url)
+    console.log(gameData)
+    getStories(apiUrlTarina);
+};
+
+async function getData(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error('Invalid server input!');
+  const jsonData = await response.json();
+  return jsonData;
+}
+
 
 
 // Get the modal
@@ -58,11 +114,14 @@ for (let airport of list){
   h4.innerHTML = airport.name
   const goButton = document.createElement('button');
         goButton.classList.add('button');
-        goButton.innerHTML = 'Fly here';
+        goButton.value = airport.name
+        goButton.innerHTML = goButton.value;
         popupContent.append(goButton);
         marker.bindPopup(popupContent);
 
   goButton.onclick = function() {
+    alert(goButton.value);
+    gameSetup(`${apiUrlWelcomeText}`);
     modal.style.display = "block";
   }
 }

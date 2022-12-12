@@ -14,6 +14,8 @@ kursori = yhteys.cursor()
 
 class Game:
     def __init__(self, playerName):
+        self.suspectlocations = {"name":[],
+                                 "location":[]}
         self.Suspects = []
         self.player = ()
         self.person_dictionary = {}
@@ -56,6 +58,10 @@ class Game:
             i.set_location(x)
             self.countries.remove(x)
             kursori.execute("UPDATE gameCountries SET suspectName='" + i.name + "' WHERE name= '" + i.location + "';")
+            self.suspectlocations["name"].append(i.name)
+            self.suspectlocations["location"].append(i.location)
+            print(self.suspectlocations["name"][0])
+
             print(f'{i.name} on paikassa {i.location}')
 
             self.playerLocation = random.choice(self.countries)

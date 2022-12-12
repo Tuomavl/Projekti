@@ -13,7 +13,6 @@ kursori = yhteys.cursor()
 from flask import Flask
 from flask_cors import CORS
 from game import Game
-from suspects import Suspect
 global startGameTracker
 
 
@@ -56,7 +55,8 @@ def startGame():
     game_olio = Game(player1)
 
     vastaus = {
-        "player": game_olio.player.username
+        "player": game_olio.player.username,
+        "res": "testi"
     }
     print(vastaus)
     return vastaus
@@ -78,6 +78,20 @@ def getSuspect():
 @app.route("/getmurderer")
 def getMurderer():
     return {"murderer": game_olio.murderer.name}
+
+@app.route("/getsuspectlist")
+def getsuspectlist():
+    vastaus = {
+        "Mary":game_olio.suspectlocations["location"][0],
+        "Luke":game_olio.suspectlocations["location"][1],
+        "Sandra":game_olio.suspectlocations["location"][2],
+        "Tom":game_olio.suspectlocations["location"][3],
+        "Adam":game_olio.suspectlocations["location"][4],
+        "Kristen":game_olio.suspectlocations["location"][5],
+        "Stefan":game_olio.suspectlocations["location"][6],
+        "Jake":game_olio.suspectlocations["location"][7]
+    }
+    return vastaus
 
 @app.route("/getLeaderBoard")
 def getLeaderBoard():

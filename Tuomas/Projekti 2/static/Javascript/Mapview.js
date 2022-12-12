@@ -36,7 +36,6 @@ async function guessMurderer(murderer){
 async function gameSetup(url){
     const gameData = await getData(url);
     getStories(apiUrlTarina);
-    console.log(gameData[res]);
 
 }
 
