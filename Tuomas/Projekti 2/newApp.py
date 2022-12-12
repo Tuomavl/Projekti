@@ -129,7 +129,7 @@ def flyTooo(maa):
         return {"value": 0}
     else:
         print("Lensit maahan: " + maa + ", jossa on: " + game_olio.Suspects[value].name)
-        return {"value": 2, "welcomeText": welcome, "suspect": game_olio.Suspects[value].name}
+        return {"value": 2, "welcomeText": welcome, "suspect": game_olio.Suspects[value].tellStory(game_olio.Suspects[value].name)}
 
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=5000)
