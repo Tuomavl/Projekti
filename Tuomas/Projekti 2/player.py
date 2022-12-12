@@ -46,7 +46,7 @@ class Player:
 
         flightOptionsList = []
         for x in flightOptions:
-            flightOptionsList.append(x)
+            flightOptionsList.append(x[0])
 
         print(flightOptionsList)
 

@@ -131,7 +131,7 @@ for (let airport of list){
     //const flyToValue = gameSetup(apiUrlFlyTo + goButton.value);
     const flyToValue = fly(goButton.value)
     console.log(flyToValue)
-    gameSetup(`${apiUrlWelcomeText}`);
+    //gameSetup(`${apiUrlWelcomeText}`);
     modal.style.display = "block";
   }
 }

@@ -122,10 +122,10 @@ def flyTooo(maa):
     value = game_olio.player.flyTo(maa)
     if value==10:
         print("Lensit maahan: " + maa)
-        return {"maa": "Lensit maahan: " + maa}
+        return {"value": 1}
     else:
         print("Et voinut lentää maahan: " + maa)
-        return {"maa": "Et voinut lentää maahan: " + maa}
+        return {"value": 0}
 
 
 if __name__ == '__main__':
