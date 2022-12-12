@@ -48,11 +48,6 @@ def modal():
         stories.append(i.tellStory(i.name))
     return {"stories": stories}
 
-@app.route("/getWelcomeText")
-def getWelcomeText():
-    welcomeText = game_olio.player.welcomeText()
-    return {"welcomeText": welcomeText}
-
 @app.route("/startGame")
 def startGame():
     global game_olio
@@ -133,5 +128,3 @@ def flyTooo(maa):
 
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=5000)
-
-
