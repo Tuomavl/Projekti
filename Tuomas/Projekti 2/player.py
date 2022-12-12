@@ -18,6 +18,7 @@ class Player:
         self.username = username
         self.suspectIndex = ['Mary', 'Luke', 'Sandra', 'Tom', 'Adam', 'Kristen', 'Stefan', 'Jake']
         self.location = None
+        self.flight_number = 0
 
         try:
             kursori.execute(
@@ -31,8 +32,6 @@ class Player:
         self.location = location
 
     def flyTo(self, maa):
-        flight_number = 0
-
         kursori.execute(
             "select countryID from gameCountries where gameCountries.name='" + str(self.location) + "';")
         locationID = kursori.fetchone()
@@ -51,10 +50,20 @@ class Player:
         print(flightOptionsList)
 
         if maa in flightOptionsList:
+            self.flight_number += 1
             self.location = maa
-            return 10
+
+            kursori.execute(
+                "select suspectName from gameCountries where name='" + str(self.location) + "';")
+            locationSuspect = kursori.fetchone()
+
+            if locationSuspect[0] != None:
+                index = self.suspectIndex.index(locationSuspect[0])
+                return index
+            else:
+                return 1
         else:
-            return 20
+            return 0
 
         # for x in flightOptions:
         #     kursori.execute(
@@ -102,7 +111,7 @@ class Player:
         # Welcome text:
         print(
             f'Tervetuloa {airport_name} nimiselle lentokentälle!\nOlet nyt kaupungissa {city_name}. Lämpötila on {temp} celsius astetta.')
-        return (f'Tervetuloa {airport_name} nimiselle lentokentälle!\nOlet nyt kaupungissa {city_name}. Lämpötila on {temp} celsius astetta.')
+        return (f'Tervetuloa {airport_name} nimiselle lentokentälle! Olet nyt kaupungissa {city_name}. Lämpötila on {temp} celsius astetta.')
 
     def win(self):
         kursori.execute("select winStreak, Highest_Win_Streak from players where playerName='" + str(self.username) + "';")
