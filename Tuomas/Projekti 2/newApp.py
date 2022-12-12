@@ -79,6 +79,24 @@ def getSuspect():
 def getMurderer():
     return {"murderer": game_olio.murderer.name}
 
+@app.route("/getLeaderBoard")
+def getLeaderBoard():
+    kursori.execute("select * from players order by wins desc;")
+    mostWins = kursori.fetchall()
+
+    kursori.execute("select * from players order by amountPlayed desc;")
+    mostPlayed = kursori.fetchall()
+
+    kursori.execute("select * from players order by Highest_Win_Streak desc;")
+    biggestWinstreak = kursori.fetchall()
+
+    vastaus = {
+        "mostWins": mostWins,
+        "mostPlayed": mostPlayed,
+        "biggestWinstreak": biggestWinstreak
+    }
+    return vastaus
+
 
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=5000)
