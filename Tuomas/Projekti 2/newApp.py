@@ -54,12 +54,9 @@ def modal():
 def startGame():
     global game_olio
     game_olio = Game(player1)
-    game_olio.find_airports()
-
 
     vastaus = {
-        "player": game_olio.player.username,
-        "res": "testi"
+        "player": game_olio.player.username
     }
     print(vastaus)
     return vastaus

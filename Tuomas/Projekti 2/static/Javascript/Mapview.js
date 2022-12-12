@@ -22,6 +22,7 @@ async function getStories(url){
     for (let i = 0; i < texts.length; i++) {
         console.log(texts[i])
     }
+
 }
 async function guessMurderer(murderer){
     murdererRequest = await getData(apiUrlMurderer + murderer)

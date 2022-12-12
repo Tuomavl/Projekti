@@ -6,6 +6,7 @@ L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
   subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 }).addTo(map);
 map.setView([50 , 10], 4);
+
 const airportMarkers = L.featureGroup().addTo(map);
 const list = [
   {name:"Puola",latitude: 52,longitude:21},
@@ -52,11 +53,14 @@ for (let airport of list){
 
   marker.openPopup();
   const popupContent = document.createElement('div');
+  const h4 = document.createElement('h4');
+  popupContent.append(h4);
+  h4.innerHTML = airport.name
   const goButton = document.createElement('button');
         goButton.classList.add('button');
         goButton.innerHTML = 'Fly here';
         popupContent.append(goButton);
-        marker.bindPopup( popupContent);
+        marker.bindPopup(popupContent);
 
   goButton.onclick = function() {
     modal.style.display = "block";
