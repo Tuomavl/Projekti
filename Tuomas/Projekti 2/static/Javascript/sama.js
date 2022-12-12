@@ -49,9 +49,9 @@ murdererSubmit.onclick=(event)=>{
 async function getStories(url){
     const gameData = await getData(url);
     const texts = gameData["stories"];
-    for (let i = 0; i < texts.length; i++) {
+    //for (let i = 0; i < texts.length; i++) {
         //console.log(texts[i])
-    }
+    //}
 
 }
 async function guessMurderer(murderer){
@@ -65,8 +65,20 @@ async function guessMurderer(murderer){
 
 async function fly(maa){
     const gameData = await getData(apiUrlFlyTo + maa)
-    console.log(gameData)
-    return gameData
+    //console.log(gameData)
+    //console.log(gameData["value"])
+    if (gameData["value"]===0){
+        console.log("Yepin");
+        return gameData["value"];
+    }
+    else if (gameData["value"]===1){
+        console.log("Yepin");
+        return [gameData["value"], gameData["welcomeText"]];
+    }
+    else{
+        console.log("Yepin");
+        return [gameData["value"], gameData["welcomeText"], gameData["suspect"]];
+    }
 }
 
 
@@ -79,7 +91,7 @@ async function gameSetup(url){
     const gameData = await getData(url)
     console.log(gameData)
     getStories(apiUrlTarina);
-};
+}
 
 async function getData(url) {
   const response = await fetch(url);
@@ -132,18 +144,31 @@ for (let airport of list){
   goButton.onclick = function() {
     //alert(goButton.value);
     //const flyToValue = gameSetup(apiUrlFlyTo + goButton.value);
-    const flyToValue = fly(goButton.value)
-    console.log(flyToValue)
-    console.log(flyToValue["welcomeText"])
+    const flyToValue = fly(goButton.value);
+    console.log(flyToValue);
+    flyToValue.then(function(result) {
+        console.log(result);
 
-    if (flyToValue["value"]===1){
-      console.log(flyToValue["welcomeText"])
-      modalcontent.append(flyToValue["welcometext"])
-    }
-    else{
+        if (result[0]==1){
+            console.log(result[1])
+            moda.innerText="";
+            moda.appendChild(modalcontent)
+            modal.style.display = "block";
+            modalcontent.append(result[1])
+        }
+        else if (result[0]==2){
+            console.log(result[1])
+            console.log(result[2])
+            moda.innerText="";
+            moda.appendChild(modalcontent)
+            modal.style.display = "block";
+            modalcontent.append(result[1])
+            modalcontent.append("Lentokentällä on " + result[2])
+        }
+        else{
+          alert("Et voi lentää tuohon maahan");
+        };
 
-    };
-    modal.style.display = "block";
-    //gameSetup(`${apiUrlWelcomeText}`);
+    });
   }
 }
