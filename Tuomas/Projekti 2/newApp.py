@@ -117,6 +117,16 @@ def getLeaderBoard():
     }
     return vastaus
 
+@app.route("/flyTooo/<maa>")
+def flyTooo(maa):
+    value = game_olio.player.flyTo(maa)
+    if value==10:
+        print("Lensit maahan: " + maa)
+        return {"maa": "Lensit maahan: " + maa}
+    else:
+        print("Et voinut lentää maahan: " + maa)
+        return {"maa": "Et voinut lentää maahan: " + maa}
+
 
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=5000)

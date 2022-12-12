@@ -11,6 +11,7 @@ const apiUrlMurderer = 'http://127.0.0.1:5000/murdererGuess/';
 const apiUrlGetMurderer = 'http://127.0.0.1:5000/getmurderer';
 const apiUrlTarina = 'http://127.0.0.1:5000/mapview';
 const apiUrlWelcomeText = 'http://127.0.0.1:5000/getWelcomeText';
+const apiUrlFlyTo = 'http://127.0.0.1:5000//flyTooo/';
 const murdererText=document.getElementById('murderer-text');
 const murdererSubmit=document.getElementById('murderer-submit');
 const modalElement = document.getElementById("modal-content");
@@ -60,6 +61,12 @@ async function guessMurderer(murderer){
     }else if (murdererRequest["data"] === "loss") {
         location.href = "lossEnding.html"
     }
+}
+
+async function fly(maa){
+    const gameData = await getData(apiUrlFlyTo + maa)
+    console.log(gameData)
+    return gameData
 }
 
 
@@ -120,7 +127,10 @@ for (let airport of list){
         marker.bindPopup(popupContent);
 
   goButton.onclick = function() {
-    alert(goButton.value);
+    //alert(goButton.value);
+    //const flyToValue = gameSetup(apiUrlFlyTo + goButton.value);
+    const flyToValue = fly(goButton.value)
+    console.log(flyToValue)
     gameSetup(`${apiUrlWelcomeText}`);
     modal.style.display = "block";
   }

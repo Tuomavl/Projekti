@@ -30,7 +30,7 @@ class Player:
     def setLocation(self, location):
         self.location = location
 
-    def flyTo(self):
+    def flyTo(self, maa):
         flight_number = 0
 
         kursori.execute(
@@ -42,32 +42,46 @@ class Player:
                 locationID[0]) + "';")
         flightOptions = kursori.fetchall()
 
+        print(flightOptions)
+
+        flightOptionsList = []
         for x in flightOptions:
-            kursori.execute(
-                "select suspectName from gameCountries where name='" + str(x[0]) + "';")
-            optionSuspect = kursori.fetchone()
+            flightOptionsList.append(x)
 
-            if optionSuspect[0] != None :
-                person_country = ', jossa on ' + optionSuspect[0]
-            else:
-                person_country = ''
+        print(flightOptionsList)
 
-            flight_number += 1
-            print(f'({flight_number}): {x[0]}' + person_country)
-
-        flight = int(input("Syötä numero: "))
-        self.location = flightOptions[flight-1][0]
-        print(self.location)
-
-        kursori.execute(
-            "select suspectName from gameCountries where name='" + str(self.location) + "';")
-        locationSuspect = kursori.fetchone()
-
-        if locationSuspect[0]!=None:
-            index = self.suspectIndex.index(locationSuspect[0])
-            return index
+        if maa in flightOptionsList:
+            self.location = maa
+            return 10
         else:
-            return -1
+            return 20
+
+        # for x in flightOptions:
+        #     kursori.execute(
+        #         "select suspectName from gameCountries where name='" + str(x[0]) + "';")
+        #     optionSuspect = kursori.fetchone()
+        #
+        #     if optionSuspect[0] != None :
+        #         person_country = ', jossa on ' + optionSuspect[0]
+        #     else:
+        #         person_country = ''
+        #
+        #     flight_number += 1
+        #     print(f'({flight_number}): {x[0]}' + person_country)
+        #
+        # flight = int(input("Syötä numero: "))
+        # self.location = flightOptions[flight-1][0]
+        # print(self.location)
+        #
+        # kursori.execute(
+        #     "select suspectName from gameCountries where name='" + str(self.location) + "';")
+        # locationSuspect = kursori.fetchone()
+        #
+        # if locationSuspect[0]!=None:
+        #     index = self.suspectIndex.index(locationSuspect[0])
+        #     return index
+        # else:
+        #     return -1
 
     def welcomeText(self):
         kursori.execute("SELECT cityName from gameCountries where name='" + str(self.location) + "';")
