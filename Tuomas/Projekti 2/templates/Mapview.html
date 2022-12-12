@@ -5,7 +5,7 @@
     <title>Mapview</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"/>
     <link href="../static/Css/Mapview.css" rel="stylesheet">
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" defer></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.esm.js" defer></script>
@@ -15,24 +15,38 @@
 
 </head>
 <body>
-    <nav>
-        <h1>Family friendly murhamysteeri featuring Ilkka</h1>
-    </nav>
+<nav>
+    <h1>Family friendly murhamysteeri featuring Ilkka</h1>
+<!--    <form>-->
+<!--        <select id="murderer-text" name="suspectsName">-->
+<!--            <option value="ma">Mary</option>-->
+<!--            <option value="lu">Luke</option>-->
+<!--            <option value="sa">Sandra</option>-->
+<!--            <option value="to">Tom</option>-->
+<!--            <option value="ad">Adam</option>-->
+<!--            <option value="st">Stefan</option>-->
+<!--            <option value="kr">Kristen</option>-->
+<!--            <option value="ja">Jake</option>-->
+<!--        </select>-->
+<!--            <input id="murderer-submit" type="submit" value="Submit">-->
+<!--    </form>-->
     <form>
-        Murderer: <input id="murderer-text" type="text" name="suspectName"><br>
+        Murderer: <input id="murderer-text" type="text" name="suspectName">
         <input id="murderer-submit" type="submit" value="Submit">
     </form>
-    <main>
-        <div id="map"></div>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <p>testi</p>
-            </div>
+</nav>
+
+<main>
+    <div id="map"></div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>testi</p>
         </div>
-    </main>
-    <footer>
-        <a></a>
-    </footer>
+    </div>
+</main>
+<footer>
+    <a></a>
+</footer>
 </body>
 </html>
