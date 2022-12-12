@@ -27,6 +27,23 @@ const list = [
 ]
 
 
+const apiUrlLocations = 'http://127.0.0.1:5000/getsuspectlist';
+gameSetup(`${apiUrlLocations}`);
+
+async function gameSetup(url){
+    const gameData = await getData(url)
+    console.log(gameData)
+};
+
+async function getData(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error('Invalid server input!');
+  const jsonData = await response.json();
+  return jsonData;
+}
+
+
+
 // Get the modal
 const modal = document.getElementById("myModal");
 

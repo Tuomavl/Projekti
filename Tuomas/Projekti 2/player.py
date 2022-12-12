@@ -19,6 +19,14 @@ class Player:
         self.suspectIndex = ['Mary', 'Luke', 'Sandra', 'Tom', 'Adam', 'Kristen', 'Stefan', 'Jake']
         self.location = None
 
+        try:
+            kursori.execute(
+                "INSERT INTO players (playerID, playerName, wins, losses, amountPlayed, winStreak, Highest_Win_Streak)SELECT COALESCE(MAX(playerID),0)+1,'" + self.username + "',0,0,0,0,0 FROM players;")
+            print("Player created")
+        except:
+            print("Player exists")
+            pass
+
     def setLocation(self, location):
         self.location = location
 
@@ -80,5 +88,21 @@ class Player:
         # Welcome text:
         print(
             f'Tervetuloa {airport_name} nimiselle lentokentälle!\nOlet nyt kaupungissa {city_name}. Lämpötila on {temp} celsius astetta.')
+        return (f'Tervetuloa {airport_name} nimiselle lentokentälle!\nOlet nyt kaupungissa {city_name}. Lämpötila on {temp} celsius astetta.')
+
+    def win(self):
+        kursori.execute("select winStreak, Highest_Win_Streak from players where playerName='" + str(self.username) + "';")
+        streakTiedot = kursori.fetchone()
+
+        if streakTiedot[0] == streakTiedot[1]:
+            kursori.execute(
+                "UPDATE players SET wins=wins+1, amountPlayed=amountPlayed+1, winStreak=winStreak+1, Highest_Win_Streak=Highest_Win_Streak+1 WHERE playerName='" + self.username + "';")
+        else:
+            kursori.execute(
+                "UPDATE players SET wins=wins+1, amountPlayed=amountPlayed+1, winStreak=winStreak+1 WHERE playerName='" + self.username + "';")
+
+    def lose(self):
+        kursori.execute(
+            "UPDATE players SET losses=losses+1, amountPlayed=amountPlayed+1, winStreak=0 WHERE playerName='" + self.username + "';")
 
 

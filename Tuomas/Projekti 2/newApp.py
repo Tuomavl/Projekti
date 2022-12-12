@@ -20,7 +20,6 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-
 @app.route("/kirjaudu/<player>")
 def kirjaudu(player):
     global player1
@@ -49,6 +48,11 @@ def modal():
         stories.append(i.tellStory(i.name))
     return {"stories": stories}
 
+@app.route("/getWelcomeText")
+def getWelcomeText():
+    welcomeText = game_olio.player.welcomeText()
+    return {"welcomeText": welcomeText}
+
 @app.route("/startGame")
 def startGame():
     global game_olio
@@ -67,8 +71,10 @@ def checkMurderer(murderer):
     global guess
     guess = murderer
     if game_olio.murderer.name == murderer:
+        game_olio.player.win()
         return {"data": "win"}
     else:
+        game_olio.player.lose()
         return {"data": "loss"}
 
 @app.route("/getsuspect")
