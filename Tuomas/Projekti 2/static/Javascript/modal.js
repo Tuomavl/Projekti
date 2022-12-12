@@ -2,17 +2,20 @@ const modal_text = document.getElementById("modal-content");
 
 const apiUrlTarina = 'http://127.0.0.1:5000/mapview';
 
-gameSetup(`${apiUrlTarina}`);
+getStories(apiUrlTarina);
 
-async function gameSetup(url){
+async function getStories(url){
     const gameData = await getData(url);
     console.log(gameData["story"]);
 
-    text =gameData["story"];
+    texts = gameData["stories"];
 
-    let yep=document.createElement('p');
-    yep.innerText=story;
-    modal_text.appendChild(yep);
+    for (let i = 0; i < texts.length; i++) {
+        let yep=document.createElement('p');
+        yep.innerText=texts[i]
+        modal_text.appendChild(yep);
+    }
+
 }
 
 async function getData(url) {

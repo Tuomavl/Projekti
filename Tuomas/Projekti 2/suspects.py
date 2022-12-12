@@ -31,6 +31,7 @@ class Suspect:
         kursori.execute("SELECT story from suspects where name= '" + name + "';")
         story = kursori.fetchone()
         print(story)
+        return story
 
     def accuse(self):
         kursori.execute("SELECT story from suspects where name='" + self.name + "';")

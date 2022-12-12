@@ -58,7 +58,7 @@ for (let airport of list){
         popupContent.append(goButton);
         marker.bindPopup( popupContent);
 
-goButton.onclick = function() {
-  modal.style.display = "block";
-}
+  goButton.onclick = function() {
+    modal.style.display = "block";
+  }
 }
