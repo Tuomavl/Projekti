@@ -16,7 +16,7 @@ h1 {
     margin:0;
     color:#020202;
     text-align: center;
-    padding:4rem 3rem 4rem 3rem;
+    padding: 2rem;
     font-size: 4rem;
     background-color: rgba(255,255,255,0.7);
 
@@ -37,7 +37,7 @@ h1 {
     top:20%;
     left:35%;
     right:35%;
-    padding:3rem;
+    padding:5rem;
     color:#fff;
     text-align:center;
     box-sizing: border-box;
@@ -51,7 +51,7 @@ h1 {
     top:40%;
     left:35%;
     right:35%;
-    padding:3rem;
+    padding:7rem;
     color:#fff;
     text-align:center;
     box-sizing: border-box;
