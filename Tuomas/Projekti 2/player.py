@@ -40,7 +40,7 @@ class Player:
             "select countryID from gameCountries where gameCountries.name='" + str(self.location) + "';")
         self.locationID = kursori.fetchone()
 
-    #A
+    #Attempts to fly to the inputted country, and returns the result
     def flyTo(self, maa):
         kursori.execute(
             "select countryID from gameCountries where gameCountries.name='" + str(self.location) + "';")
@@ -50,8 +50,6 @@ class Player:
             "select name from flights, gameCountries where gameCountries.countryID=flights.joinID and flights.countryID='" + str(
                 self.locationID[0]) + "';")
         flightOptions = kursori.fetchall()
-
-        print(flightOptions)
 
         flightOptionsList = []
         for x in flightOptions:
@@ -75,6 +73,7 @@ class Player:
         else:
             return 0
 
+    #Returns the welcome text
     def welcomeText(self):
         kursori.execute("SELECT cityName from gameCountries where name='" + str(self.location) + "';")
         cityname = kursori.fetchone()
@@ -92,10 +91,9 @@ class Player:
         temp = data['main']['temp']
 
         # Welcome text:
-        print(
-            f'Tervetuloa {airport_name} nimiselle lentokentälle!\nOlet nyt kaupungissa {city_name}. Lämpötila on {temp} celsius astetta.')
         return (f'Tervetuloa {airport_name} nimiselle lentokentälle! Olet nyt kaupungissa {city_name}. Lämpötila on {temp} celsius astetta.')
 
+    # Updates the information in the database
     def win(self):
         kursori.execute("select winStreak, Highest_Win_Streak from players where playerName='" + str(self.username) + "';")
         streakTiedot = kursori.fetchone()
@@ -107,8 +105,7 @@ class Player:
             kursori.execute(
                 "UPDATE players SET wins=wins+1, amountPlayed=amountPlayed+1, winStreak=winStreak+1 WHERE playerName='" + self.username + "';")
 
+    #Updates the information in the database
     def lose(self):
         kursori.execute(
             "UPDATE players SET losses=losses+1, amountPlayed=amountPlayed+1, winStreak=0 WHERE playerName='" + self.username + "';")
-
-
