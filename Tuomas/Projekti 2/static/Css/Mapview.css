@@ -13,7 +13,8 @@ h1 {
     color: #fff;
     text-align: center;
     padding: 0.5rem;
-    font-size:200%;
+    font-size: 200%;
+    grid-column: 2;
 }
 
 nav {
@@ -21,35 +22,69 @@ nav {
     text-align: center;
     justify-content: space-around;
     padding: 1rem;
-    display: flex;
     border-radius: 6px;
     box-shadow: 3px 6px 6px #fff;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+
 }
 
-form {
-    color: white;
-    text-align: right;
-    padding-right: 1em;
+.box {
+    position: relative;
+    grid-column: 3;
+
 }
 
-input[type=text] {
-    width: 12em;
-    height: 1.5em;
-    padding: 0.2em;
-    margin-right: 0.1em;
-}
 
-input[type=text]:focus {
-    border: 3px solid #555;
-}
-
-input[type=submit] {
-    background-color: #242526;
+.box select {
+    background-color: #3c0d0d;
+    color: lightgray;
+    padding: 12px;
+    width: 250px;
     border: none;
-    color: white;
-    padding: 1em 2em;
-    text-decoration: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+}
+
+.box::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    font-size: 28px;
+    line-height: 45px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+}
+
+.box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+    padding: 30px;
+}
+
+
+#murderer-submit {
+    font-size: 1rem;
+    padding: 1em;
+    background: #3c0d0d;
+    color: lightgray;
+    border: lightgray;
     cursor: pointer;
+    border-radius: 10px;
+}
+
+#murderer-submit:hover {
+    background: #351038;
 }
 
 #Alku {
@@ -60,14 +95,6 @@ input[type=submit] {
 #Leaderboard {
     padding: 0 7rem 0;
 }
-
-button {
-    width: 10rem;
-    padding: 0.5rem;
-    background: #020202;
-    color: #fff;
-}
-
 
 #map {
     position: absolute;
@@ -85,9 +112,9 @@ button {
 
 /* Leaflet icons */
 .blue-icon {
-  background-color: #8b0000;
-  border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.76);
+    background-color: #8b0000;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.76);
 }
 
 
@@ -135,12 +162,12 @@ footer {
     margin: 0;
 }
 
-#Information{
+#Information {
     font-size: 1.5rem;
-    margin-top:0;
+    margin-top: 0;
     margin-left: 18.5%;
     margin-right: 18.5%;
-    color: snow;
-    background-color: #555555;
+    color: lightgray;
+    grid-column: 1;
 
 }
