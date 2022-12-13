@@ -14,7 +14,7 @@ const apiUrlWelcomeText = 'http://127.0.0.1:5000/getWelcomeText';
 const apiUrlFlyTo = 'http://127.0.0.1:5000//flyTooo/';
 const murdererText=document.getElementById('murderer-text');
 const murdererSubmit=document.getElementById('murderer-submit');
-const modalElement = document.getElementById("modal-content");
+
 
 const airportMarkers = L.featureGroup().addTo(map);
 const list = [
