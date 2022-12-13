@@ -1,7 +1,7 @@
 
 body {
     font-family: Verdana sans-serif;
-    background: linear-gradient(#141e30, #243b55);
+    background: #020202;
 }
 
 p {
@@ -25,6 +25,21 @@ p {
 
 
 img {
-    width: 85em;
+    padding: 2em;
+    width: 90em;
     height: auto;
+}
+
+button {
+    font-size: 1rem;
+    padding: 1em;
+  background: #3c0d0d;
+  color: lightgray;
+  border: lightgray;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+button:hover {
+ background: #351038;
 }
