@@ -5,7 +5,7 @@
     <title>Kirjautumissivu</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"/>
     <link href="../static/Css/Kirjaudu.css" rel="stylesheet">
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" defer></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.esm.js" defer></script>
@@ -15,12 +15,17 @@
 
 </head>
 <body>
-    <div class="login-box">
-      <h1>Kirjaudu</h1>
-      <form id="player-form" action="Tarina.html">
-          <input name=username id="player-input" type="text" placeholder="username">
-          <input type="submit" id="input-button" value="Pelaa">
-      </form>
-    </div>
+<div class="login-box">
+    <h1>Kirjaudu</h1>
+    <form id="player-form" action="Tarina.html">
+        <div class="inputbox">
+            <input name=username id="player-input" type="text">
+            <span>Käyttäjänimi</span>
+        </div>
+        <div class="inputbox">
+            <input type="submit" id="input-button" value="Pelaa">
+        </div>
+    </form>
+</div>
 </body>
 </html>
