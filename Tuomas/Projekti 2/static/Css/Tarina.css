@@ -5,6 +5,7 @@ body {
 }
 
 p {
+    font-style:italic;
     font-size: 1.7em;
     padding: 0.2em 2em;
 }

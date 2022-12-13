@@ -17,6 +17,9 @@ const murdererGuess=document.getElementById('murderer-guess');
 
 const polylinePoints = [[52, 21], [48, 17], [47,19], [45,26],[37,24], [41,19], [42,12], [49,2], [52,0], [52,4], [49,2], [50,14], [52,13], [52,21], [60,18], [56,13], [52,4], [56,13], [52,13], [50,14], [48,17], [42,12], [41,19], [45,16], [45,26], [47,19], [45,16], [48,17]];
 const polyline = L.polyline(polylinePoints).addTo(map);
+polyline.setStyle({
+  color:"red"
+})
 const blueIcon = L.divIcon({ className: 'blue-icon' });
 const airportMarkers = L.featureGroup().addTo(map);
 const list = [
