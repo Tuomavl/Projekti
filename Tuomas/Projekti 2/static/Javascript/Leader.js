@@ -10,7 +10,7 @@ async function gameSetup(url){
     const gameData = await getData(url);
     console.log(gameData["mostPlayed"]);
 
-    for (i=0; i<9; i++) {
+    for (i=0; i<gameData["mostPlayed"].length; i++) {
         most_wins_text = i+1 + ". " + gameData["mostWins"][i][1] + ": " + gameData["mostWins"][i][2];
         most_played_text = i+1 + ". " + gameData["mostPlayed"][i][1] + ": " + gameData["mostPlayed"][i][4];
         biggest_winstreak_text = i+1 + ". " + gameData["biggestWinstreak"][i][1] + ": " + gameData["biggestWinstreak"][i][6];
