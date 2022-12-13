@@ -1,8 +1,9 @@
+#The neccessary imports
 import json
 import requests
+
+#Mysql connector
 import mysql.connector
-
-
 yhteys = mysql.connector.connect(
     host='127.0.0.1',
     port=3306,
@@ -13,6 +14,7 @@ yhteys = mysql.connector.connect(
 )
 kursori = yhteys.cursor()
 
+#Player object
 class Player:
     def __init__(self, username):
         self.username = username
@@ -20,22 +22,25 @@ class Player:
         self.location = None
         self.flight_number = 0
 
+        #Attempts to create a user with the players username
         try:
             kursori.execute(
-                "INSERT INTO players (playerID, playerName, wins, losses, amountPlayed, winStreak, Highest_Win_Streak)SELECT COALESCE(MAX(playerID),0)+1,'" + self.username + "',0,0,0,0,0 FROM players;")
-            print("Player created")
+                "INSERT INTO players (playerID, playerName, wins, losses, amountPlayed, winStreak, Highest_Win_Streak)"
+                "SELECT COALESCE(MAX(playerID),0)+1,'" + self.username + "',0,0,0,0,0 FROM players;")
         except:
-            print("Player exists")
             pass
 
+    #Sets the location of the player
     def setLocation(self, location):
         self.location = location
 
+    #Gets the current countries ID from the database
     def getLocationID(self):
         kursori.execute(
             "select countryID from gameCountries where gameCountries.name='" + str(self.location) + "';")
         self.locationID = kursori.fetchone()
 
+    #A
     def flyTo(self, maa):
         kursori.execute(
             "select countryID from gameCountries where gameCountries.name='" + str(self.location) + "';")
@@ -69,33 +74,6 @@ class Player:
                 return 1
         else:
             return 0
-
-        # for x in flightOptions:
-        #     kursori.execute(
-        #         "select suspectName from gameCountries where name='" + str(x[0]) + "';")
-        #     optionSuspect = kursori.fetchone()
-        #
-        #     if optionSuspect[0] != None :
-        #         person_country = ', jossa on ' + optionSuspect[0]
-        #     else:
-        #         person_country = ''
-        #
-        #     flight_number += 1
-        #     print(f'({flight_number}): {x[0]}' + person_country)
-        #
-        # flight = int(input("Syötä numero: "))
-        # self.location = flightOptions[flight-1][0]
-        # print(self.location)
-        #
-        # kursori.execute(
-        #     "select suspectName from gameCountries where name='" + str(self.location) + "';")
-        # locationSuspect = kursori.fetchone()
-        #
-        # if locationSuspect[0]!=None:
-        #     index = self.suspectIndex.index(locationSuspect[0])
-        #     return index
-        # else:
-        #     return -1
 
     def welcomeText(self):
         kursori.execute("SELECT cityName from gameCountries where name='" + str(self.location) + "';")

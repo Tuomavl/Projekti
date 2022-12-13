@@ -1,4 +1,4 @@
-import json
+#Mysql connector
 import mysql.connector
 yhteys = mysql.connector.connect(
     host='127.0.0.1',
@@ -10,6 +10,7 @@ yhteys = mysql.connector.connect(
 )
 kursori = yhteys.cursor()
 
+#The necessary imports
 from flask import Flask
 from flask_cors import CORS
 from game import Game
@@ -20,6 +21,7 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+#Python receives the players username and saves it
 @app.route("/kirjaudu/<player>")
 def kirjaudu(player):
     global player1
@@ -30,6 +32,7 @@ def kirjaudu(player):
     }
     return vastaus
 
+#Sends the introduction text along with the players name to javascript
 @app.route("/tarina")
 def tarina():
     print("Tarina " + player1)
@@ -39,7 +42,7 @@ def tarina():
     }
     return vastaus
 
-
+#Sends the suspect stories to javascript
 @app.route("/mapview")
 def modal():
     suspects = game_olio.Suspects
@@ -48,6 +51,7 @@ def modal():
         stories.append(i.tellStory(i.name))
     return {"stories": stories}
 
+#Creates the Game object, which creates and saves all the necessary game data
 @app.route("/startGame")
 def startGame():
     global game_olio
@@ -60,7 +64,7 @@ def startGame():
     print(vastaus)
     return vastaus
 
-
+#Checks if the players guess is correct and returns the result to javascript
 @app.route("/murdererGuess/<murderer>")
 def checkMurderer(murderer):
     global guess
@@ -72,14 +76,17 @@ def checkMurderer(murderer):
         game_olio.player.lose()
         return {"data": "loss"}
 
+#Sends the players guess
 @app.route("/getsuspect")
 def getSuspect():
     return {"suspect": guess}
 
+#Sends the murderers name
 @app.route("/getmurderer")
 def getMurderer():
     return {"murderer": game_olio.murderer.name}
 
+#Sends the locations of the suspects
 @app.route("/getsuspectlist")
 def getsuspectlist():
     vastaus = {
@@ -94,6 +101,7 @@ def getsuspectlist():
     }
     return vastaus
 
+#Sends the leaderboard data
 @app.route("/getLeaderBoard")
 def getLeaderBoard():
     kursori.execute("select * from players order by wins desc;")
@@ -112,6 +120,7 @@ def getLeaderBoard():
     }
     return vastaus
 
+#Attemps to fly the player to the selected country
 @app.route("/flyTooo/<maa>")
 def flyTooo(maa):
     value = game_olio.player.flyTo(maa)
@@ -126,6 +135,7 @@ def flyTooo(maa):
         print("Lensit maahan: " + maa + ", jossa on: " + game_olio.Suspects[value].name)
         return {"value": 2, "welcomeText": welcome, "suspect": game_olio.Suspects[value].accuse().format(playerName=game_olio.player.username, addSuspect=game_olio.person_dictionary[game_olio.Suspects[value]])}
 
+#Sends the players current location and the available flights options
 @app.route("/getCurrentLocation")
 def getCurrentLocation():
     kursori.execute(
@@ -133,13 +143,9 @@ def getCurrentLocation():
             game_olio.player.locationID[0]) + "';")
     flightOptions = kursori.fetchall()
 
-    print(flightOptions)
-
     flightOptionsList = []
     for x in flightOptions:
         flightOptionsList.append(x[0])
-
-    print("sakjsdhaskjhdsj")
 
     vastaus = {
         "location": game_olio.player.location,

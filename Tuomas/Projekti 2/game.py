@@ -1,6 +1,9 @@
+#The necessary imports
 from suspects import Suspect
 from player import Player
 import random
+
+#Mysql connector
 import mysql.connector
 yhteys = mysql.connector.connect(
     host='127.0.0.1',
@@ -12,10 +15,11 @@ yhteys = mysql.connector.connect(
 )
 kursori = yhteys.cursor()
 
+#Game object
 class Game:
     def __init__(self, playerName):
-        self.suspectlocations = {"name":[],
-                                 "location":[]}
+        #The necessary lists and dictionaries
+        self.suspectlocations = {"name": [], "location": []}
         self.Suspects = []
         self.player = ()
         self.person_dictionary = {}
@@ -24,6 +28,7 @@ class Game:
         self.countries = ['Unkari', 'Kroatia', 'Itävalta', 'Tsekki', 'Saksa', 'Tanska', 'Alankomaat', 'Italia', 'Ranska',
                      'Puola',
                      'Ruotsi', 'Kreikka', 'Albania', 'Romania', 'Iso-Britannia']
+
         self.murderer = None
 
         self.player = Player(playerName)
