@@ -67,6 +67,8 @@ class Game:
             self.playerLocation = random.choice(self.countries)
             self.player.setLocation(self.playerLocation)
 
+            self.player.getLocationID()
+
         # Suspect accusation randomiser
         while len(self.person_dictionary) < 8:
             randomized_person = random.choice(self.Suspects).name

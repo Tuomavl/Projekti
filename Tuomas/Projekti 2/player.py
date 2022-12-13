@@ -31,14 +31,19 @@ class Player:
     def setLocation(self, location):
         self.location = location
 
+    def getLocationID(self):
+        kursori.execute(
+            "select countryID from gameCountries where gameCountries.name='" + str(self.location) + "';")
+        self.locationID = kursori.fetchone()
+
     def flyTo(self, maa):
         kursori.execute(
             "select countryID from gameCountries where gameCountries.name='" + str(self.location) + "';")
-        locationID = kursori.fetchone()
+        self.locationID = kursori.fetchone()
 
         kursori.execute(
             "select name from flights, gameCountries where gameCountries.countryID=flights.joinID and flights.countryID='" + str(
-                locationID[0]) + "';")
+                self.locationID[0]) + "';")
         flightOptions = kursori.fetchall()
 
         print(flightOptions)
@@ -55,10 +60,10 @@ class Player:
 
             kursori.execute(
                 "select suspectName from gameCountries where name='" + str(self.location) + "';")
-            locationSuspect = kursori.fetchone()
+            self.locationSuspect = kursori.fetchone()
 
-            if locationSuspect[0] != None:
-                index = self.suspectIndex.index(locationSuspect[0])
+            if self.locationSuspect[0] != None:
+                index = self.suspectIndex.index(self.locationSuspect[0])
                 return index
             else:
                 return 1

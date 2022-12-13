@@ -126,5 +126,27 @@ def flyTooo(maa):
         print("Lensit maahan: " + maa + ", jossa on: " + game_olio.Suspects[value].name)
         return {"value": 2, "welcomeText": welcome, "suspect": game_olio.Suspects[value].accuse().format(playerName=game_olio.player.username, addSuspect=game_olio.person_dictionary[game_olio.Suspects[value]])}
 
+@app.route("/getCurrentLocation")
+def getCurrentLocation():
+    kursori.execute(
+        "select name from flights, gameCountries where gameCountries.countryID=flights.joinID and flights.countryID='" + str(
+            game_olio.player.locationID[0]) + "';")
+    flightOptions = kursori.fetchall()
+
+    print(flightOptions)
+
+    flightOptionsList = []
+    for x in flightOptions:
+        flightOptionsList.append(x[0])
+
+    print("sakjsdhaskjhdsj")
+
+    vastaus = {
+        "location": game_olio.player.location,
+        "flights": game_olio.player.flight_number,
+        "flight_options": flightOptionsList
+    }
+    return vastaus
+
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=5000)

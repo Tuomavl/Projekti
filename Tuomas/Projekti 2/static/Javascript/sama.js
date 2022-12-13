@@ -12,8 +12,11 @@ const apiUrlGetMurderer = 'http://127.0.0.1:5000/getmurderer';
 const apiUrlTarina = 'http://127.0.0.1:5000/mapview';
 const apiUrlWelcomeText = 'http://127.0.0.1:5000/getWelcomeText';
 const apiUrlFlyTo = 'http://127.0.0.1:5000//flyTooo/';
+const apiUrlGetLocation = 'http://127.0.0.1:5000/getCurrentLocation';
 const murdererText=document.getElementById('murderer-text');
 const murdererSubmit=document.getElementById('murderer-submit');
+const gameInformation=document.getElementById('Information');
+const murdererGuess=document.getElementById('murderer-guess');
 
 const polylinePoints = [[52, 21], [48, 17], [47,19], [45,26],[37,24], [41,19], [42,12], [49,2], [52,0], [52,4], [49,2], [50,14], [52,13], [52,21], [60,18], [56,13], [52,4], [56,13], [52,13], [50,14], [48,17], [42,12], [41,19], [45,16], [45,26], [47,19], [45,16], [48,17]];
 const polyline = L.polyline(polylinePoints).addTo(map);
@@ -41,12 +44,28 @@ const list = [
 const apiUrlLocations = 'http://127.0.0.1:5000/getsuspectlist';
 gameSetup(`${apiUrlLocations}`);
 
+const locationValue = getLocation()
+locationValue.then(function(result) {
+    gameInformation.innerText="";
+    var p=document.createElement('p');
+    p.innerText="Olet maassa: " + result[0];
+    gameInformation.appendChild(p);
+    var p=document.createElement('p');
+    p.innerText="Olet lentänyt " + result[1] + " kertaa";
+    gameInformation.appendChild(p);
+});
+
+async function getLocation(){
+    const gameData = await getData(apiUrlGetLocation)
+    return [gameData["location"], gameData["flights"], gameData["flight_options"]];
+}
+
 //Tää loggaa selaimen konsoliin murhaajan, joten lopullisessa pois!!
 setTimeout(function() { getMurderer(); }, 500);
 
 murdererSubmit.onclick=(event)=>{
-    console.log(murdererText.value);
-    guessMurderer(murdererText.value)
+    console.log(murdererGuess.value);
+    guessMurderer(murdererGuess.value)
 }
 
 async function getStories(url){

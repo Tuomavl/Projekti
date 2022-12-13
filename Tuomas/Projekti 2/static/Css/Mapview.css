@@ -132,3 +132,11 @@ footer {
     background: black;
     margin: 0;
 }
+
+#Information{
+    font-size: 1.65rem;
+    margin-left: 18.5%;
+    margin-right: 18.5%;
+    color: snow;
+    background-color: #555555;
+}
