@@ -70,20 +70,24 @@ button {
 #map {
     position: absolute;
     top: 0;
-    bottom: -10em;
+    bottom: -6.5em;
     left: 0;
     right: 0;
     margin: auto;
-    width: 75rem;
-    height: 45rem;
+    width: 70rem;
+    height: 40rem;
     overflow: hidden;
     border-radius: 6px;
     box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 10px;
 }
 
-.blueIcon {
-    background-color: #fff;
+/* Leaflet icons */
+.blue-icon {
+  background-color: #2474ff;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.76);
 }
+
 
 /* The Modal (background) */
 .modal {

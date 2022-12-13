@@ -15,14 +15,10 @@ const apiUrlFlyTo = 'http://127.0.0.1:5000//flyTooo/';
 const murdererText=document.getElementById('murderer-text');
 const murdererSubmit=document.getElementById('murderer-submit');
 
-const polylinePoints = [
-    [52, 21], [48, 17], [47,19], [45,26],[37,24], [41,19], [42,12], [49,2], [52,0], [52,4], [49,2], [50,14], [52,13], [52,21], [60,18], [56,13], [52,4], [56,13], [52,13], [50,14], [48,17], [42,12], [41,19], [45,16], [45,26], [47,19], [45,16], [48,17]
-
-  ];
-
-  const polyline = L.polyline(polylinePoints).addTo(map);
-
-
+const polylinePoints = [[52, 21], [48, 17], [47,19], [45,26],[37,24], [41,19], [42,12], [49,2], [52,0], [52,4], [49,2], [50,14], [52,13], [52,21], [60,18], [56,13], [52,4], [56,13], [52,13], [50,14], [48,17], [42,12], [41,19], [45,16], [45,26], [47,19], [45,16], [48,17]];
+const polyline = L.polyline(polylinePoints).addTo(map);
+const blueIcon = L.divIcon({ className: 'blue-icon' });
+const greenIcon = L.divIcon({ className: 'green-icon' });
 const airportMarkers = L.featureGroup().addTo(map);
 const list = [
   {name:"Puola",latitude: 52,longitude:21},
@@ -129,21 +125,22 @@ window.onclick = function(event) {
 }
 
 
-for (let airport of list){
+for (let airport of list) {
   const marker = L.marker([airport.latitude, airport.longitude]).addTo(map);
   airportMarkers.addLayer(marker);
-
   marker.openPopup();
+  marker.setIcon(blueIcon);
   const popupContent = document.createElement('div');
   const h4 = document.createElement('h4');
   popupContent.append(h4);
-  h4.innerHTML = airport.name
+  h4.innerHTML = "Lennä maahan: " + airport.name
+
   const goButton = document.createElement('button');
-        goButton.classList.add('button');
-        goButton.value = airport.name
-        goButton.innerHTML = goButton.value;
-        popupContent.append(goButton);
-        marker.bindPopup(popupContent);
+  goButton.classList.add('button');
+  goButton.value = airport.name
+  goButton.innerHTML = goButton.value;
+  popupContent.append(goButton);
+  marker.bindPopup(popupContent);
   const modalcontent = document.createElement('p')
   const moda = document.getElementById('modal-content')
   moda.appendChild(modalcontent)
@@ -154,28 +151,49 @@ for (let airport of list){
     const flyToValue = fly(goButton.value);
     console.log(flyToValue);
     flyToValue.then(function(result) {
-        console.log(result);
+      console.log(result);
 
-        if (result[0]==1){
-            console.log(result[1])
-            moda.innerText="";
-            moda.appendChild(modalcontent)
-            modal.style.display = "block";
-            modalcontent.append(result[1])
-        }
-        else if (result[0]==2){
-            console.log(result[1])
-            console.log(result[2])
-            moda.innerText="";
-            moda.appendChild(modalcontent)
-            modal.style.display = "block";
-            modalcontent.append(result[1])
-            modalcontent.append("Lentokentällä on " + result[2])
-        }
-        else{
-          alert("Et voi lentää tuohon maahan");
-        };
+      if (result[0] == 1) {
+        console.log(result[1])
+        moda.innerText = "";
+        moda.appendChild(modalcontent);
+        modal.style.display = "block";
+        modalcontent.append(result[1]);
+
+        const locationValue = getLocation()
+        locationValue.then(function(result) {
+          gameInformation.innerText = "";
+          var p = document.createElement('p');
+          p.innerText = "Olet maassa: " + result[0];
+          gameInformation.appendChild(p);
+          var p = document.createElement('p');
+          p.innerText = "Olet lentänyt " + result[1] + " kertaa";
+          gameInformation.appendChild(p);
+        });
+      } else if (result[0] == 2) {
+        console.log(result[1])
+        console.log(result[2])
+        moda.innerText = "";
+        moda.appendChild(modalcontent)
+        modal.style.display = "block";
+        modalcontent.append(result[1]);
+        modalcontent.append("Lentokentällä on " + result[2]);
+
+        const locationValue = getLocation()
+        locationValue.then(function(result) {
+          gameInformation.innerText = "";
+          var p = document.createElement('p');
+          p.innerText = "Olet maassa: " + result[0];
+          gameInformation.appendChild(p);
+          var p = document.createElement('p');
+          p.innerText = "Olet lentänyt " + result[1] + " kertaa";
+          gameInformation.appendChild(p);
+        });
+      } else {
+        alert("Et voi lentää tuohon maahan");
+      }
 
     });
   }
+
 }
