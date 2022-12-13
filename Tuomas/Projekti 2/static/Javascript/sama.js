@@ -6,7 +6,7 @@ L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
   subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 }).addTo(map);
 map.setView([50 , 10], 4);
-
+const line = L.lineJoin
 const apiUrlMurderer = 'http://127.0.0.1:5000/murdererGuess/';
 const apiUrlGetMurderer = 'http://127.0.0.1:5000/getmurderer';
 const apiUrlTarina = 'http://127.0.0.1:5000/mapview';
@@ -14,6 +14,13 @@ const apiUrlWelcomeText = 'http://127.0.0.1:5000/getWelcomeText';
 const apiUrlFlyTo = 'http://127.0.0.1:5000//flyTooo/';
 const murdererText=document.getElementById('murderer-text');
 const murdererSubmit=document.getElementById('murderer-submit');
+
+const polylinePoints = [
+    [52, 21], [48, 17], [47,19], [45,26],[37,24], [41,19], [42,12], [49,2], [52,0], [52,4], [49,2], [50,14], [52,13], [52,21], [60,18], [56,13], [52,4], [56,13], [52,13], [50,14], [48,17], [42,12], [41,19], [45,16], [45,26], [47,19], [45,16], [48,17]
+
+  ];
+
+  const polyline = L.polyline(polylinePoints).addTo(map);
 
 
 const airportMarkers = L.featureGroup().addTo(map);
