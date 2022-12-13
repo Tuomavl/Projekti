@@ -6,6 +6,8 @@ L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
   subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 }).addTo(map);
 map.setView([50 , 10], 4);
+
+
 const apiUrlMurderer = 'http://127.0.0.1:5000/murdererGuess/';
 const apiUrlGetMurderer = 'http://127.0.0.1:5000/getmurderer';
 const apiUrlTarina = 'http://127.0.0.1:5000/mapview';
@@ -15,13 +17,18 @@ const murdererSubmit=document.getElementById('murderer-submit');
 const gameInformation=document.getElementById('Information');
 const murdererGuess=document.getElementById('murderer-guess');
 
+
+// Creating lines between airports
 const polylinePoints = [[52, 21], [48, 17], [47,19], [45,26],[37,24], [41,19], [42,12], [49,2], [52,0], [52,4], [49,2], [50,14], [52,13], [52,21], [60,18], [56,13], [52,4], [56,13], [52,13], [50,14], [48,17], [42,12], [41,19], [45,16], [45,26], [47,19], [45,16], [48,17]];
 const polyline = L.polyline(polylinePoints).addTo(map);
 polyline.setStyle({
   color:"red"
 })
+
 const blueIcon = L.divIcon({ className: 'blue-icon' });
 const airportMarkers = L.featureGroup().addTo(map);
+
+// List of airport coordinates
 const list = [
   {name:"Puola",latitude: 52,longitude:21},
   {name:"Unkari",latitude:47,longitude:19},
@@ -43,6 +50,8 @@ const list = [
 const apiUrlLocations = 'http://127.0.0.1:5000/getsuspectlist';
 gameSetup(`${apiUrlLocations}`);
 
+
+// Show current location and flight count
 const locationValue = getLocation()
 locationValue.then(function(result) {
     gameInformation.innerText="";
@@ -54,27 +63,25 @@ locationValue.then(function(result) {
     gameInformation.appendChild(p);
 });
 
+
 async function getLocation(){
     const gameData = await getData(apiUrlGetLocation)
     return [gameData["location"], gameData["flights"], gameData["flight_options"]];
 }
 
-//Tää loggaa selaimen konsoliin murhaajan, joten lopullisessa pois!!
-setTimeout(function() { getMurderer(); }, 500);
-
+// get players guess
 murdererSubmit.onclick=(event)=>{
     console.log(murdererGuess.value);
     guessMurderer(murdererGuess.value)
 }
 
+// Fetch suspect stories
 async function getStories(url){
     const gameData = await getData(url);
     const texts = gameData["stories"];
-    //for (let i = 0; i < texts.length; i++) {
-        //console.log(texts[i])
-    //}
-
 }
+
+// Check if player has won
 async function guessMurderer(murderer){
     const murdererRequest = await getData(apiUrlMurderer + murderer)
     if (murdererRequest["data"] === "win") {
@@ -84,10 +91,9 @@ async function guessMurderer(murderer){
     }
 }
 
+//
 async function fly(maa){
     const gameData = await getData(apiUrlFlyTo + maa)
-    //console.log(gameData)
-    //console.log(gameData["value"])
     if (gameData["value"]===0){
         console.log("Yepin");
         return gameData["value"];
@@ -102,7 +108,7 @@ async function fly(maa){
     }
 }
 
-
+// get murderer data
 async function getMurderer(){
     const murdererRequest = await getData(apiUrlGetMurderer)
     console.log(murdererRequest["murderer"])
@@ -135,14 +141,14 @@ span.onclick = function() {
   modal.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside the modal, close it
 window.onclick = function(event) {
   if (event.target === modal) {
     modal.style.display = "none";
   }
 }
 
-
+// Creating airport markers and everything assosiated to them
 for (let airport of list) {
   const marker = L.marker([airport.latitude, airport.longitude]).addTo(map);
   airportMarkers.addLayer(marker);
@@ -163,9 +169,9 @@ for (let airport of list) {
   const moda = document.getElementById('modal-content')
   moda.appendChild(modalcontent)
 
+
+  // call certain values to be added to modal
   goButton.onclick = function() {
-    //alert(goButton.value);
-    //const flyToValue = gameSetup(apiUrlFlyTo + goButton.value);
     const flyToValue = fly(goButton.value);
     console.log(flyToValue);
     flyToValue.then(function(result) {
@@ -208,6 +214,7 @@ for (let airport of list) {
           gameInformation.appendChild(p);
         });
       } else {
+        // user error handeling
         alert("Et voi lentää tuohon maahan");
       }
 

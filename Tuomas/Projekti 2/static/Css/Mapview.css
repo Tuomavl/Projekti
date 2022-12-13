@@ -21,7 +21,7 @@ nav {
     background: #020202;
     text-align: center;
     justify-content: space-around;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 6px;
     box-shadow: 3px 6px 6px #fff;
     display: grid;
@@ -81,7 +81,14 @@ nav {
     cursor: pointer;
     border-radius: 10px;
 }
-
+button {
+    font-size: 1rem;
+    padding: 1em;
+    background: #3c0d0d;
+    color: lightgray;
+    border: lightgray;
+    cursor: pointer;
+    border-radius: 10px;}
 #murderer-submit:hover {
     background: #351038;
 }
