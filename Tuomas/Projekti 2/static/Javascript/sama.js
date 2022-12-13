@@ -201,11 +201,11 @@ for (let airport of list) {
         const locationValue = getLocation()
         locationValue.then(function(result) {
           gameInformation.innerText = "";
-          const p = document.createElement('p');
+          var p = document.createElement('p');
           p.innerText = "Olet maassa: " + result[0];
           gameInformation.appendChild(p);
-          const k = document.createElement('p');
-          k.innerText = "Olet lentänyt " + result[1] + " kertaa";
+          var p = document.createElement('p');
+          p.innerText = "Olet lentänyt " + result[1] + " kertaa";
           gameInformation.appendChild(p);
         });
       } else {
