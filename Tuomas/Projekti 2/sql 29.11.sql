@@ -93,34 +93,34 @@ VALUES (15, 'Iso-Britannia', 'London City Airport', 'Lontoo', 51.505299, 0.05527
 
 
 INSERT INTO flights (countryID, joinID)
-VALUES (1,2),(1,5),(1,7),(1,11);
+VALUES (1,6),(1,4),(1,11);
 
 INSERT INTO flights (countryID, joinID)
-VALUES (2,1),(2,4),(2,14);
+VALUES (2,3),(2,4),(2,14);
 
 INSERT INTO flights (countryID, joinID)
-VALUES (3,4),(3,9);
+VALUES (3,4),(3,2),(3,14),(3,13);
 
 INSERT INTO flights (countryID, joinID)
-VALUES (4,2),(4,3),(4,5),(4,6);
+VALUES (4,2),(4,3),(4,5),(4,1),(4,9);
 
 INSERT INTO flights (countryID, joinID)
-VALUES (5,1),(5,4),(5,6),(5,7);
+VALUES (5,4),(5,6),(5,10);
 
 INSERT INTO flights (countryID, joinID)
-VALUES (6,4),(6,5),(6,8),(6,9);
+VALUES (6,7),(6,1),(6,5);
 
 INSERT INTO flights (countryID, joinID)
-VALUES (7,1),(7,5),(7,8),(7,11);
+VALUES (7,8),(7,11),(7,6);
 
 INSERT INTO flights (countryID, joinID)
-VALUES (8,6),(8,7),(8,10);
+VALUES (8,7),(8,10),(8,15);
 
 INSERT INTO flights (countryID, joinID)
-VALUES (9,4),(9,6),(9,10),(9,13);
+VALUES (9,4),(9,10),(9,13);
 
 INSERT INTO flights (countryID, joinID)
-VALUES (10,8),(10,9);
+VALUES (10,8),(10,9),(10,15),(10,5);
 
 INSERT INTO flights (countryID, joinID)
 VALUES (11,1),(11,7);
@@ -129,10 +129,10 @@ INSERT INTO flights (countryID, joinID)
 VALUES (12,14),(12,13);
 
 INSERT INTO flights (countryID, joinID)
-VALUES (13,12),(13,9),(13,14);
+VALUES (13,3),(13,9),(13,12);
 
 INSERT INTO flights (countryID, joinID)
-VALUES (14,2),(14,12),(14,13);
+VALUES (14,2),(14,12),(14,3);
 
 INSERT INTO flights (countryID, joinID)
 VALUES (15,8),(15,10);
