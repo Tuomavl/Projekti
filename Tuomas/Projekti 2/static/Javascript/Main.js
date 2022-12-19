@@ -8,6 +8,7 @@ L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
 map.setView([50 , 10], 4);
 
 
+// Endpoints
 const apiUrlMurderer = 'http://127.0.0.1:5000/murdererGuess/';
 const apiUrlGetMurderer = 'http://127.0.0.1:5000/getmurderer';
 const apiUrlTarina = 'http://127.0.0.1:5000/mapview';
@@ -25,8 +26,11 @@ polyline.setStyle({
   color:"red"
 })
 
+
+// Icons and airportmarkers
 const blueIcon = L.divIcon({ className: 'blue-icon' });
 const airportMarkers = L.featureGroup().addTo(map);
+
 
 // List of airport coordinates
 const list = [
@@ -46,6 +50,7 @@ const list = [
   {name:"Romania",latitude: 45,longitude:26},
   {name:"Iso-Britannia",latitude:52,longitude:0}
 ]
+
 
 const apiUrlLocations = 'http://127.0.0.1:5000/getsuspectlist';
 gameSetup(`${apiUrlLocations}`);
@@ -69,17 +74,20 @@ async function getLocation(){
     return [gameData["location"], gameData["flights"], gameData["flight_options"]];
 }
 
+
 // get players guess
 murdererSubmit.onclick=(event)=>{
     console.log(murdererGuess.value);
     guessMurderer(murdererGuess.value)
 }
 
+
 // Fetch suspect stories
 async function getStories(url){
     const gameData = await getData(url);
     const texts = gameData["stories"];
 }
+
 
 // Check if player has won
 async function guessMurderer(murderer){
@@ -91,7 +99,7 @@ async function guessMurderer(murderer){
     }
 }
 
-//
+// value = 0 if you can't fly there, value = 1 if you can fly but there isn't anybody, value = 2 if you can fly there and there is someone.
 async function fly(maa){
     const gameData = await getData(apiUrlFlyTo + maa)
     if (gameData["value"]===0){
@@ -108,17 +116,21 @@ async function fly(maa){
     }
 }
 
+
 // get murderer data
 async function getMurderer(){
     const murdererRequest = await getData(apiUrlGetMurderer)
     console.log(murdererRequest["murderer"])
 }
 
+
+// get suspect stories
 async function gameSetup(url){
     const gameData = await getData(url)
     console.log(gameData)
     getStories(apiUrlTarina);
 }
+
 
 async function getData(url) {
   const response = await fetch(url);
@@ -128,9 +140,9 @@ async function getData(url) {
 }
 
 
-
 // Get the modal
 const modal = document.getElementById("myModal");
+
 
 // Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];
@@ -141,6 +153,7 @@ span.onclick = function() {
   modal.style.display = "none";
 }
 
+
 // When the user clicks anywhere outside the modal, close it
 window.onclick = function(event) {
   if (event.target === modal) {
@@ -148,7 +161,8 @@ window.onclick = function(event) {
   }
 }
 
-// Creating airport markers and everything assosiated to them
+
+// Creating airport markers and everything associated to them
 for (let airport of list) {
   const marker = L.marker([airport.latitude, airport.longitude]).addTo(map);
   airportMarkers.addLayer(marker);
@@ -177,7 +191,7 @@ for (let airport of list) {
     flyToValue.then(function(result) {
       console.log(result);
 
-      if (result[0] == 1) {
+      if (result[0] === 1) {
         console.log(result[1])
         moda.innerText = "";
         moda.appendChild(modalcontent);
@@ -194,7 +208,7 @@ for (let airport of list) {
           p.innerText = "Olet lentänyt " + result[1] + " kertaa";
           gameInformation.appendChild(p);
         });
-      } else if (result[0] == 2) {
+      } else if (result[0] === 2) {
         console.log(result[1])
         console.log(result[2])
         moda.innerText = "";
