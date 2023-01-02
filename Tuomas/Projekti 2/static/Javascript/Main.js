@@ -186,6 +186,7 @@ for (let airport of list) {
 
   // call certain values to be added to modal
   goButton.onclick = function() {
+    modalcontent.innerText = "";
     const flyToValue = fly(goButton.value);
     console.log(flyToValue);
     flyToValue.then(function(result) {
