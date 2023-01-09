@@ -1,5 +1,5 @@
-![](Kuvat README/alkunäyttö.png)
+![Alt kuva](Kuvat_README/alkunäyttö.png)
 
-![](Kuvat README/täytä kenttä.png)
+![Alt kuva](Kuvat_README/täytä kenttä.png)
 
-![](Kuvat README/käyttäjänimi.png)
+![Alt kuva](Kuvat_README/käyttäjänimi.png)
